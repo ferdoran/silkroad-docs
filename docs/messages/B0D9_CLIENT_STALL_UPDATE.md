@@ -1,0 +1,26 @@
+# CLIENT_STALL_UPDATE
+
+| Property | Value |
+|----------|-------|
+| Opcode | `0xB0D9` |
+| Direction | Client → Server |
+| Group | Game (Client→Server) |
+| Handler(s) | `0x00881450` |
+
+### Fields
+
+| # | Name | Type | Size | Read Address |
+|---|------|------|------|-------------|
+| 1 | `byResult` | `u8` | 1 | `0x0088145E` |
+| 2 | `dwField_02` | `u32` | 4 | `0x00881474` |
+| 3 | `wField_03` | `u16` | 2 | `0x0088149C` |
+
+**Total size**: 7 bytes
+
+### Structure Summary
+
+```
+  [   0] byResult                       u8
+  [   1] dwField_02                     u32
+  [   5] wField_03                      u16
+```

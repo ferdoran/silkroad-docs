@@ -62,6 +62,8 @@ nav:
       - Terrain Rendering: terrain_rendering.md
   - Network Protocol:
       - Protocol Overview: network_protocol.md
+      - Request Opcodes: request_opcodes.md
+      - Enums & Constants: enums_constants.md
       - Message Index: messages/INDEX.md
       - System:
           - SYSTEM_KEEPALIVE: messages/0FFC_SYSTEM_KEEPALIVE.md

@@ -11,14 +11,14 @@
 
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
-| 1 | `dwUniqueID` | `u32` | 4 | `0x0087274F` |
-| 2 | `dwField_02` | `u32` | 4 | `0x0087275D` |
+| 1 | `dwCharID` | `u32` | 4 | `0x0087274F` |
+| 2 | `dwConfirm` | `u32` | 4 | `0x0087275D` |
 
 **Total size**: 8 bytes
 
 ### Structure Summary
 
 ```
-  [   0] dwUniqueID                     u32
-  [   4] dwField_02                     u32
+  [   0] dwCharID                       u32
+  [   4] dwConfirm                      u32
 ```

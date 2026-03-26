@@ -11,16 +11,16 @@
 
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
-| 1 | `byResult` | `u8` | 1 | `0x00882E75` |
-| 2 | `byField_02` | `u8` | 1 | `0x00882E83` |
-| 3 | `dwField_03` | `u32` | 4 | `0x00882E91` |
+| 1 | `byOption1` | `u8` | 1 | `0x00882E75` |
+| 2 | `byOption2` | `u8` | 1 | `0x00882E83` |
+| 3 | `dwAction` | `u32` | 4 | `0x00882E91` |
 
 **Total size**: 6 bytes
 
 ### Structure Summary
 
 ```
-  [   0] byResult                       u8
-  [   1] byField_02                     u8
-  [   2] dwField_03                     u32
+  [   0] byOption1                      u8
+  [   1] byOption2                      u8
+  [   2] dwAction                       u32
 ```

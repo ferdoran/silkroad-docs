@@ -12,7 +12,7 @@
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
 | 1 | `byResult` | `u8` | 1 | `0x0088DECE` |
-| 2 | `wField_02` | `u16` | 2 | `0x0088DF0D` |
+| 2 | `wLevel` | `u16` | 2 | `0x0088DF0D` |
 
 **Total size**: 3 bytes
 
@@ -20,5 +20,5 @@
 
 ```
   [   0] byResult                       u8
-  [   1] wField_02                      u16
+  [   1] wLevel                         u16
 ```

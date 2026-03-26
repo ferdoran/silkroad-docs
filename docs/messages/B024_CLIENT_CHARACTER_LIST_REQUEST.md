@@ -14,7 +14,7 @@
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
 | 1 | `dwUniqueID` | `u32` | 4 | `0x008A5770` |
-| 2 | `byField_02` | `u8` | 1 | `0x008A564E` |
+| 2 | `byAction` | `u8` | 1 | `0x008A564E` |
 | 3 | `byField_03` | `u8` | 1 | `0x008A5662` |
 | 4 | `byField_04` | `u8` | 1 | `0x008A5674` |
 | 5 | `wField_05` | `u16` | 2 | `0x008A5682` |
@@ -26,7 +26,7 @@
 
 ```
   [   0] dwUniqueID                     u32
-  [   4] byField_02                     u8
+  [   4] byAction                       u8
   [   5] byField_03                     u8
   [   6] byField_04                     u8
   [   7] wField_05                      u16
@@ -40,7 +40,7 @@
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
 | 1 | `dwUniqueID` | `u32` | 4 | `0x008A4F92` |
-| 2 | `wField_02` | `u16` | 2 | `0x008A4FA0` |
+| 2 | `byAction` | `u16` | 2 | `0x008A4FA0` |
 | 3 | `bytesData_2` | `bytes[14]` | 14 | `0x008A4FAE` |
 
 **Total size**: 20 bytes
@@ -49,6 +49,6 @@
 
 ```
   [   0] dwUniqueID                     u32
-  [   4] wField_02                      u16
+  [   4] byAction                       u16
   [   6] bytesData_2                    bytes[14]
 ```

@@ -12,8 +12,8 @@
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
 | 1 | `byResult` | `u8` | 1 | `0x00895897` |
-| 2 | `dwField_02` | `u32` | 4 | `0x008958B1` |
-| 3 | `wField_03` | `u16` | 2 | `0x004F7A7D` |
+| 2 | `dwParam1` | `u32` | 4 | `0x008958B1` |
+| 3 | `dwParam2` | `u16` | 2 | `0x004F7A7D` |
 | 4 | `bytesData_3` | `bytes` | variable | `0x004F7AB9` |
 | 5 | `dwField_05` | `u32` | 4 | `0x008958CE` |
 
@@ -23,8 +23,8 @@
 
 ```
   [   0] byResult                       u8
-  [   1] dwField_02                     u32
-  [   5] wField_03                      u16
+  [   1] dwParam1                       u32
+  [   5] dwParam2                       u16
   [   7] bytesData_3                    bytes  (variable length)
   [   0] dwField_05                     u32
 ```

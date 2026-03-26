@@ -11,7 +11,7 @@
 
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
-| 1 | `dwUniqueID` | `u32` | 4 | `0x009A19AA` |
+| 1 | `byRequestType` | `u32` | 4 | `0x009A19AA` |
 | 2 | `dwField_02` | `u32` | 4 | `0x009A19B8` |
 | 3 | `dwField_03` | `u32` | 4 | `0x009A1AB6` |
 | 4 | `dwField_04` | `u32` | 4 | `0x009A1AC4` |
@@ -30,7 +30,7 @@
 ### Structure Summary
 
 ```
-  [   0] dwUniqueID                     u32
+  [   0] byRequestType                  u32
   [   4] dwField_02                     u32
   [   8] dwField_03                     u32
   [  12] dwField_04                     u32

@@ -11,8 +11,8 @@
 
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
-| 1 | `dwUniqueID` | `u32` | 4 | `0x0088605B` |
-| 2 | `dwField_02` | `u32` | 4 | `0x00886069` |
+| 1 | `dwGuildID` | `u32` | 4 | `0x0088605B` |
+| 2 | `dwMemberUID` | `u32` | 4 | `0x00886069` |
 | 3 | `wField_03` | `u16` | 2 | `0x004F7A7D` |
 | 4 | `bytesData_3` | `bytes` | variable | `0x004F7AB9` |
 
@@ -21,8 +21,8 @@
 ### Structure Summary
 
 ```
-  [   0] dwUniqueID                     u32
-  [   4] dwField_02                     u32
+  [   0] dwGuildID                      u32
+  [   4] dwMemberUID                    u32
   [   8] wField_03                      u16
   [  10] bytesData_3                    bytes  (variable length)
 ```

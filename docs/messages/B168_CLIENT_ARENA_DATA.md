@@ -11,8 +11,8 @@
 
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
-| 1 | `byResult` | `u8` | 1 | `0x0089C41E` |
-| 2 | `byField_02` | `u8` | 1 | `0x0089C42C` |
+| 1 | `bySlotType` | `u8` | 1 | `0x0089C41E` |
+| 2 | `byItemType` | `u8` | 1 | `0x0089C42C` |
 | 3 | `wField_03` | `u16` | 2 | `0x004F7A7D` |
 | 4 | `bytesData_3` | `bytes` | variable | `0x004F7AB9` |
 
@@ -21,8 +21,8 @@
 ### Structure Summary
 
 ```
-  [   0] byResult                       u8
-  [   1] byField_02                     u8
+  [   0] bySlotType                     u8
+  [   1] byItemType                     u8
   [   2] wField_03                      u16
   [   4] bytesData_3                    bytes  (variable length)
 ```

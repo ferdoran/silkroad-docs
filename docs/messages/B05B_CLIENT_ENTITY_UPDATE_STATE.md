@@ -12,7 +12,7 @@
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
 | 1 | `byResult` | `u8` | 1 | `0x008816A1` |
-| 2 | `ullField_02` | `u64` | 8 | `0x008816C3` |
+| 2 | `ullState` | `u64` | 8 | `0x008816C3` |
 
 **Total size**: 9 bytes
 
@@ -20,5 +20,5 @@
 
 ```
   [   0] byResult                       u8
-  [   1] ullField_02                    u64
+  [   1] ullState                       u64
 ```

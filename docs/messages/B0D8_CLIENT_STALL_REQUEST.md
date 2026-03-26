@@ -11,8 +11,8 @@
 
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
-| 1 | `byResult` | `u8` | 1 | `0x008812E3` |
-| 2 | `dwField_02` | `u32` | 4 | `0x008812F1` |
+| 1 | `byAction` | `u8` | 1 | `0x008812E3` |
+| 2 | `dwParam` | `u32` | 4 | `0x008812F1` |
 | 3 | `byField_03` | `u8` | 1 | `0x008B94E5` |
 | 4 | `byField_04` | `u8` | 1 | `0x008B94F2` |
 | 5 | `byField_05` | `u8` | 1 | `0x008B94FF` |
@@ -31,8 +31,8 @@
 ### Structure Summary
 
 ```
-  [   0] byResult                       u8
-  [   1] dwField_02                     u32
+  [   0] byAction                       u8
+  [   1] dwParam                        u32
   [   5] byField_03                     u8
   [   6] byField_04                     u8
   [   7] byField_05                     u8

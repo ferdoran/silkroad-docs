@@ -12,8 +12,8 @@
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
 | 1 | `dwUniqueID` | `u32` | 4 | `0x008A80B1` |
-| 2 | `byField_02` | `u8` | 1 | `0x008A80BF` |
-| 3 | `byField_03` | `u8` | 1 | `0x008A80CD` |
+| 2 | `byAction` | `u8` | 1 | `0x008A80BF` |
+| 3 | `byQuestType` | `u8` | 1 | `0x008A80CD` |
 
 **Total size**: 6 bytes
 
@@ -21,6 +21,6 @@
 
 ```
   [   0] dwUniqueID                     u32
-  [   4] byField_02                     u8
-  [   5] byField_03                     u8
+  [   4] byAction                       u8
+  [   5] byQuestType                    u8
 ```

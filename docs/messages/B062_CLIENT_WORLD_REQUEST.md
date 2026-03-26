@@ -11,11 +11,11 @@
 
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
-| 1 | `byResult` | `u8` | 1 | `0x00883D05` |
-| 2 | `dwField_02` | `u32` | 4 | `0x00883D28` |
-| 3 | `dwField_03` | `u32` | 4 | `0x00883D50` |
-| 4 | `byField_04` | `u8` | 1 | `0x00883D5E` |
-| 5 | `byField_05` | `u8` | 1 | `0x00883E2E` |
+| 1 | `byMemberCount` | `u8` | 1 | `0x00883D05` |
+| 2 | `dwPartyID` | `u32` | 4 | `0x00883D28` |
+| 3 | `dwLeaderID` | `u32` | 4 | `0x00883D50` |
+| 4 | `byLevel` | `u8` | 1 | `0x00883D5E` |
+| 5 | `byMemberType` | `u8` | 1 | `0x00883E2E` |
 | 6 | `byField_06` | `u8` | 1 | `0x00883638` |
 | 7 | `dwField_07` | `u32` | 4 | `0x0088364B` |
 | 8 | `wField_08` | `u16` | 2 | `0x0087356D` |
@@ -40,11 +40,11 @@
 ### Structure Summary
 
 ```
-  [   0] byResult                       u8
-  [   1] dwField_02                     u32
-  [   5] dwField_03                     u32
-  [   9] byField_04                     u8
-  [  10] byField_05                     u8
+  [   0] byMemberCount                  u8
+  [   1] dwPartyID                      u32
+  [   5] dwLeaderID                     u32
+  [   9] byLevel                        u8
+  [  10] byMemberType                   u8
   [  11] byField_06                     u8
   [  12] dwField_07                     u32
   [  16] wField_08                      u16

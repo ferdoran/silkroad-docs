@@ -14,7 +14,7 @@
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
 | 1 | `byResult` | `u8` | 1 | `0x00885B0F` |
-| 2 | `dwField_02` | `u32` | 4 | `0x00885B25` |
+| 2 | `dwParam` | `u32` | 4 | `0x00885B25` |
 
 **Total size**: 5 bytes
 
@@ -22,7 +22,7 @@
 
 ```
   [   0] byResult                       u8
-  [   1] dwField_02                     u32
+  [   1] dwParam                        u32
 ```
 
 ## Handler 2: `0x00881F80`
@@ -32,7 +32,7 @@
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
 | 1 | `byResult` | `u8` | 1 | `0x00881F8E` |
-| 2 | `wField_02` | `u16` | 2 | `0x00881FA8` |
+| 2 | `dwParam` | `u16` | 2 | `0x00881FA8` |
 
 **Total size**: 3 bytes
 
@@ -40,5 +40,5 @@
 
 ```
   [   0] byResult                       u8
-  [   1] wField_02                      u16
+  [   1] dwParam                        u16
 ```

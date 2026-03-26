@@ -11,18 +11,18 @@
 
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
-| 1 | `byResult` | `u8` | 1 | `0x0087403B` |
-| 2 | `bytesData_1` | `bytes` | variable | `0x00841948` |
-| 3 | `dwField_03` | `u32` | 4 | `0x008740DD` |
-| 4 | `wField_04` | `u16` | 2 | `0x004F7A7D` |
-| 5 | `bytesData_4` | `bytes` | variable | `0x004F7AB9` |
-| 6 | `byField_06` | `u8` | 1 | `0x008740F9` |
-| 7 | `byField_07` | `u8` | 1 | `0x00874107` |
-| 8 | `byField_08` | `u8` | 1 | `0x008741DE` |
-| 9 | `dwField_09` | `u32` | 4 | `0x008BB144` |
-| 10 | `wField_10` | `u16` | 2 | `0x008BB174` |
-| 11 | `dwField_11` | `u32` | 4 | `0x008BB192` |
-| 12 | `dwField_12` | `u32` | 4 | `0x008BB1A0` |
+| 1 | `byAction` | `u8` | 1 | `0x0087403B` |
+| 2 | `dwStallID` | `bytes` | variable | `0x00841948` |
+| 3 | `bySlotType` | `u32` | 4 | `0x008740DD` |
+| 4 | `byItemType` | `u16` | 2 | `0x004F7A7D` |
+| 5 | `byDurability` | `bytes` | variable | `0x004F7AB9` |
+| 6 | `byQuantity` | `u8` | 1 | `0x008740F9` |
+| 7 | `wRefItemID` | `u8` | 1 | `0x00874107` |
+| 8 | `ullSerialNum` | `u8` | 1 | `0x008741DE` |
+| 9 | `byOptLevel` | `u32` | 4 | `0x008BB144` |
+| 10 | `byExtra` | `u16` | 2 | `0x008BB174` |
+| 11 | `dwPrice` | `u32` | 4 | `0x008BB192` |
+| 12 | `wStackCount` | `u32` | 4 | `0x008BB1A0` |
 | 13 | `wField_13` | `u16` | 2 | `0x008BB1C4` |
 | 14 | `dwField_14` | `u32` | 4 | `0x008BB1DE` |
 | 15 | `dwField_15` | `u32` | 4 | `0x008BE549` |
@@ -65,18 +65,18 @@
 ### Structure Summary
 
 ```
-  [   0] byResult                       u8
-  [   1] bytesData_1                    bytes  (variable length)
-  [   0] dwField_03                     u32
-  [   4] wField_04                      u16
-  [   6] bytesData_4                    bytes  (variable length)
-  [   0] byField_06                     u8
-  [   1] byField_07                     u8
-  [   2] byField_08                     u8
-  [   3] dwField_09                     u32
-  [   7] wField_10                      u16
-  [   9] dwField_11                     u32
-  [  13] dwField_12                     u32
+  [   0] byAction                       u8
+  [   1] dwStallID                      bytes  (variable length)
+  [   0] bySlotType                     u32
+  [   4] byItemType                     u16
+  [   6] byDurability                   bytes  (variable length)
+  [   0] byQuantity                     u8
+  [   1] wRefItemID                     u8
+  [   2] ullSerialNum                   u8
+  [   3] byOptLevel                     u32
+  [   7] byExtra                        u16
+  [   9] dwPrice                        u32
+  [  13] wStackCount                    u32
   [  17] wField_13                      u16
   [  19] dwField_14                     u32
   [  23] dwField_15                     u32

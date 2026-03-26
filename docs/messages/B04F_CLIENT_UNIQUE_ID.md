@@ -11,16 +11,16 @@
 
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
-| 1 | `wParam` | `u16` | 2 | `0x008A50F1` |
-| 2 | `bytesData_1` | `bytes[14]` | 14 | `0x008A50FF` |
-| 3 | `dwField_03` | `u32` | 4 | `0x008A510D` |
+| 1 | `wRegionID` | `u16` | 2 | `0x008A50F1` |
+| 2 | `bytesPosition` | `bytes[14]` | 14 | `0x008A50FF` |
+| 3 | `dwUniqueID` | `u32` | 4 | `0x008A510D` |
 
 **Total size**: 20 bytes
 
 ### Structure Summary
 
 ```
-  [   0] wParam                         u16
-  [   2] bytesData_1                    bytes[14]
-  [  16] dwField_03                     u32
+  [   0] wRegionID                      u16
+  [   2] bytesPosition                  bytes[14]
+  [  16] dwUniqueID                     u32
 ```

@@ -11,16 +11,16 @@
 
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
-| 1 | `dwUniqueID` | `u32` | 4 | `0x0088D861` |
-| 2 | `dwField_02` | `u32` | 4 | `0x0088D86F` |
-| 3 | `dwField_03` | `u32` | 4 | `0x0088D87D` |
+| 1 | `dwDestID` | `u32` | 4 | `0x0088D861` |
+| 2 | `dwParam1` | `u32` | 4 | `0x0088D86F` |
+| 3 | `dwParam2` | `u32` | 4 | `0x0088D87D` |
 
 **Total size**: 12 bytes
 
 ### Structure Summary
 
 ```
-  [   0] dwUniqueID                     u32
-  [   4] dwField_02                     u32
-  [   8] dwField_03                     u32
+  [   0] dwDestID                       u32
+  [   4] dwParam1                       u32
+  [   8] dwParam2                       u32
 ```

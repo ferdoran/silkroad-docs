@@ -12,8 +12,8 @@
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
 | 1 | `byResult` | `u8` | 1 | `0x0088145E` |
-| 2 | `dwField_02` | `u32` | 4 | `0x00881474` |
-| 3 | `wField_03` | `u16` | 2 | `0x0088149C` |
+| 2 | `dwAction` | `u32` | 4 | `0x00881474` |
+| 3 | `wParam` | `u16` | 2 | `0x0088149C` |
 
 **Total size**: 7 bytes
 
@@ -21,6 +21,6 @@
 
 ```
   [   0] byResult                       u8
-  [   1] dwField_02                     u32
-  [   5] wField_03                      u16
+  [   1] dwAction                       u32
+  [   5] wParam                         u16
 ```

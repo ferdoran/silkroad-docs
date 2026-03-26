@@ -12,7 +12,7 @@
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
 | 1 | `byResult` | `u8` | 1 | `0x008A7A2E` |
-| 2 | `wField_02` | `u16` | 2 | `0x008A7A43` |
+| 2 | `wCharIndex` | `u16` | 2 | `0x008A7A43` |
 
 **Total size**: 3 bytes
 
@@ -20,5 +20,5 @@
 
 ```
   [   0] byResult                       u8
-  [   1] wField_02                      u16
+  [   1] wCharIndex                     u16
 ```

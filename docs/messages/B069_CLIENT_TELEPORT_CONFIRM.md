@@ -12,7 +12,7 @@
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
 | 1 | `byResult` | `u8` | 1 | `0x0088012F` |
-| 2 | `dwField_02` | `u32` | 4 | `0x00880172` |
+| 2 | `dwPartyID` | `u32` | 4 | `0x00880172` |
 
 **Total size**: 5 bytes
 
@@ -20,5 +20,5 @@
 
 ```
   [   0] byResult                       u8
-  [   1] dwField_02                     u32
+  [   1] dwPartyID                      u32
 ```

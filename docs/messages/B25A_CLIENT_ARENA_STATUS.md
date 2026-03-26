@@ -12,7 +12,7 @@
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
 | 1 | `byResult` | `u8` | 1 | `0x0088D9CE` |
-| 2 | `byField_02` | `u8` | 1 | `0x0088D9E4` |
+| 2 | `byStatus` | `u8` | 1 | `0x0088D9E4` |
 
 **Total size**: 2 bytes
 
@@ -20,5 +20,5 @@
 
 ```
   [   0] byResult                       u8
-  [   1] byField_02                     u8
+  [   1] byStatus                       u8
 ```

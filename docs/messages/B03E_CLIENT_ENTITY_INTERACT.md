@@ -12,7 +12,7 @@
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
 | 1 | `dwUniqueID` | `u32` | 4 | `0x008A78BF` |
-| 2 | `byField_02` | `u8` | 1 | `0x008A78CD` |
+| 2 | `byFlags` | `u8` | 1 | `0x008A78CD` |
 
 **Total size**: 5 bytes
 
@@ -20,5 +20,5 @@
 
 ```
   [   0] dwUniqueID                     u32
-  [   4] byField_02                     u8
+  [   4] byFlags                        u8
 ```

@@ -14,7 +14,7 @@
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
 | 1 | `byResult` | `u8` | 1 | `0x0087250E` |
-| 2 | `byField_02` | `u8` | 1 | `0x00872532` |
+| 2 | `byConfirm` | `u8` | 1 | `0x00872532` |
 
 **Total size**: 2 bytes
 
@@ -22,7 +22,7 @@
 
 ```
   [   0] byResult                       u8
-  [   1] byField_02                     u8
+  [   1] byConfirm                      u8
 ```
 
 ## Handler 2: `0x00873D60`
@@ -31,16 +31,16 @@
 
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
-| 1 | `dwUniqueID` | `u32` | 4 | `0x00873DCA` |
-| 2 | `wField_02` | `u16` | 2 | `0x004F7A7D` |
-| 3 | `bytesData_2` | `bytes` | variable | `0x004F7AB9` |
+| 1 | `byResult` | `u32` | 4 | `0x00873DCA` |
+| 2 | `byConfirm` | `u16` | 2 | `0x004F7A7D` |
+| 3 | `dwUniqueID` | `bytes` | variable | `0x004F7AB9` |
 
 **Minimum size**: 6 bytes + variable fields
 
 ### Structure Summary
 
 ```
-  [   0] dwUniqueID                     u32
-  [   4] wField_02                      u16
-  [   6] bytesData_2                    bytes  (variable length)
+  [   0] byResult                       u32
+  [   4] byConfirm                      u16
+  [   6] dwUniqueID                     bytes  (variable length)
 ```

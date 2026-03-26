@@ -12,8 +12,8 @@
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
 | 1 | `byResult` | `u8` | 1 | `0x00888E41` |
-| 2 | `byField_02` | `u8` | 1 | `0x00888E74` |
-| 3 | `byField_03` | `u8` | 1 | `0x00888F44` |
+| 2 | `byLockFlag` | `u8` | 1 | `0x00888E74` |
+| 3 | `byConfirm` | `u8` | 1 | `0x00888F44` |
 
 **Total size**: 3 bytes
 
@@ -21,6 +21,6 @@
 
 ```
   [   0] byResult                       u8
-  [   1] byField_02                     u8
-  [   2] byField_03                     u8
+  [   1] byLockFlag                     u8
+  [   2] byConfirm                      u8
 ```

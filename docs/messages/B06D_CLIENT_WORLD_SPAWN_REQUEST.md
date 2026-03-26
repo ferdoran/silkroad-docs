@@ -11,12 +11,12 @@
 
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
-| 1 | `dwUniqueID` | `u32` | 4 | `0x008846CC` |
-| 2 | `dwField_02` | `u32` | 4 | `0x008846DA` |
-| 3 | `dwField_03` | `u32` | 4 | `0x008846E8` |
-| 4 | `dwField_04` | `u32` | 4 | `0x008846F6` |
-| 5 | `dwField_05` | `u32` | 4 | `0x00884704` |
-| 6 | `byField_06` | `u8` | 1 | `0x00884712` |
+| 1 | `dwPartyID` | `u32` | 4 | `0x008846CC` |
+| 2 | `dwLeaderID` | `u32` | 4 | `0x008846DA` |
+| 3 | `dwParam1` | `u32` | 4 | `0x008846E8` |
+| 4 | `dwParam2` | `u32` | 4 | `0x008846F6` |
+| 5 | `dwParam3` | `u32` | 4 | `0x00884704` |
+| 6 | `byJoinFlag` | `u8` | 1 | `0x00884712` |
 | 7 | `byField_07` | `u8` | 1 | `0x00883638` |
 | 8 | `dwField_08` | `u32` | 4 | `0x0088364B` |
 | 9 | `wField_09` | `u16` | 2 | `0x0087356D` |
@@ -41,12 +41,12 @@
 ### Structure Summary
 
 ```
-  [   0] dwUniqueID                     u32
-  [   4] dwField_02                     u32
-  [   8] dwField_03                     u32
-  [  12] dwField_04                     u32
-  [  16] dwField_05                     u32
-  [  20] byField_06                     u8
+  [   0] dwPartyID                      u32
+  [   4] dwLeaderID                     u32
+  [   8] dwParam1                       u32
+  [  12] dwParam2                       u32
+  [  16] dwParam3                       u32
+  [  20] byJoinFlag                     u8
   [  21] byField_07                     u8
   [  22] dwField_08                     u32
   [  26] wField_09                      u16

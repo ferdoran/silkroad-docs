@@ -12,7 +12,7 @@
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
 | 1 | `byResult` | `u8` | 1 | `0x0088355C` |
-| 2 | `wField_02` | `u16` | 2 | `0x008835FD` |
+| 2 | `wNotifyID` | `u16` | 2 | `0x008835FD` |
 
 **Total size**: 3 bytes
 
@@ -20,5 +20,5 @@
 
 ```
   [   0] byResult                       u8
-  [   1] wField_02                      u16
+  [   1] wNotifyID                      u16
 ```

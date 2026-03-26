@@ -12,7 +12,7 @@
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
 | 1 | `byResult` | `u8` | 1 | `0x0088410C` |
-| 2 | `dwField_02` | `u32` | 4 | `0x0088378D` |
+| 2 | `wErrorCode` | `u32` | 4 | `0x0088378D` |
 | 3 | `dwField_03` | `u32` | 4 | `0x0088379A` |
 | 4 | `byField_04` | `u8` | 1 | `0x008837A7` |
 | 5 | `byField_05` | `u8` | 1 | `0x008837B4` |
@@ -28,7 +28,7 @@
 
 ```
   [   0] byResult                       u8
-  [   1] dwField_02                     u32
+  [   1] wErrorCode                     u32
   [   5] dwField_03                     u32
   [   9] byField_04                     u8
   [  10] byField_05                     u8

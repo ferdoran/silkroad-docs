@@ -12,11 +12,11 @@
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
 | 1 | `byResult` | `u8` | 1 | `0x00872A2B` |
-| 2 | `byField_02` | `u8` | 1 | `0x00872A67` |
-| 3 | `byField_03` | `u8` | 1 | `0x00872A95` |
-| 4 | `byField_04` | `u8` | 1 | `0x00872AA3` |
-| 5 | `dwField_05` | `u32` | 4 | `0x008BB144` |
-| 6 | `wField_06` | `u16` | 2 | `0x008BB174` |
+| 2 | `byAction` | `u8` | 1 | `0x00872A67` |
+| 3 | `byParam` | `u8` | 1 | `0x00872A95` |
+| 4 | `byItemSlot` | `u8` | 1 | `0x00872AA3` |
+| 5 | `byOptResult` | `u32` | 4 | `0x008BB144` |
+| 6 | `wRefItemID` | `u16` | 2 | `0x008BB174` |
 | 7 | `dwField_07` | `u32` | 4 | `0x008BB192` |
 | 8 | `dwField_08` | `u32` | 4 | `0x008BB1A0` |
 | 9 | `wField_09` | `u16` | 2 | `0x008BB1C4` |
@@ -59,11 +59,11 @@
 
 ```
   [   0] byResult                       u8
-  [   1] byField_02                     u8
-  [   2] byField_03                     u8
-  [   3] byField_04                     u8
-  [   4] dwField_05                     u32
-  [   8] wField_06                      u16
+  [   1] byAction                       u8
+  [   2] byParam                        u8
+  [   3] byItemSlot                     u8
+  [   4] byOptResult                    u32
+  [   8] wRefItemID                     u16
   [  10] dwField_07                     u32
   [  14] dwField_08                     u32
   [  18] wField_09                      u16

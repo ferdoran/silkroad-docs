@@ -11,12 +11,12 @@
 
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
-| 1 | `byResult` | `u8` | 1 | `0x00883B55` |
+| 1 | `byAction` | `u8` | 1 | `0x00883B55` |
 
 **Total size**: 1 bytes
 
 ### Structure Summary
 
 ```
-  [   0] byResult                       u8
+  [   0] byAction                       u8
 ```

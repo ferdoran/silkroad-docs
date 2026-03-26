@@ -12,11 +12,11 @@
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
 | 1 | `byResult` | `u8` | 1 | `0x008A600B` |
-| 2 | `wField_02` | `u16` | 2 | `0x008A6020` |
-| 3 | `bytesData_2` | `bytes` | variable | `0x008A6052` |
-| 4 | `dwField_04` | `u32` | 4 | `0x008A6060` |
-| 5 | `dwField_05` | `u32` | 4 | `0x008A606E` |
-| 6 | `dwField_06` | `u32` | 4 | `0x008A607C` |
+| 2 | `wParam` | `u16` | 2 | `0x008A6020` |
+| 3 | `byAction` | `bytes` | variable | `0x008A6052` |
+| 4 | `dwUniqueID1` | `u32` | 4 | `0x008A6060` |
+| 5 | `dwUniqueID2` | `u32` | 4 | `0x008A606E` |
+| 6 | `dwTargetUID` | `u32` | 4 | `0x008A607C` |
 | 7 | `dwField_07` | `u32` | 4 | `0x00A54C5D` |
 | 8 | `byField_08` | `u8` | 1 | `0x00A54C7F` |
 | 9 | `byField_09` | `u8` | 1 | `0x00A548F6` |
@@ -35,11 +35,11 @@
 
 ```
   [   0] byResult                       u8
-  [   1] wField_02                      u16
-  [   3] bytesData_2                    bytes  (variable length)
-  [   0] dwField_04                     u32
-  [   4] dwField_05                     u32
-  [   8] dwField_06                     u32
+  [   1] wParam                         u16
+  [   3] byAction                       bytes  (variable length)
+  [   0] dwUniqueID1                    u32
+  [   4] dwUniqueID2                    u32
+  [   8] dwTargetUID                    u32
   [  12] dwField_07                     u32
   [  16] byField_08                     u8
   [  17] byField_09                     u8

@@ -12,10 +12,10 @@
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
 | 1 | `byResult` | `u8` | 1 | `0x008A1378` |
-| 2 | `wField_02` | `u16` | 2 | `0x008A1392` |
-| 3 | `byField_03` | `u8` | 1 | `0x008A13A0` |
-| 4 | `dwField_04` | `u32` | 4 | `0x008A13C3` |
-| 5 | `wField_05` | `u16` | 2 | `0x008A13D1` |
+| 2 | `wCategoryID` | `u16` | 2 | `0x008A1392` |
+| 3 | `byHasItems` | `u8` | 1 | `0x008A13A0` |
+| 4 | `dwPageID` | `u32` | 4 | `0x008A13C3` |
+| 5 | `wItemCount` | `u16` | 2 | `0x008A13D1` |
 
 **Total size**: 10 bytes
 
@@ -23,8 +23,8 @@
 
 ```
   [   0] byResult                       u8
-  [   1] wField_02                      u16
-  [   3] byField_03                     u8
-  [   4] dwField_04                     u32
-  [   8] wField_05                      u16
+  [   1] wCategoryID                    u16
+  [   3] byHasItems                     u8
+  [   4] dwPageID                       u32
+  [   8] wItemCount                     u16
 ```

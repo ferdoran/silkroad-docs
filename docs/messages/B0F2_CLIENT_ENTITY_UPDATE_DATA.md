@@ -11,12 +11,12 @@
 
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
-| 1 | `dwUniqueID` | `u32` | 4 | `0x008819BB` |
+| 1 | `dwGuildID` | `u32` | 4 | `0x008819BB` |
 
 **Total size**: 4 bytes
 
 ### Structure Summary
 
 ```
-  [   0] dwUniqueID                     u32
+  [   0] dwGuildID                      u32
 ```

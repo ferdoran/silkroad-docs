@@ -12,7 +12,7 @@
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
 | 1 | `byResult` | `u8` | 1 | `0x008857DF` |
-| 2 | `wField_02` | `u16` | 2 | `0x00885860` |
+| 2 | `wErrorCode` | `u16` | 2 | `0x00885860` |
 
 **Total size**: 3 bytes
 
@@ -20,5 +20,5 @@
 
 ```
   [   0] byResult                       u8
-  [   1] wField_02                      u16
+  [   1] wErrorCode                     u16
 ```

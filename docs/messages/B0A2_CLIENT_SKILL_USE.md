@@ -16,6 +16,20 @@
 
 **Total size**: 5 bytes
 
+
+### Source File(s)
+- `NetProcessInInterface.cpp`
+
+### Assert Expressions
+```
+!m_pGInterface->GetMainPopup()->GetSkillAddress()->GetLearnedSkill()->IsLearnedSkill(dwSkillID)
+```
+
+### String References
+| String | Type |
+|--------|------|
+| `!m_pGInterface->GetMainPopup()->GetSkillAddress()->GetLearnedSkill()->IsLearnedSkill(dwSkillID)` | Debug |
+
 ### Structure Summary
 
 ```

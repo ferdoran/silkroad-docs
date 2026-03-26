@@ -18,6 +18,13 @@
 
 **Total size**: 5 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `snd_window_close` | Debug |
+| `GuildSummonReq` | Debug |
+
 ### Structure Summary
 
 ```

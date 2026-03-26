@@ -16,6 +16,12 @@
 
 **Total size**: 3 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_AVATAR_MAGICOPTION_ADD` | UI |
+
 ### Structure Summary
 
 ```

@@ -17,6 +17,13 @@
 
 **Minimum size**: 5 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_PARTYMATCH_DELETE_COMPLETE` | UI |
+| `UIIT_MSG_PARTYMATCH_DELETE_COMPLETE2` | UI |
+
 ### Structure Summary
 
 ```

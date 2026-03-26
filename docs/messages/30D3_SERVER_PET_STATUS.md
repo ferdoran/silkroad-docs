@@ -17,6 +17,18 @@
 
 **Total size**: 1 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `(Test_GM)PKCnt D:%d` | Debug |
+
+
+### String References
+| String | Type |
+|--------|------|
+| `(Test_GM)PKLevel L:%d` | Debug |
+
 ### Structure Summary
 
 ```
@@ -32,6 +44,18 @@
 | 1 | `byStatus` | `u16` | 2 | `0x0088117C` |
 
 **Total size**: 2 bytes
+
+
+### String References
+| String | Type |
+|--------|------|
+| `(Test_GM)PKCnt D:%d` | Debug |
+
+
+### String References
+| String | Type |
+|--------|------|
+| `(Test_GM)PKLevel L:%d` | Debug |
 
 ### Structure Summary
 

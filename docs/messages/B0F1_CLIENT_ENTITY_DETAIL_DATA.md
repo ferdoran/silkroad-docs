@@ -43,6 +43,16 @@
 
 **Minimum size**: 71 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `%s\n%s` | Debug |
+| `UIIT_MSG_GUILD_BREAK_RESULT` | UI |
+| `UIIT_MSG_GUILD_EXIT_RESULT` | UI |
+| `UIIT_MSG_GUILD_EXPULSION_RESULT` | UI |
+| `UIIT_CTL_GUILDWAR_ENDCOUNT` | UI |
+
 ### Structure Summary
 
 ```

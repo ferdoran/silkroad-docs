@@ -18,6 +18,12 @@
 
 **Total size**: 5 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_CTL_GUILDWAR_NOTCOMPENSATION` | UI |
+
 ### Structure Summary
 
 ```
@@ -35,6 +41,12 @@
 | 2 | `dwParam` | `u16` | 2 | `0x00881FA8` |
 
 **Total size**: 3 bytes
+
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_CTL_GUILDWAR_NOTCOMPENSATION` | UI |
 
 ### Structure Summary
 

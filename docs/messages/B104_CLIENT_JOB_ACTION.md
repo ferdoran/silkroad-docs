@@ -15,6 +15,12 @@
 
 **Total size**: 1 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_MLEAVE_SUCCESS` | UI |
+
 ### Structure Summary
 
 ```

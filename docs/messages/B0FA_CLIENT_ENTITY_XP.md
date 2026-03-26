@@ -16,6 +16,12 @@
 
 **Total size**: 5 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_GUILD_GP_SUBSCRIPION_RESULT` | UI |
+
 ### Structure Summary
 
 ```

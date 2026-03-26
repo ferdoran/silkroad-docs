@@ -25,6 +25,15 @@
 
 **Total size**: 45 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `ERROR - pOpenMarketRegistrationWnd != NULL` | Debug |
+| `UIIT_STT_OPEN_MARKET_SELL` | UI |
+| `UIIT_STT_OPEN_MARKET_DELETE_WARNING` | UI |
+| `UIIT_STT_OPEN_MARKET_SELL_TIME_OVER` | UI |
+
 ### Structure Summary
 
 ```

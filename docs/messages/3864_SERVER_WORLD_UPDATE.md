@@ -18,6 +18,28 @@
 
 **Total size**: 5 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `OnCreatePartyAck[%d]` | Debug |
+
+
+### String References
+| String | Type |
+|--------|------|
+| `PARTY_JOB_ADD_MEMBER %X` | Debug |
+| `LEAVE_PARTY_LOGOUT %X` | Debug |
+| `LEAVE_PARTY_SECEDE %X` | Debug |
+| `LEAVE_PARTY_SERVER_MIGRATION %X` | Debug |
+| `LEAVE_PARTY_BOOTED %X` | Debug |
+| `UIIT_MSG_PARTY_JOIN` | UI |
+| `UIIT_MSG_PARTY_BROKEN` | UI |
+| `UIIT_MSG_PARTY_HOST_ROLE_DELEGATED` | UI |
+| `UIIT_MSG_PARTY_LOGOUT` | UI |
+| `UIIT_MSG_PARTY_SECEDE` | UI |
+| `UIIT_MSG_PARTY_BOOTED` | UI |
+
 ### Structure Summary
 
 ```
@@ -57,6 +79,28 @@
 | 24 | `dwField_24` | `u32` | 4 | `0x008871E1` |
 
 **Minimum size**: 62 bytes + variable fields
+
+
+### String References
+| String | Type |
+|--------|------|
+| `OnCreatePartyAck[%d]` | Debug |
+
+
+### String References
+| String | Type |
+|--------|------|
+| `PARTY_JOB_ADD_MEMBER %X` | Debug |
+| `LEAVE_PARTY_LOGOUT %X` | Debug |
+| `LEAVE_PARTY_SECEDE %X` | Debug |
+| `LEAVE_PARTY_SERVER_MIGRATION %X` | Debug |
+| `LEAVE_PARTY_BOOTED %X` | Debug |
+| `UIIT_MSG_PARTY_JOIN` | UI |
+| `UIIT_MSG_PARTY_BROKEN` | UI |
+| `UIIT_MSG_PARTY_HOST_ROLE_DELEGATED` | UI |
+| `UIIT_MSG_PARTY_LOGOUT` | UI |
+| `UIIT_MSG_PARTY_SECEDE` | UI |
+| `UIIT_MSG_PARTY_BOOTED` | UI |
 
 ### Structure Summary
 

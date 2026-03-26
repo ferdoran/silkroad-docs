@@ -51,6 +51,7 @@ nav:
   - Architecture:
       - Overview: overview.md
       - Client Binary: sro_client.md
+      - Class Hierarchy: class_hierarchy.md
       - Anti-Cheat: anticheat.md
       - Config Files: config_files.md
       - Launcher & Patcher: launcher_and_patcher.md
@@ -62,8 +63,11 @@ nav:
       - Terrain Rendering: terrain_rendering.md
   - Network Protocol:
       - Protocol Overview: network_protocol.md
+      - Protocol Reference: protocol_reference.md
       - Request Opcodes: request_opcodes.md
       - Enums & Constants: enums_constants.md
+      - String References: string_references.md
+      - Decompiled Handlers: decompiled_handlers.md
       - Message Index: messages/INDEX.md
       - System:
           - SYSTEM_KEEPALIVE: messages/0FFC_SYSTEM_KEEPALIVE.md

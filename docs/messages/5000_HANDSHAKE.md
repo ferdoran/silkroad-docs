@@ -19,6 +19,17 @@
 
 **Minimum size**: 17 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `ACTIVE_SESSION::_OnMsgReceivedBeforeHandshake() - Handshake ServerSignature Error[MsgID: 0x%x]` | Debug |
+| `_OnMsgReceivedBeforeHandshake() - Initialize [MsgID: 0x%x]` | Debug |
+| `SecurityModeCheck - Mode:%d, Handshake:%d` | Debug |
+| `_OnMsgReceivedBeforeHandshake() - Handshake Failed:%d [MsgID: 0x%x]` | Debug |
+| `_OnMsgReceivedBeforeHandshake() - Handshake Recipient Size:%d [MsgID: 0x%x]` | Debug |
+| `_OnMsgReceivedBeforeHandshake() - Handshake RecipientInfo Error [MsgID: 0x%x]` | Debug |
+
 ### Structure Summary
 
 ```

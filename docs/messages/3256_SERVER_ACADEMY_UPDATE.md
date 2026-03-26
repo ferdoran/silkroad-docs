@@ -20,6 +20,13 @@
 
 **Minimum size**: 13 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_GUILD_NAME_GRANT_RESULT` | UI |
+| `UIIT_STT_CONFIRM_BOX` | UI |
+
 ### Structure Summary
 
 ```

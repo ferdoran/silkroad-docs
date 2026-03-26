@@ -27,6 +27,13 @@
 
 **Total size**: 40 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_TC_RECIEVE_BUFF` | UI |
+| `UIIT_MSG_TC_PASS_ERROR` | UI |
+
 ### Structure Summary
 
 ```

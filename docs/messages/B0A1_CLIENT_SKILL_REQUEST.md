@@ -17,6 +17,12 @@
 
 **Total size**: 9 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `OnRefreshBuffRemaintime:%d` | Debug |
+
 ### Structure Summary
 
 ```

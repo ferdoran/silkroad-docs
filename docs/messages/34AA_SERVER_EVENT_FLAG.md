@@ -17,6 +17,14 @@
 
 **Total size**: 4 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_VIETNAM_MRSYSTEM_100` | UI |
+| `UIIT_MSG_VIETNAM_MRSYSTEM_50` | UI |
+| `UIIT_MSG_VIETNAM_MRSYSTEM_0` | UI |
+
 ### Structure Summary
 
 ```

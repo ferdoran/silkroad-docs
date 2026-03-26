@@ -16,6 +16,16 @@
 
 **Total size**: 5 bytes
 
+
+### Domain
+quest
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_SR_ABORT_QUEST_ERROR_NOT_ALLOWED` | UI |
+| `UIIT_STT_QUEST_GIVEUP_1` | UI |
+
 ### Structure Summary
 
 ```

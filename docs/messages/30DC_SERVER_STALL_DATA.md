@@ -18,6 +18,13 @@
 
 **Minimum size**: 2 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `SN_TALK_COMMON_END` | Debug |
+| `snd_quest_end` | Debug |
+
 ### Structure Summary
 
 ```
@@ -35,6 +42,13 @@
 | 2 | `bytesStallName` | `u8` | 1 | `0x008815A3` |
 
 **Total size**: 2 bytes
+
+
+### String References
+| String | Type |
+|--------|------|
+| `SN_TALK_COMMON_END` | Debug |
+| `snd_quest_end` | Debug |
 
 ### Structure Summary
 

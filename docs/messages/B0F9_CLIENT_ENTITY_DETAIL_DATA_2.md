@@ -41,6 +41,12 @@
 
 **Minimum size**: 66 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_CTL_MASTERRELEASE_NOTICE` | UI |
+
 ### Structure Summary
 
 ```

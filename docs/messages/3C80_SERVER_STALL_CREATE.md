@@ -26,6 +26,17 @@
 
 **Minimum size**: 17 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_STT_TC_DISSOLUTION_SUCCESS` | UI |
+| `UIIT_STT_TC_OUT_TRAININGCAMP_ANNOUNCE` | UI |
+| `UIIT_STT_TC_OUT_TRAININGCAMP_OTHER_USER` | UI |
+| `UIIT_MSG_TC_EXPULSION_RESULT` | UI |
+| `UIIT_MSG_TC_EXPULSION_RESULT_ANNOUNCE` | UI |
+| `UIIT_MSG_TC_MACHING_JOINING_MEMBER` | UI |
+
 ### Structure Summary
 
 ```
@@ -69,6 +80,17 @@
 | 20 | `byField_20` | `u8` | 1 | `0x008A25CC` |
 
 **Minimum size**: 41 bytes + variable fields
+
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_STT_TC_DISSOLUTION_SUCCESS` | UI |
+| `UIIT_STT_TC_OUT_TRAININGCAMP_ANNOUNCE` | UI |
+| `UIIT_STT_TC_OUT_TRAININGCAMP_OTHER_USER` | UI |
+| `UIIT_MSG_TC_EXPULSION_RESULT` | UI |
+| `UIIT_MSG_TC_EXPULSION_RESULT_ANNOUNCE` | UI |
+| `UIIT_MSG_TC_MACHING_JOINING_MEMBER` | UI |
 
 ### Structure Summary
 

@@ -21,6 +21,18 @@
 
 **Minimum size**: 10 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_CHAR_SKIN_CHANGE_SUCCESS` | UI |
+
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_EVENT_END` | UI |
+
 ### Structure Summary
 
 ```
@@ -41,6 +53,18 @@
 | 2 | `dwUniqueID` | `u8` | 1 | `0x0088680A` |
 
 **Total size**: 5 bytes
+
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_CHAR_SKIN_CHANGE_SUCCESS` | UI |
+
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_EVENT_END` | UI |
 
 ### Structure Summary
 

@@ -15,6 +15,12 @@
 
 **Total size**: 4 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `(Test_GM)PK Penalties:%dseconds` | Debug |
+
 ### Structure Summary
 
 ```

@@ -18,6 +18,21 @@
 
 **Total size**: 3 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_LETTER_SENDOK` | UI |
+
+
+### String References
+| String | Type |
+|--------|------|
+| `D:\\vss-od\\Silkroad\\Client\\client\\NetProcessInInterface.cpp` | Debug |
+| `UIIT_MSG_FRIEND_CONNECT` | UI |
+| `UIIT_MSG_FRIEND_DISCONNECT` | UI |
+| `UIIT_MSG_LETTERERR_UNKNOWNLETTER` | UI |
+
 ### Structure Summary
 
 ```
@@ -44,6 +59,21 @@
 | 11 | `byResult` | `u8` | 1 | `0x00886710` |
 
 **Minimum size**: 29 bytes + variable fields
+
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_LETTER_SENDOK` | UI |
+
+
+### String References
+| String | Type |
+|--------|------|
+| `D:\\vss-od\\Silkroad\\Client\\client\\NetProcessInInterface.cpp` | Debug |
+| `UIIT_MSG_FRIEND_CONNECT` | UI |
+| `UIIT_MSG_FRIEND_DISCONNECT` | UI |
+| `UIIT_MSG_LETTERERR_UNKNOWNLETTER` | UI |
 
 ### Structure Summary
 

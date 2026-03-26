@@ -19,6 +19,14 @@
 
 **Minimum size**: 7 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_STATE_GET_ITEM_EXPENDABLE` | UI |
+| `UIIT_MSG_PARTYGET_ITEM_EXPENDABLE` | UI |
+| `UIIT_MSG_PARTYGET_GOLD` | UI |
+
 ### Structure Summary
 
 ```

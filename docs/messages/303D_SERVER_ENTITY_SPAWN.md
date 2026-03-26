@@ -42,6 +42,25 @@
 
 **Minimum size**: 47 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `D:\\vss-od\\Silkroad\\Client\\client\\NetProcessInInterface.cpp` | Debug |
+| `STORE_TOMB_GATE_IN` | Debug |
+| `STORE_DESERT_MERCHANT_HUNTER_GATE` | Debug |
+| `STORE_DESERT_THIEF_GATE` | Debug |
+| `INS_TEMPLE_SETH_TELEPORT` | Debug |
+| `!(byMask & VITAL_INFO_MP)` | Debug |
+| `!(byMask & VITAL_INFO_ABNORMAL)` | Debug |
+| `UIIT_MSG_STRGERR_CANT_SWAP_JOBITEM` | UI |
+
+
+### String References
+| String | Type |
+|--------|------|
+| `d:\\vss-od\\silkroad\\client\\client\\MsgStreamBuffer.h` | Debug |
+
 ### Structure Summary
 
 ```
@@ -86,6 +105,25 @@
 | 5 | `wRegionID` | `bytes` | variable | `0x004F71C5` |
 
 **Minimum size**: 12 bytes + variable fields
+
+
+### String References
+| String | Type |
+|--------|------|
+| `D:\\vss-od\\Silkroad\\Client\\client\\NetProcessInInterface.cpp` | Debug |
+| `STORE_TOMB_GATE_IN` | Debug |
+| `STORE_DESERT_MERCHANT_HUNTER_GATE` | Debug |
+| `STORE_DESERT_THIEF_GATE` | Debug |
+| `INS_TEMPLE_SETH_TELEPORT` | Debug |
+| `!(byMask & VITAL_INFO_MP)` | Debug |
+| `!(byMask & VITAL_INFO_ABNORMAL)` | Debug |
+| `UIIT_MSG_STRGERR_CANT_SWAP_JOBITEM` | UI |
+
+
+### String References
+| String | Type |
+|--------|------|
+| `d:\\vss-od\\silkroad\\client\\client\\MsgStreamBuffer.h` | Debug |
 
 ### Structure Summary
 

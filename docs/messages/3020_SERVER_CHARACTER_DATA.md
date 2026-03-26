@@ -13,3 +13,11 @@ No fields could be extracted from this handler. The message may:
 - Have no payload (header-only)
 - Use an indirect/virtual dispatch that couldn't be traced
 - Read data through a mechanism not yet identified
+
+### String References
+| String | Type |
+|--------|------|
+| `OnMyCharacterEntered - Start` | Debug |
+| `fortress_war.ogg` | Debug |
+| `OnMyCharacterEntered - End` | Debug |
+| `UIIT_MSG_EVENT_START` | UI |

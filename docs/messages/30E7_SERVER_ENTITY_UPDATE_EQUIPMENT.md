@@ -58,6 +58,12 @@
 
 **Minimum size**: 134 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_STT_COSNEWUI_TITLE` | UI |
+
 ### Structure Summary
 
 ```

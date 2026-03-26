@@ -19,6 +19,20 @@
 
 **Minimum size**: 10 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_STT_FORT_GUILD_COMMANDER` | UI |
+| `UIIT_STT_FORT_GUILD_SUBCOMMANDER` | UI |
+| `UIIT_STT_FORT_GUILD_BATTLEMANAGER` | UI |
+| `UIIT_STT_FORT_GUILD_PRODUCTMANAGER` | UI |
+| `UIIT_STT_FORT_GUILD_TRAINERMANAGER` | UI |
+| `UIIT_STT_FORT_GUILD_ENGINEER` | UI |
+| `UIIT_MSG_FORT_POSITION_REMOVE_COMPLETE` | UI |
+| `UIIT_MSG_FORT_POSITION_GRANT_COMPLETE` | UI |
+| `UIIT_STT_CONFIRM_BOX` | UI |
+
 ### Structure Summary
 
 ```

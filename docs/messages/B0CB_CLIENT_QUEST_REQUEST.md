@@ -17,6 +17,13 @@
 
 **Total size**: 6 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `OnRefreshCharacterState : Teleport (%d)` | Debug |
+| `UIIT_MSG_TRANSITION_CANCEL_RESULT` | UI |
+
 ### Structure Summary
 
 ```

@@ -20,6 +20,13 @@
 
 **Minimum size**: 7 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_ALIAS_MODIFY_COMPLETE` | UI |
+| `UIIT_MSG_ALIAS_CREATE_COMPLETE` | UI |
+
 ### Structure Summary
 
 ```

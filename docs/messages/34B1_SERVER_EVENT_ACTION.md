@@ -15,6 +15,12 @@
 
 **Total size**: 1 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_TRANSITION_CANCEL_RESULT` | UI |
+
 ### Structure Summary
 
 ```

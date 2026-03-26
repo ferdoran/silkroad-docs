@@ -20,6 +20,12 @@
 
 **Total size**: 14 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `SKILL_EU_WARLOCK_BLOODA_EXPLOSION_A` | Debug |
+
 ### Structure Summary
 
 ```

@@ -18,6 +18,13 @@
 
 **Total size**: 10 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `pCOSInfo->IsCashPet()` | Debug |
+| `pCOSInfo->IsGoldPet()` | Debug |
+
 ### Structure Summary
 
 ```

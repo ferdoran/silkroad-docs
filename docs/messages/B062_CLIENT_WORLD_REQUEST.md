@@ -37,6 +37,13 @@
 
 **Minimum size**: 57 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `OnPartyInfo[%d]` | Debug |
+| `Party  member name very short!!` | Debug |
+
 ### Structure Summary
 
 ```

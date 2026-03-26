@@ -15,6 +15,12 @@
 
 **Total size**: 4 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `snd_levup` | Debug |
+
 ### Structure Summary
 
 ```

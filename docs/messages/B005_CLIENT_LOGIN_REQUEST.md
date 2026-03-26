@@ -15,6 +15,13 @@
 
 **Total size**: 2 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `OnResetClient : %d` | Debug |
+| `OnResetClient - End` | Debug |
+
 ### Structure Summary
 
 ```

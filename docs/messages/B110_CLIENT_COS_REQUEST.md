@@ -20,6 +20,13 @@
 
 **Minimum size**: 12 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `overlapped_job_id` | Debug |
+| `sender_jid` | Debug |
+
 ### Structure Summary
 
 ```

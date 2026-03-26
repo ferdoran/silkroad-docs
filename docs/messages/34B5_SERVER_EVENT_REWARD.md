@@ -16,6 +16,15 @@
 
 **Total size**: 5 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_STT_LETTER_FORENOON` | UI |
+| `UIIT_STT_LETTER_AFTEMOON` | UI |
+| `UIIT_MSG_GM_PUNISHMENT_CHAT_BLOCK` | UI |
+| `UIIT_MSG_GM_PUNISHMENT_TRADE_BLOCK` | UI |
+
 ### Structure Summary
 
 ```

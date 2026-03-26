@@ -40,6 +40,12 @@
 
 **Minimum size**: 62 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_TC_OPEN_SUCCESS` | UI |
+
 ### Structure Summary
 
 ```

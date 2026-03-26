@@ -54,6 +54,13 @@
 
 **Minimum size**: 114 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_ALCHEMY_CANCELED_COMPOUND` | UI |
+| `UIIT_MSG_REINFORCERR_FAIL` | UI |
+
 ### Structure Summary
 
 ```

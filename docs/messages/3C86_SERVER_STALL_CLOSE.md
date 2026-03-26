@@ -19,6 +19,12 @@
 
 **Minimum size**: 16 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_CTL_TC_SAVE_BUFF_TIME_OVER` | UI |
+
 ### Structure Summary
 
 ```

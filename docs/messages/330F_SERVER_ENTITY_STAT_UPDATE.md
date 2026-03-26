@@ -20,6 +20,12 @@
 
 **Total size**: 21 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_SKILL_EXECUTE` | UI |
+
 ### Structure Summary
 
 ```

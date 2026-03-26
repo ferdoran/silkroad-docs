@@ -16,6 +16,12 @@
 
 **Total size**: 3 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_STATE_REBIRTH_POINT_APPOINT` | UI |
+
 ### Structure Summary
 
 ```

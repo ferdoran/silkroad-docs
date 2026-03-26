@@ -16,6 +16,12 @@
 
 **Total size**: 5 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `OnJoinPartyAck[%d]` | Debug |
+
 ### Structure Summary
 
 ```

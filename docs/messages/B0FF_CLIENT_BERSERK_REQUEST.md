@@ -17,6 +17,14 @@
 
 **Total size**: 4 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_STT_TC_MACHING_COMPLETE` | UI |
+| `UIIT_MSG_TC_JOIN_CANCEL` | UI |
+| `UIIT_MSG_TC_JOIN_NOREPLY` | UI |
+
 ### Structure Summary
 
 ```

@@ -31,6 +31,12 @@
 
 **Total size**: 50 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_STT_FORT_ITEMUSE_INTERRUPT` | UI |
+
 ### Structure Summary
 
 ```

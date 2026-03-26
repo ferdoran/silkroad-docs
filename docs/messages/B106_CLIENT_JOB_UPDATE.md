@@ -16,6 +16,13 @@
 
 **Total size**: 3 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_MRELEASE_VOTING` | UI |
+| `UIIT_MSG_MRELEASEERR_NOTVOTETIME` | UI |
+
 ### Structure Summary
 
 ```

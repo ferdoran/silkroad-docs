@@ -16,6 +16,13 @@
 
 **Total size**: 5 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `snd_revive` | Debug |
+| `snd_repair` | Debug |
+
 ### Structure Summary
 
 ```

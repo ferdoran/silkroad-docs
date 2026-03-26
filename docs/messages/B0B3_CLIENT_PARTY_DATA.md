@@ -45,6 +45,14 @@
 
 **Minimum size**: 86 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_WARENETWORK_BUY_SUCCESS` | UI |
+| `UIIT_MSG_WARENETWORK_CHARGE` | UI |
+| `UIIT_MSG_STREET_STORE_SELL_COMMODITY` | UI |
+
 ### Structure Summary
 
 ```

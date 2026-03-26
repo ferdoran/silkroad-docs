@@ -17,6 +17,12 @@
 
 **Total size**: 4 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `Fun_GetCfgGame()->m_LocalTime.InitTimer(pM->dwRealTime,pM->m_wDay,pM->m_byHour,pM->m_byMin,0)` | Debug |
+
 ### Structure Summary
 
 ```

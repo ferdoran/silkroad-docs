@@ -22,6 +22,12 @@
 
 **Minimum size**: 18 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_STT_TC_MACHING_ENTRY` | UI |
+
 ### Structure Summary
 
 ```

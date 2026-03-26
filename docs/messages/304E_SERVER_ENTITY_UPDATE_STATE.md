@@ -22,6 +22,13 @@
 
 **Total size**: 35 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_STATE_GAIN_EXP` | UI |
+| `UIIT_MSG_STATE_GET_SKILL_EXP` | UI |
+
 ### Structure Summary
 
 ```

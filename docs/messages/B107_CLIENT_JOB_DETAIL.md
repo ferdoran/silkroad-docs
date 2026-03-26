@@ -27,6 +27,13 @@
 
 **Minimum size**: 26 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_MRELEASE_BEELETED` | UI |
+| `UIIT_MSG_MRELEASE_BROKEN` | UI |
+
 ### Structure Summary
 
 ```

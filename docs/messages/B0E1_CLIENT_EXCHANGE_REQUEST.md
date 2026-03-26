@@ -17,6 +17,31 @@
 
 **Total size**: 6 bytes
 
+
+### Source File(s)
+- `NetProcessInInterface.cpp`
+
+### Domain
+character class, job/trade system
+
+### Assert Expressions
+```
+g_pMyPlayerObj->GetJobType() == byJobType
+```
+
+### String References
+| String | Type |
+|--------|------|
+| `g_pMyPlayerObj->GetJobType() == byJobType` | Debug |
+| `MERCHANT` | Debug |
+| `THIEF` | Debug |
+| `HUNTER` | Debug |
+| `UIIT_STT_JOB_EXP_%s_LOST` | UI |
+| `UIIT_STT_JOB_EXP_%s_GET` | UI |
+| `UIIT_STT_CLASS_%s_%d` | UI |
+| `UIIT_STT_CLASS_EU_%s_%d` | UI |
+| `UIIT_STT_JOB_LVUP_%s_CLASS` | UI |
+
 ### Structure Summary
 
 ```

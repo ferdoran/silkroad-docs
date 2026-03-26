@@ -19,6 +19,12 @@
 
 **Minimum size**: 6 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_FRIENDERR_REFUSAL` | UI |
+
 ### Structure Summary
 
 ```

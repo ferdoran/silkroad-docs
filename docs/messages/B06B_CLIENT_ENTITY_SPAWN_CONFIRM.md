@@ -24,6 +24,12 @@
 
 **Minimum size**: 17 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_PARTYMATCH_MODIFY_COMPLETE` | UI |
+
 ### Structure Summary
 
 ```

@@ -16,6 +16,13 @@
 
 **Total size**: 8 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `PARAM_CURE_ALL` | Debug |
+| `STATUS_CURE_COS` | Debug |
+
 ### Structure Summary
 
 ```

@@ -20,6 +20,18 @@
 
 **Total size**: 7 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `Chatting Error : %d` | Debug |
+| `UIIT_CHATERR_YOU_ARE_SQUELCHED` | UI |
+| `UIIT_CHATERR_CANT_FIND_TARGET` | UI |
+| `UIIT_CHATERR_INVALID_COMMAND` | UI |
+| `UIIT_CHATERR_NOT_A_PARTY_MEMBER` | UI |
+| `UIIT_CHATERR_ALLIANCE_PERMISSION_DENIED` | UI |
+| `UIIT_MSG_GUILD_UNION_CHAT_LIMIT` | UI |
+
 ### Structure Summary
 
 ```

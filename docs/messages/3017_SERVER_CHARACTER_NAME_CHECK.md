@@ -18,6 +18,22 @@
 
 **Total size**: 8 bytes
 
+
+### Source File(s)
+- `NetProcessInObject.cpp`
+
+### Assert Expressions
+```
+Fun_GetCfgGame()->m_LocalTime.InitTimer(pM->dwRealTime, pM->m_wDay, pM->m_byHour, pM->m_byMin, 0)
+```
+
+This message is actually a **Server Time Sync** message — the assert reveals it initializes the local game timer with server time values.
+
+### String References
+| String | Type |
+|--------|------|
+| `Fun_GetCfgGame()->m_LocalTime.InitTimer(pM->dwRealTime,pM->m_wDay,pM->m_byHour,pM->m_byMin,0)` | Debug |
+
 ### Structure Summary
 
 ```

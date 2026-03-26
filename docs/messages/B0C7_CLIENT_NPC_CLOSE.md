@@ -15,6 +15,13 @@
 
 **Total size**: 1 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_COSERR_TOO_FAR_FROM_TRADECART` | UI |
+| `UIIT_MSG_QUEST_ERR_TOO_FAR_FROM_MONSTER` | UI |
+
 ### Structure Summary
 
 ```

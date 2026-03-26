@@ -19,6 +19,12 @@
 
 **Minimum size**: 5 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_GUILD_WAREHOUSE_USE` | UI |
+
 ### Structure Summary
 
 ```

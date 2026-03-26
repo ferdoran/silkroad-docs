@@ -18,6 +18,12 @@
 
 **Total size**: 9 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `IFStall` | Debug |
+
 ### Structure Summary
 
 ```

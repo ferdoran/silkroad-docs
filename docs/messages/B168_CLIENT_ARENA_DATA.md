@@ -18,6 +18,16 @@
 
 **Minimum size**: 4 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_CHAT_WHISPER_BLOCK` | UI |
+| `UIIT_MSG_CHAT_WHISPER_ADMISSION` | UI |
+| `UIIT_MSG_COSPETERR_PETNAME_SUMENESS` | UI |
+| `UIIT_MSG_ALIAS_ACTION_ERR_NOTALLOW` | UI |
+| `UIIT_STT_BLOCKMAN_DELETE_LISTFULL` | UI |
+
 ### Structure Summary
 
 ```

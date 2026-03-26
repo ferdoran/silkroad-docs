@@ -16,6 +16,12 @@
 
 **Total size**: 3 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_GUILD_COMMON_KNOW_REMIND_UPDATE` | UI |
+
 ### Structure Summary
 
 ```

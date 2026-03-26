@@ -16,6 +16,12 @@
 
 **Total size**: 3 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `OnInvitePartymemberAck[%d]` | Debug |
+
 ### Structure Summary
 
 ```

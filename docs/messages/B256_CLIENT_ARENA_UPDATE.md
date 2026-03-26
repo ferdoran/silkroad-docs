@@ -20,6 +20,12 @@
 
 **Minimum size**: 8 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_LETTER_SENDOK` | UI |
+
 ### Structure Summary
 
 ```

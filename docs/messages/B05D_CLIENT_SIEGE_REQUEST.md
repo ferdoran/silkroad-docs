@@ -29,6 +29,34 @@
 
 **Minimum size**: 39 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `[Debug] FORTRESS STATE : SIEGE_DEFAULT_PERIOD` | Debug |
+| `[Debug] FORTRESS STATE : SIEGE_WAR` | Debug |
+| `[Debug] FORTRESS STATE : SIEGE_REQUEST_ALLOWED_PERIOD` | Debug |
+| `[Debug] FORTRESS STATE : SIEGE_TAX_ALLOWED_PERIOD` | Debug |
+| `fortress_war.ogg` | Debug |
+| `[Debug] 수성길드가 없습니다.` | Debug |
+| `[Debug] 당신의 길드가 없습니다 따라서 요새전과 관련이 없습니다.` | Debug |
+| `[Debug] 당신의 길드는 수성입니다` | Debug |
+| `[Debug] 세금징수 기간이 시작되었습니다.` | Debug |
+| `[Debug] 요새전 신청 기간이 시작되었습니다.` | Debug |
+| `UIIT_MSG_FORT_WAR_BEFOREBEGIN` | UI |
+| `UIIT_MSG_FORT_WAR_BEGIN` | UI |
+| `UIIT_MSG_FORT_WAR_BEFOREEND` | UI |
+| `UIIT_MSG_FORT_WAR_CONQUER` | UI |
+| `UIIT_MSG_FORT_STRUCTURE_STATUS_CANCEL` | UI |
+| `UIIT_MSG_FORT_CAMP_STATUS_DESTROY` | UI |
+| `UIIT_MSG_FORT_OFFICIAL_WARAPPLY_COMPLETE` | UI |
+| `UIIT_MSG_FORT_OFFICIAL_WARAPPLY_CANCEL` | UI |
+| `UIIT_MSG_FORT_OFFICIAL_UNIONAPPLY_CANCEL` | UI |
+| `UIIT_MSG_FORT_BATTLERANK_GRANT` | UI |
+| `UIIT_STT_FORT_REWARD_MESSAGE_MASTER` | UI |
+| `UIIT_MSG_FORTRESS_DUNGEON_CREATE_COMPLATE_MSG` | UI |
+| `UIIT_MSG_FORTRESS_DUNGEON_CLOSE_COMPLATE_MSG` | UI |
+
 ### Structure Summary
 
 ```

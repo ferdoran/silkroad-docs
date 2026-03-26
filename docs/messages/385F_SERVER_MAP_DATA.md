@@ -18,6 +18,17 @@
 
 **Minimum size**: 7 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_STT_FORT_GUILD_COMMANDER` | UI |
+| `UIIT_STT_FORT_GUILD_SUBCOMMANDER` | UI |
+| `UIIT_STT_FORT_GUILD_BATTLEMANAGER` | UI |
+| `UIIT_STT_FORT_GUILD_PRODUCTMANAGER` | UI |
+| `UIIT_STT_FORT_GUILD_TRAINERMANAGER` | UI |
+| `UIIT_STT_FORT_GUILD_ENGINEER` | UI |
+
 ### Structure Summary
 
 ```

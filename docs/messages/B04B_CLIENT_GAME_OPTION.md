@@ -17,6 +17,12 @@
 
 **Total size**: 3 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `Ghacha` | Debug |
+
 ### Structure Summary
 
 ```

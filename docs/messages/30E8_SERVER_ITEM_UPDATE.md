@@ -18,6 +18,12 @@
 
 **Minimum size**: 2 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_STT_STRGERR_ITEM_EXCHANGE_FAILED` | UI |
+
 ### Structure Summary
 
 ```
@@ -72,6 +78,12 @@
 | 39 | `dwField_39` | `u32` | 4 | `0x008BEAAE` |
 
 **Minimum size**: 115 bytes + variable fields
+
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_STT_STRGERR_ITEM_EXCHANGE_FAILED` | UI |
 
 ### Structure Summary
 

@@ -18,6 +18,18 @@
 
 **Total size**: 8 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `SYSTEM_MONSTER_CAPTURE` | Debug |
+
+
+### String References
+| String | Type |
+|--------|------|
+| `SKILL_EU_WARLOCK_BLOODA_EXPLOSION_A` | Debug |
+
 ### Structure Summary
 
 ```
@@ -39,6 +51,18 @@
 | 6 | `bytesData_5` | `bytes[3]` | 3 | `0x008A4B9D` |
 
 **Total size**: 14 bytes
+
+
+### String References
+| String | Type |
+|--------|------|
+| `SYSTEM_MONSTER_CAPTURE` | Debug |
+
+
+### String References
+| String | Type |
+|--------|------|
+| `SKILL_EU_WARLOCK_BLOODA_EXPLOSION_A` | Debug |
 
 ### Structure Summary
 

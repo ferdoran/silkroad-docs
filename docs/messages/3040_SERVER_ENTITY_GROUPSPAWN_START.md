@@ -21,6 +21,13 @@
 
 **Total size**: 21 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_GACHA_EXCHANGE` | UI |
+| `UIIT_MSG_STATE_GET_ITEM_EXPENDABLE` | UI |
+
 ### Structure Summary
 
 ```

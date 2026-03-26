@@ -111,22 +111,41 @@ Fields: `byType` (teleport type), `dwTarget` (destination ID).
 
 ## Key Member Variables
 
-From assert expressions, these reveal the internal struct layout:
+From assert expressions in both r2ghidra and Ghidra decompiled output:
 
-| Variable | Type | Context |
-|----------|------|---------|
-| `pM->dwRealTime` | `u32` | Server real time |
-| `pM->m_wDay` | `u16` | Day value |
-| `pM->m_byHour` | `u8` | Hour value |
-| `pM->m_byMin` | `u8` | Minute value |
-| `m_dwCurActiveMasteryID` | `u32` | Currently active mastery |
-| `m_btMagicParamNum` | `u8` | Magic parameter count |
-| `m_bySkillWndType` | `u8` | Skill window type |
-| `m_bDealing` | `bool` | Currently trading |
-| `m_strAlias` | `string` | Job alias |
-| `m_nReq_Sp` | `int` | Required SP for skill |
-| `m_sTID.wTypeID` | `u16` | Item type ID |
-| `m_blValid` | `bool` | Item validity |
+| Variable | Type | Context | Source |
+|----------|------|---------|--------|
+| `pM->dwRealTime` | `u32` | Server real time | `NetProcessInObject.cpp` |
+| `pM->m_wDay` | `u16` | Day value | `NetProcessInObject.cpp` |
+| `pM->m_byHour` | `u8` | Hour value | `NetProcessInObject.cpp` |
+| `pM->m_byMin` | `u8` | Minute value | `NetProcessInObject.cpp` |
+| `g_pMyPlayerObj->GetJobType()` | `u8` | Player job type (1=MERCHANT, 2=THIEF, 3=HUNTER) | `NetProcessInInterface.cpp` |
+| `dwSkillID` | `u32` | Skill ID parameter | `NetProcessInInterface.cpp` |
+| `dwMasteryID` | `u32` | Mastery ID parameter | `NetProcessInInterface.cpp` |
+| `m_dwCurActiveMasteryID` | `u32` | Currently active mastery | — |
+| `m_btMagicParamNum` | `u8` | Magic parameter count | — |
+| `m_bySkillWndType` | `u8` | Skill window type | — |
+| `m_bDealing` | `bool` | Currently trading | — |
+| `m_strAlias` | `string` | Job alias | — |
+| `m_nReq_Sp` | `int` | Required SP for skill | — |
+| `m_sTID.wTypeID` | `u16` | Item type ID | — |
+| `m_blValid` | `bool` | Item validity | — |
+| `byListSub` | `u8` | Character list sub-index | `NetProcessInObject.cpp` |
+
+### Assert Expressions (Complete)
+
+From Ghidra decompilation of all 288 handlers:
+
+| Opcode | Source | Expression |
+|--------|--------|-----------|
+| `0x3017` | `NetProcessInObject.cpp` | `Fun_GetCfgGame()->m_LocalTime.InitTimer(pM->dwRealTime,pM->m_wDay,pM->m_byHour,pM->m_byMin,0)` |
+| `0x3019` | `NetProcessInObject.cpp` | `byListSub` |
+| `0x3809` | `NetProcessInObject.cpp` | `Fun_GetCfgGame()->m_LocalTime.InitTimer(pM->dwRealTime,pM->m_wDay,pM->m_byHour,pM->m_byMin,0)` |
+| `0xB071` | `NetProcessInNavAndSkill.cpp` | `wResult(%d,%d)` |
+| `0xB0A2` | `NetProcessInInterface.cpp` | `!m_pGInterface->GetMainPopup()->GetSkillAddress()->GetLearnedSkill()->IsLearnedSkill(dwSkillID)` |
+| `0xB0E1` | `NetProcessInInterface.cpp` | `g_pMyPlayerObj->GetJobType() == byJobType` |
+| `0xB202` | `NetProcessInInterface.cpp` | `m_pGInterface->GetMainPopup()->GetSkillAddress()->GetLearnedSkill()->IsLearnedMastery(dwMasteryID)` |
+| `0xB203` | `NetProcessInInterface.cpp` | `m_pGInterface->GetMainPopup()->GetSkillAddress()->GetLearnedSkill()->IsLearnedMastery(dwMasteryID)` |
 
 ## RTTI Class Hierarchy (Network)
 

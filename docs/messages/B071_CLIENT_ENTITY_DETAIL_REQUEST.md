@@ -31,6 +31,22 @@
 
 **Minimum size**: 52 bytes + variable fields
 
+
+### Source File(s)
+- `NetProcessInNavAndSkill.cpp`
+
+### Assert Expressions
+```
+pChar
+wResult(%d,%d)
+```
+
+### String References
+| String | Type |
+|--------|------|
+| `pChar` | Debug |
+| `wResult(%d,%d)` | Debug |
+
 ### Structure Summary
 
 ```

@@ -19,6 +19,14 @@
 
 **Total size**: 14 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_STT_OPEN_MARKET_SELL` | UI |
+| `UIIT_STT_OPEN_MARKET_SELL_TIME_OVER` | UI |
+| `UIIT_STT_OPEN_MARKET_ITEM_DELETE` | UI |
+
 ### Structure Summary
 
 ```

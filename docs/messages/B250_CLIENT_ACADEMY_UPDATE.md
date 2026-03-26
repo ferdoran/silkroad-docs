@@ -16,6 +16,12 @@
 
 **Total size**: 5 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_QUEST_GET_ITEM_FAILURE` | UI |
+
 ### Structure Summary
 
 ```

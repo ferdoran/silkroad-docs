@@ -19,6 +19,13 @@
 
 **Total size**: 5 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_SAFETRADE_PROGRESS` | UI |
+| `UIIT_MSG_SAFETRADE_NUMBER_ERR_LIMIT` | UI |
+
 ### Structure Summary
 
 ```

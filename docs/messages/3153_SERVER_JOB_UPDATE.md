@@ -16,6 +16,15 @@
 
 **Total size**: 5 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_STRIP_CANCEL` | UI |
+| `UIIT_MGS_ERR_FRPVP_ON_CANCEL` | UI |
+| `UIIT_MGS_ERR_FRPVP_CANCEL_CHANGE_TEAM` | UI |
+| `UIIT_MGS_ERR_FRPVP_OFF_CANCEL` | UI |
+
 ### Structure Summary
 
 ```

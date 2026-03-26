@@ -23,6 +23,18 @@
 
 **Total size**: 26 bytes
 
+
+### Domain
+skill
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_STATE_GAIN_GOLD` | UI |
+| `UIIT_STT_SKILL_POINT_RECOVER_RESULT` | UI |
+| `UIIT_MSG_JSERR_SINCE_YOU_DIE_IN_MURDERER_SP_DEPRIVED_BY_SERVER` | UI |
+| `UIIT_STT_EGYPT_AP_POINT_RECOVER_RESULT` | UI |
+
 ### Structure Summary
 
 ```

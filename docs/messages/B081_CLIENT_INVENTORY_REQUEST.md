@@ -19,6 +19,28 @@
 
 **Total size**: 5 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_PARTYMATCH_JOIN_COMPLETE_MASTER` | UI |
+| `UIIT_MSG_PARTYERR_CREATE_PARTY_REFUSED` | UI |
+| `UIIT_MSG_PARTYMATCH_JOIN_NOREPLY` | UI |
+| `UIIT_MSG_PARTYMATCH_AUTO_FAILURE` | UI |
+| `UIIT_MSG_PARTYMATCH_AUTO_PROGRESS` | UI |
+
+
+### String References
+| String | Type |
+|--------|------|
+| `D:\\vss-od\\Silkroad\\Client\\client\\NetProcessInInterface.cpp` | Debug |
+| `simple_msgbox_type` | Debug |
+| `UIIT_STT_CONFIRM_BOX` | UI |
+| `UIIT_MSG_QUEST_ENTER_INSTANCE` | UI |
+| `UIIT_MSG_MSGBOX_ASK_REBIRTH_MUTATION` | UI |
+| `UIIT_PAG_PARTYMATCH_JOINREQUEST` | UI |
+| `UIIT_STT_TC_JOIN_REQUEST` | UI |
+
 ### Structure Summary
 
 ```
@@ -54,6 +76,28 @@
 | 19 | `dwField_19` | `u32` | 4 | `0x00889D6F` |
 
 **Minimum size**: 43 bytes + variable fields
+
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_PARTYMATCH_JOIN_COMPLETE_MASTER` | UI |
+| `UIIT_MSG_PARTYERR_CREATE_PARTY_REFUSED` | UI |
+| `UIIT_MSG_PARTYMATCH_JOIN_NOREPLY` | UI |
+| `UIIT_MSG_PARTYMATCH_AUTO_FAILURE` | UI |
+| `UIIT_MSG_PARTYMATCH_AUTO_PROGRESS` | UI |
+
+
+### String References
+| String | Type |
+|--------|------|
+| `D:\\vss-od\\Silkroad\\Client\\client\\NetProcessInInterface.cpp` | Debug |
+| `simple_msgbox_type` | Debug |
+| `UIIT_STT_CONFIRM_BOX` | UI |
+| `UIIT_MSG_QUEST_ENTER_INSTANCE` | UI |
+| `UIIT_MSG_MSGBOX_ASK_REBIRTH_MUTATION` | UI |
+| `UIIT_PAG_PARTYMATCH_JOINREQUEST` | UI |
+| `UIIT_STT_TC_JOIN_REQUEST` | UI |
 
 ### Structure Summary
 

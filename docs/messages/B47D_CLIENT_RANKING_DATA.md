@@ -17,6 +17,13 @@
 
 **Minimum size**: 5 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_STT_TC_MACHING_PULL_DELETE` | UI |
+| `UIIT_STT_TC_MACHING_DELETE` | UI |
+
 ### Structure Summary
 
 ```

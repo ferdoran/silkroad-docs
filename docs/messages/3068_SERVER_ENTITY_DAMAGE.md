@@ -18,6 +18,20 @@
 
 **Total size**: 6 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `prim\\snd\\ui\\eventcomplete1.wav` | Debug |
+| `ITEM_ETC_UNION_CREST_USER` | Debug |
+| `ITEM_ETC_UNION_CREST_DELETE` | Debug |
+| `UIIT_MSG_NASRUN_AWAKE_RENEW` | UI |
+| `UIIT_STT_CONFIRM_BOX` | UI |
+| `UIIT_MSG_GUILD_RECALL_CONFIRM` | UI |
+| `UIIT_MSG_UNION_CREST_DELETE_COMPLETE` | UI |
+| `UIIT_MSG_GUILD_CREST_DELETE_COMPLETE` | UI |
+| `UIIT_MSG_ITEMB_STSTALL_CHAINGE` | UI |
+
 ### Structure Summary
 
 ```

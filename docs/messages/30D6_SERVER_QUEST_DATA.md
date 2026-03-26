@@ -24,6 +24,18 @@
 
 **Minimum size**: 23 bytes + variable fields
 
+
+### String References
+| String | Type |
+|--------|------|
+| `%s -> *%s` | Debug |
+| `SiegeManager MSG Result - Fail.` | Debug |
+| `Trigger Action MSG Result - Fail.` | Debug |
+| `Player:%d, NPC_Mob:%d, DroppedItem:%d` | Debug |
+| `-> %s` | Debug |
+| `SiegeManager MSG Result - Ok.` | Debug |
+| `UIIT_STT_COSNEWUI_TITLE` | UI |
+
 ### Structure Summary
 
 ```

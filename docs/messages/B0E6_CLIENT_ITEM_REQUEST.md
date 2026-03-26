@@ -17,6 +17,12 @@
 
 **Total size**: 6 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `UIIT_MSG_OUTCOM_COMPLETE` | UI |
+
 ### Structure Summary
 
 ```

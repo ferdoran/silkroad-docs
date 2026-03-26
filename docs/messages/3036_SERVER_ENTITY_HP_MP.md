@@ -17,6 +17,13 @@
 
 **Total size**: 9 bytes
 
+
+### String References
+| String | Type |
+|--------|------|
+| `ITEM_SETITEM_DEACTIVE` | Debug |
+| `snd_setitem_deactive` | Debug |
+
 ### Structure Summary
 
 ```

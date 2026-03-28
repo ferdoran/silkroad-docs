@@ -9,18 +9,32 @@
 | Group | Game (Server→Client) |
 | Handler(s) | `0x008A51E0` |
 
-### Fields
+### Fields (Server RE)
+
+| # | Name | Type | Size | Description |
+|---|------|------|------|-------------|
+| 1 | `UniqueID` | `u32` | 4 | Target entity |
+| 2 | `SpeedWalking` | `f32` | 4 | Walking speed |
+| 3 | `SpeedRunning` | `f32` | 4 | Running speed |
+
+**Total size**: 12 bytes
+
+### Structure Summary
+
+```
+  [   0] UniqueID                       u32
+  [   4] SpeedWalking                   f32
+  [   8] SpeedRunning                   f32
+```
+
+<details>
+<summary>Client Handler Reference (raw binary extraction)</summary>
 
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
 | 1 | `byResult` | `u8` | 1 | `0x008A51EE` |
 | 2 | `wPetUID` | `u16` | 2 | `0x008A5203` |
 
-**Total size**: 3 bytes
+> Note: Client handler data is from a different opcode's handler (misattributed during client binary analysis). The server RE fields above are authoritative.
 
-### Structure Summary
-
-```
-  [   0] byResult                       u8
-  [   1] wPetUID                        u16
-```
+</details>

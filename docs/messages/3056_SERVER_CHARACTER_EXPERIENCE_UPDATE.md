@@ -9,16 +9,20 @@
 | Group | Game (Server→Client) |
 | Handler(s) | `0x008A7020` |
 
-### Fields
+### Fields (Server RE)
 
-| # | Name | Type | Size | Read Address |
+| # | Name | Type | Size | Description |
 |---|------|------|------|-------------|
-| 1 | `dwUniqueID` | `u32` | 4 | `0x008A702D` |
+| 1 | `SourceUniqueID` | `u32` | 4 | Entity that gave the experience |
+| 2 | `ExpReceived` | `i64` | 8 | Experience gained (can be negative on death penalty) |
+| 3 | `SPExpReceived` | `i64` | 8 | Skill point experience gained |
 
-**Total size**: 4 bytes
+**Total size**: 20 bytes (+ optional trailing byte sometimes present)
 
 ### Structure Summary
 
 ```
-  [   0] dwUniqueID                     u32
+  [   0] SourceUniqueID                 u32
+  [   4] ExpReceived                    i64
+  [  12] SPExpReceived                  i64
 ```

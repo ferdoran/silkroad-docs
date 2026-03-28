@@ -9,7 +9,34 @@
 | Group | Game (Server→Client) |
 | Handler(s) | `0x008A97C0` |
 
-### Fields
+### Fields (Server RE)
+
+Switched structure based on `UpdateType`:
+
+| # | Name | Type | Size | Description |
+|---|------|------|------|-------------|
+| 1 | `UpdateType` | `u8` | 1 | Determines payload format |
+
+**UpdateType values:**
+
+| UpdateType | Payload | Description |
+|------------|---------|-------------|
+| 1 | `u64 Gold` | Current gold amount |
+| 2 | `u32 SP` | Current skill points |
+| 4 | `u8 BerserkPoints` | Current berserk points |
+
+### Structure Summary
+
+```
+  [   0] UpdateType                     u8
+  switch UpdateType:
+    case 1:  [1] Gold                   u64
+    case 2:  [1] SP                     u32
+    case 4:  [1] BerserkPoints          u8
+```
+
+<details>
+<summary>Client Handler Reference (raw binary extraction)</summary>
 
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
@@ -22,17 +49,6 @@
 | 7 | `dwParam3` | `u32` | 4 | `0x008A988A` |
 | 8 | `wParam4` | `u16` | 2 | `0x008A997D` |
 
-**Total size**: 35 bytes
+> Note: Client handler data is from a different opcode's handler (misattributed during client binary analysis). The server RE fields above are authoritative.
 
-### Structure Summary
-
-```
-  [   0] dwUniqueID                     u32
-  [   4] ullState1                      u64
-  [  12] ullState2                      u64
-  [  20] byFlag                         u8
-  [  21] dwParam1                       u32
-  [  25] dwParam2                       u32
-  [  29] dwParam3                       u32
-  [  33] wParam4                        u16
-```
+</details>

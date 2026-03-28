@@ -5,11 +5,37 @@
 | Property | Value |
 |----------|-------|
 | Opcode | `0xB071` |
-| Direction | Client → Server |
-| Group | Game (Client→Server) |
+| Direction | Server → Client |
+| Group | Game (Server→Client) |
 | Handler(s) | `0x008A5FD0` |
 
-### Fields
+### Fields (Server RE)
+
+| # | Name | Type | Size | Description |
+|---|------|------|------|-------------|
+| 1 | `Success` | `bool` | 1 | Whether the skill ended successfully |
+
+If `Success`:
+
+| # | Name | Type | Size | Description |
+|---|------|------|------|-------------|
+| 2 | `SkillUniqueID` | `u32` | 4 | Unique instance ID of the ending skill |
+| 3 | `TargetUniqueID` | `u32` | 4 | Target entity |
+
+Followed by [DamageData](B070_SERVER_ENTITY_SKILL_START.md#damagedata-shared-sub-structure) (same sub-structure as SKILL_START).
+
+### Structure Summary
+
+```
+  [   0] Success                        bool
+  if Success:
+    [   1] SkillUniqueID                u32
+    [   5] TargetUniqueID               u32
+    [   9] DamageData                   (variable)
+```
+
+<details>
+<summary>Client Handler Reference (raw binary extraction)</summary>
 
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
@@ -31,26 +57,6 @@
 | 16 | `bytesData_15` | `bytes` | variable | `0x008416B1` |
 | 17 | `bytesData_16` | `bytes` | variable | `0x00841948` |
 
-**Minimum size**: 52 bytes + variable fields
+> Note: Client handler data is from a different opcode's handler (misattributed during client binary analysis). The server RE fields above are authoritative.
 
-### Structure Summary
-
-```
-  [   0] byResult                       u8
-  [   1] wParam                         u16
-  [   3] byAction                       bytes  (variable length)
-  [   0] dwUniqueID1                    u32
-  [   4] dwUniqueID2                    u32
-  [   8] dwTargetUID                    u32
-  [  12] dwField_07                     u32
-  [  16] byField_08                     u8
-  [  17] byField_09                     u8
-  [  18] byField_10                     u8
-  [  19] dwField_11                     u32
-  [  23] wField_12                      u16
-  [  25] bytesData_12                   bytes[12]
-  [  37] bytesData_13                   bytes  (variable length)
-  [   0] bytesData_14                   bytes[12]
-  [  12] bytesData_15                   bytes  (variable length)
-  [   0] bytesData_16                   bytes  (variable length)
-```
+</details>

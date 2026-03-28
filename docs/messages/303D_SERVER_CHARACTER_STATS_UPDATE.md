@@ -9,9 +9,46 @@
 | Group | Game (Server→Client) |
 | Handler(s) | `0x0088B200`, `0x008ADD60` |
 
-## Handler 1: `0x0088B200`
+### Fields (Server RE)
 
-### Fields
+| # | Name | Type | Size | Description |
+|---|------|------|------|-------------|
+| 1 | `PhyAtkMin` | `u32` | 4 | Minimum physical attack |
+| 2 | `PhyAtkMax` | `u32` | 4 | Maximum physical attack |
+| 3 | `MagAtkMin` | `u32` | 4 | Minimum magical attack |
+| 4 | `MagAtkMax` | `u32` | 4 | Maximum magical attack |
+| 5 | `PhyDefense` | `u16` | 2 | Physical defense |
+| 6 | `MagDefense` | `u16` | 2 | Magical defense |
+| 7 | `HitRate` | `u16` | 2 | Hit rate |
+| 8 | `ParryRatio` | `u16` | 2 | Parry ratio |
+| 9 | `HPMax` | `u32` | 4 | Maximum HP |
+| 10 | `MPMax` | `u32` | 4 | Maximum MP |
+| 11 | `STR` | `u16` | 2 | Strength |
+| 12 | `INT` | `u16` | 2 | Intelligence |
+
+**Total size**: 36 bytes
+
+### Structure Summary
+
+```
+  [   0] PhyAtkMin                      u32
+  [   4] PhyAtkMax                      u32
+  [   8] MagAtkMin                      u32
+  [  12] MagAtkMax                      u32
+  [  16] PhyDefense                     u16
+  [  18] MagDefense                     u16
+  [  20] HitRate                        u16
+  [  22] ParryRatio                     u16
+  [  24] HPMax                          u32
+  [  28] MPMax                          u32
+  [  32] STR                            u16
+  [  34] INT                            u16
+```
+
+<details>
+<summary>Client Handler Reference (raw binary extraction)</summary>
+
+## Handler 1: `0x0088B200`
 
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
@@ -42,42 +79,9 @@
 | 25 | `byBerserkLevel` | `u8` | 1 | `0x0088B831` |
 | 26 | `byField_26` | `u8` | 1 | `0x0088B83F` |
 
-**Minimum size**: 47 bytes + variable fields
-
-### Structure Summary
-
-```
-  [   0] byEntityType                   u8
-  [   1] dwRefObjID                     u32
-  [   5] bySpecialType                  u8
-  [   6] dwUniqueID                     u32
-  [  10] wRegionID                      u8
-  [  11] fPosX                          u8
-  [  12] fPosY                          u8
-  [  13] fPosZ                          u8
-  [  14] wAngle                         u8
-  [  15] byMoving                       u16
-  [  17] byRunning                      u16
-  [  19] wDestRegion                    u8
-  [  20] wDestX                         u8
-  [  21] wDestZ                         u8
-  [  22] byLifeState                    u8
-  [  23] byWalkSpeed                    u16
-  [  25] byRunSpeed                     u8
-  [  26] byBerserkSpeed                 u16
-  [  28] wBuffCount                     u16
-  [  30] bytesName                      u8
-  [  31] bytesGuildName                 u8
-  [  32] byJobType                      bytes  (variable length)
-  [   0] byJobLevel                     bytes[12]
-  [  12] byPKFlag                       u8
-  [  13] byBerserkFlag                  u8
-  [  14] byField_26                     u8
-```
+> Note: Client handler data appears to be from a different opcode's handler (misattributed during client binary analysis). The server RE fields above are authoritative.
 
 ## Handler 2: `0x008ADD60`
-
-### Fields
 
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
@@ -87,14 +91,4 @@
 | 4 | `dwUniqueID` | `u16` | 2 | `0x008ADE23` |
 | 5 | `wRegionID` | `bytes` | variable | `0x004F71C5` |
 
-**Minimum size**: 12 bytes + variable fields
-
-### Structure Summary
-
-```
-  [   0] byEntityType                   u32
-  [   4] dwRefObjID                     u32
-  [   8] bySpecialType                  u16
-  [  10] dwUniqueID                     u16
-  [  12] wRegionID                      bytes  (variable length)
-```
+</details>

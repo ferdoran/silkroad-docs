@@ -9,7 +9,37 @@
 | Group | Game (Server→Client) |
 | Handler(s) | `0x008A6640` |
 
-### Fields
+### Fields (Server RE)
+
+| # | Name | Type | Size | Description |
+|---|------|------|------|-------------|
+| 1 | `UniqueID` | `u32` | 4 | Target entity |
+| 2 | `UpdateType` | `u8` | 1 | State type being updated |
+| 3 | `UpdateState` | `u8` | 1 | New state value |
+
+**Total size**: 6 bytes
+
+**UpdateType values:**
+
+| UpdateType | State Enum | Values |
+|------------|------------|--------|
+| 0 | LifeState | `LIFESTATE_*` (Alive=0, Dead=1, etc.) |
+| 1 | MotionState | `MOTIONSTATE_*` (Walking, Running, Sitting, etc.) |
+| 4 | GameState | `BATTLESTATE_*` (Peace=0, Battle=1) |
+| 7 | PVPState | `PvPSTATE_*` |
+| 8 | InCombat | 0=false, 1=true |
+| 11 | ScrollingType | Reverse return scroll, etc. |
+
+### Structure Summary
+
+```
+  [   0] UniqueID                       u32
+  [   4] UpdateType                     u8
+  [   5] UpdateState                    u8
+```
+
+<details>
+<summary>Client Handler Reference (raw binary extraction)</summary>
 
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
@@ -27,22 +57,6 @@
 | 12 | `dwGold` | `u32` | 4 | `0x009A1D12` |
 | 13 | `bySpecialFlag` | `u8` | 1 | `0x009A1D41` |
 
-**Total size**: 39 bytes
+> Note: Client handler data is from a different opcode's handler (NPC response — misattributed during client binary analysis). The server RE fields above are authoritative.
 
-### Structure Summary
-
-```
-  [   0] dwRefObjID                     u32
-  [   4] dwUniqueID                     u32
-  [   8] dwResponseType                 u32
-  [  12] dwParam                        u32
-  [  16] ullData                        u64
-  [  24] byNPCType                      u8
-  [  25] wDialogID                      u16
-  [  27] dwPriceRate                    u32
-  [  31] byCanTrade                     u8
-  [  32] byCanStore                     u8
-  [  33] byCanRepair                    u8
-  [  34] dwGold                         u32
-  [  38] bySpecialFlag                  u8
-```
+</details>

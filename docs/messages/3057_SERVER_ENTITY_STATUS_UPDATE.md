@@ -9,18 +9,52 @@
 | Group | Game (Server→Client) |
 | Handler(s) | `0x008ADF50` |
 
-### Fields
+### Fields (Server RE)
+
+Switched structure based on `UpdateType`:
+
+| # | Name | Type | Size | Description |
+|---|------|------|------|-------------|
+| 1 | `UniqueID` | `u32` | 4 | Target entity |
+| 2 | `unkByte01` | `u8` | 1 | StatusFlags high byte? |
+| 3 | `unkByte02` | `u8` | 1 | StatusFlags low byte? |
+| 4 | `UpdateType` | `u8` | 1 | EntityStateUpdate enum |
+
+**UpdateType values:**
+
+| UpdateType | Payload | Description |
+|------------|---------|-------------|
+| 1 (HP) | `u32 HP` | Current HP |
+| 2 (MP) | `u32 MP` | Current MP |
+| 3 (HPMP) | `u32 HP, u32 MP` | Current HP and MP |
+| 4 (BadStatus) | `u32 BadStatusFlags` | Bad status effect flags |
+| 5 (EntityHPMP) | `u32 HP, u32 MP` | Entity HP and MP |
+
+### Structure Summary
+
+```
+  [   0] UniqueID                       u32
+  [   4] unkByte01                      u8
+  [   5] unkByte02                      u8
+  [   6] UpdateType                     u8
+  switch UpdateType:
+    case 1:  [7] HP                     u32
+    case 2:  [7] MP                     u32
+    case 3:  [7] HP                     u32
+             [11] MP                    u32
+    case 4:  [7] BadStatusFlags         u32
+    case 5:  [7] HP                     u32
+             [11] MP                    u32
+```
+
+<details>
+<summary>Client Handler Reference (raw binary extraction)</summary>
 
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
 | 1 | `byActionType` | `u8` | 1 | `0x008ADF9A` |
 | 2 | `dwActionID` | `u32` | 4 | `0x008ADFA8` |
 
-**Total size**: 5 bytes
+> Note: Client handler data is from a different opcode's handler (misattributed during client binary analysis). The server RE fields above are authoritative.
 
-### Structure Summary
-
-```
-  [   0] byActionType                   u8
-  [   1] dwActionID                     u32
-```
+</details>

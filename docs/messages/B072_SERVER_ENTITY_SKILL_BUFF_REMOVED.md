@@ -5,11 +5,29 @@
 | Property | Value |
 |----------|-------|
 | Opcode | `0xB072` |
-| Direction | Client → Server |
-| Group | Game (Client→Server) |
+| Direction | Server → Client |
+| Group | Game (Server→Client) |
 | Handler(s) | `0x008A4B00` |
 
-### Fields
+### Fields (Server RE)
+
+| # | Name | Type | Size | Description |
+|---|------|------|------|-------------|
+| 1 | `Success` | `bool` | 1 | Whether the buff was successfully removed |
+| 2 | `BuffUniqueID` | `u32` | 4 | Unique instance ID of the removed buff (only if Success) |
+
+**Minimum size**: 1 byte (failure), 5 bytes (success)
+
+### Structure Summary
+
+```
+  [   0] Success                        bool
+  if Success:
+    [   1] BuffUniqueID                 u32
+```
+
+<details>
+<summary>Client Handler Reference (raw binary extraction)</summary>
 
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
@@ -20,15 +38,6 @@
 | 5 | `byFlags` | `u8` | 1 | `0x008A4B64` |
 | 6 | `bytesPosition` | `bytes[3]` | 3 | `0x008A4B9D` |
 
-**Total size**: 14 bytes
+> Note: Client handler data is from a different opcode's handler (misattributed during client binary analysis). The server RE fields above are authoritative.
 
-### Structure Summary
-
-```
-  [   0] byType                         u8
-  [   1] dwParam1                       u32
-  [   5] bySubType                      u8
-  [   6] dwUniqueID                     u32
-  [  10] byFlags                        u8
-  [  11] bytesPosition                  bytes[3]
-```
+</details>

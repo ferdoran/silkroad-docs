@@ -21,15 +21,24 @@ Reverse-engineered documentation of the **Silkroad Online** game client (`Silkro
 
 ### Network Protocol
 - [Protocol Overview](network_protocol.md) - Packet framing, encryption, dispatch architecture, opcode tables
-- [Message Index](messages/INDEX.md) - Complete index of all 288 documented message opcodes
-- Individual message structure files with field-level detail for 268 opcodes
+- [Server Binary Analysis](server_binary_analysis.md) - Server-side RE: dispatch table, corrected opcodes, full packet structures, IGObj API, DB schema
+- [Message Index](messages/INDEX.md) - Complete index of all 289 documented message opcodes
+- Individual message structure files with field-level detail for 268+ opcodes
+
+### Game Systems
+- [Item Structure](systems/item_structure.md) - Shared binary structure for inventory items (Rentable, Equipment, CoS, Etc)
+- [Alchemy](systems/alchemy.md) - Alchemy system
+- [COS / Pets](systems/cos_pet.md) - Companion system (pets, horses, transports)
+- [Fortress Siege](systems/fortress_siege.md) - Fortress siege mechanics
+- [Guild](systems/guild.md) - Guild system
+- [Job / Trade](systems/job_trade.md) - Trade job system
 
 ## Quick Stats
 
 | Category | Count |
 |----------|-------|
-| Documented opcodes | 288 |
-| Opcodes with extracted fields | 268 |
+| Documented opcodes | 289 |
+| Opcodes with extracted fields | 268+ |
 | Server → Client messages | ~130 |
 | Client → Server messages | ~130 |
 | JMXV asset format variants | 12 |

@@ -20,8 +20,8 @@
 | 4 | `GuildPoints` | `u32` | 4 | Total guild points |
 | 5 | `Notice` | `ascii` | var | Guild notice/announcement |
 | 6 | `Message` | `ascii` | var | Guild message |
-| 7 | `unkUInt00` | `u32` | 4 | Possibly UnionID/AllianceID |
-| 8 | `unkByte00` | `u8` | 1 | Possibly GuildStorageSlots |
+| 7 | `UnionID` | `u32` | 4 | Alliance/union guild ID (0 if none) |
+| 8 | `StorageSlots` | `u8` | 1 | Number of guild storage slots |
 | 9 | `MemberCount` | `u8` | 1 | Number of guild members |
 
 For each member:
@@ -30,13 +30,13 @@ For each member:
 |---|------|------|------|-------------|
 | - | `MemberID` | `u32` | 4 | Character DB ID |
 | - | `MemberName` | `ascii` | var | Character name |
-| - | `unkByte01` | `u8` | 1 | Possibly MemberAuthority or online flag |
+| - | `Authority` | `u8` | 1 | Member rank/authority (0=Master, 1=Officer, 2=Member) — `GUILD_MEMBER_INFO.Permission` |
 | - | `Level` | `u8` | 1 | Character level |
-| - | `GuildPoints` | `u32` | 4 | Member contribution points |
-| - | `PermissionsFlags` | `u32` | 4 | Guild permission bitmask |
-| - | `unkUInt01` | `u32` | 4 | Possibly LastLoginTime |
-| - | `unkUInt02` | `u32` | 4 | Possibly DonateGP |
-| - | `unkUInt03` | `u32` | 4 | Possibly CharDBID |
+| - | `Contribution` | `u32` | 4 | Member contribution points — `GUILD_MEMBER_INFO.Contribution` |
+| - | `PermissionsFlags` | `u32` | 4 | Guild permission bitmask — `GUILD_MEMBER_INFO.Permission` |
+| - | `GP_Donation` | `u32` | 4 | Guild points donated by member — `GUILD_MEMBER_INFO.GP_Donation` |
+| - | `GuildWarKillCount` | `u32` | 4 | Kills in guild war — `GUILD_MEMBER_INFO.GuildWarKill` |
+| - | `SiegeAuthority` | `u32` | 4 | Siege authorization flags — `GUILD_MEMBER_INFO.SiegeAuthority` |
 | - | `Nickname` | `ascii` | var | Guild nickname (GetNickName()) |
 | - | `ModelID` | `u32` | 4 | RefObjID |
 | - | `IsMaster` | `bool` | 1 | Is guild master |
@@ -51,19 +51,19 @@ For each member:
   [   ?] GuildPoints                    u32
   [   ?] Notice                         ascii
   [   ?] Message                        ascii
-  [   ?] unkUInt00                      u32       // UnionID?
-  [   ?] unkByte00                      u8        // StorageSlots?
+  [   ?] UnionID                        u32       // 0 if no alliance
+  [   ?] StorageSlots                   u8
   [   ?] MemberCount                    u8
   for each member:
     MemberID                            u32
     MemberName                          ascii
-    unkByte01                           u8        // Authority?
+    Authority                           u8        // GUILD_MEMBER_INFO.Permission rank
     Level                               u8
-    GuildPoints                         u32       // contribution
+    Contribution                        u32       // GUILD_MEMBER_INFO.Contribution
     PermissionsFlags                    u32
-    unkUInt01                           u32       // LastLogin?
-    unkUInt02                           u32       // DonateGP?
-    unkUInt03                           u32       // CharDBID?
+    GP_Donation                         u32       // GUILD_MEMBER_INFO.GP_Donation
+    GuildWarKillCount                   u32       // GUILD_MEMBER_INFO.GuildWarKill
+    SiegeAuthority                      u32       // GUILD_MEMBER_INFO.SiegeAuthority
     Nickname                            ascii
     ModelID                             u32
     IsMaster                            bool

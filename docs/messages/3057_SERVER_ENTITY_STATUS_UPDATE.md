@@ -16,8 +16,8 @@ Switched structure based on `UpdateType`:
 | # | Name | Type | Size | Description |
 |---|------|------|------|-------------|
 | 1 | `UniqueID` | `u32` | 4 | Target entity |
-| 2 | `unkByte01` | `u8` | 1 | StatusFlags high byte? |
-| 3 | `unkByte02` | `u8` | 1 | StatusFlags low byte? |
+| 2 | `LifeState` | `u8` | 1 | `LIFESTATE_*` enum (0=Alive, 1=Dead, 2=Ghost) — from `BUF_CHARACTER_STATUS` RTTI |
+| 3 | `BadStatusMask` | `u8` | 1 | Quick-access bad status bitmask for the entity at the time of the update |
 | 4 | `UpdateType` | `u8` | 1 | EntityStateUpdate enum |
 
 **UpdateType values:**
@@ -34,8 +34,8 @@ Switched structure based on `UpdateType`:
 
 ```
   [   0] UniqueID                       u32
-  [   4] unkByte01                      u8
-  [   5] unkByte02                      u8
+  [   4] LifeState                      u8        // LIFESTATE_*
+  [   5] BadStatusMask                  u8
   [   6] UpdateType                     u8
   switch UpdateType:
     case 1:  [7] HP                     u32

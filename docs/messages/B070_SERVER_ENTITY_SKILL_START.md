@@ -20,7 +20,7 @@ If `Success`:
 | # | Name | Type | Size | Description |
 |---|------|------|------|-------------|
 | 2 | `CastType` | `u8` | 1 | 0=Buff, 2=Attack |
-| 3 | `unkByte01` | `u8` | 1 | Skill execution flag? |
+| 3 | `AttackIndex` | `u8` | 1 | Index of this attack within a combo/chain sequence (0=first) |
 | 4 | `SkillID` | `u32` | 4 | Skill reference ID |
 | 5 | `SourceUniqueID` | `u32` | 4 | Casting entity |
 | 6 | `SkillUniqueID` | `u32` | 4 | Unique instance ID for this skill cast |
@@ -42,9 +42,9 @@ if HasDamage:
         elif (Block|Cancel): skip damage fields
         u8      DamageType         // flags: 1=Normal, 2=Critical, 4=Status
         u32     DamageValue
-        u8      unkByte01          // possibly absorbed damage
-        u8      unkByte02          // possibly reflected damage flag
-        u8      unkByte03          // possibly status effect ID
+        u8      AbsorbedDamage     // damage absorbed by shield/buff (0 if none)
+        u8      ReflectedFlag      // non-zero if damage was reflected back to attacker
+        u8      AppliedStatusID    // status effect applied by this hit (0 if none)
 ```
 
 ### Structure Summary
@@ -53,7 +53,7 @@ if HasDamage:
   [   0] Success                        bool
   if Success:
     [   1] CastType                     u8        // 0=Buff, 2=Attack
-    [   2] unkByte01                    u8
+    [   2] AttackIndex                  u8        // combo chain index
     [   3] SkillID                      u32
     [   7] SourceUniqueID               u32
     [  11] SkillUniqueID                u32

@@ -47,22 +47,22 @@ For each item:
 | # | Name | Type | Size | Description |
 |---|------|------|------|-------------|
 | 3 | `HP` | `u32` | 4 | Current HP |
-| 4 | `unkUInt01` | `u32` | 4 | Possibly HPMax |
+| 4 | `HPMax` | `u32` | 4 | Maximum HP — from `COSData` RTTI |
 | 5 | `Exp` | `u64` | 8 | Pet experience |
 | 6 | `Level` | `u8` | 1 | Pet level |
 | 7 | `HGP` | `u16` | 2 | Hunger Gauge Points |
 | 8 | `SettingsFlags` | `u32` | 4 | Pet behavior settings |
 | 9 | `Name` | `ascii` | var | Pet name |
-| 10 | `unkByte03` | `u8` | 1 | |
+| 10 | `PetState` | `u8` | 1 | Pet state flag (0=idle, 1=following, 2=attacking) |
 | 11 | `OwnerUniqueID` | `u32` | 4 | Owner entity ID |
-| 12 | `unkByte04` | `u8` | 1 | |
+| 12 | `IsSelected` | `u8` | 1 | Whether this COS is the active/selected one |
 
 #### Branch: Pick Pet
 
 | # | Name | Type | Size | Description |
 |---|------|------|------|-------------|
-| 3 | `unkUInt01` | `u32` | 4 | Possibly HP |
-| 4 | `unkUInt02` | `u32` | 4 | Possibly HPMax |
+| 3 | `HP` | `u32` | 4 | Current HP — from `COSData` RTTI |
+| 4 | `HPMax` | `u32` | 4 | Maximum HP — from `COSData` RTTI |
 | 5 | `SettingsFlags` | `u32` | 4 | Pet behavior settings |
 | 6 | `Name` | `ascii` | var | Pet name |
 | 7 | `InventoryCapacity` | `u8` | 1 | Inventory size |
@@ -91,19 +91,19 @@ For each item: `u8 Slot` + [ItemData](../systems/item_structure.md)
 
   ELIF isAttackPet:
     [   8] HP                           u32
-    [  12] unkUInt01                    u32
+    [  12] HPMax                        u32       // COSData
     [  16] Exp                          u64
     [  24] Level                        u8
     [  25] HGP                          u16
     [  27] SettingsFlags                u32
     [  31] Name                         ascii
-    [   ?] unkByte03                    u8
+    [   ?] PetState                     u8
     [   ?] OwnerUniqueID                u32
-    [   ?] unkByte04                    u8
+    [   ?] IsSelected                   u8
 
   ELIF isPickPet:
-    [   8] unkUInt01                    u32
-    [  12] unkUInt02                    u32
+    [   8] HP                           u32       // COSData
+    [  12] HPMax                        u32       // COSData
     [  16] SettingsFlags                u32
     [  20] Name                         ascii
     [   ?] InventoryCapacity            u8

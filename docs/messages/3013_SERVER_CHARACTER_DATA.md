@@ -61,7 +61,7 @@ For each item: `u8 Slot` + [ItemData](../systems/item_structure.md)
 
 | # | Name | Type | Size | Description |
 |---|------|------|------|-------------|
-| 25 | `unkByte01` | `u8` | 1 | Mastery section flag |
+| 25 | `MasterySectionFlag` | `u8` | 1 | Section marker (`0x01`); constant delimiter before mastery loop |
 
 Repeated while `ReadBool() == true`:
 
@@ -74,7 +74,7 @@ Repeated while `ReadBool() == true`:
 
 | # | Name | Type | Size | Description |
 |---|------|------|------|-------------|
-| 26 | `unkByte02` | `u8` | 1 | Skill section flag |
+| 26 | `SkillSectionFlag` | `u8` | 1 | Section marker (`0x01`); constant delimiter before skill loop |
 
 Repeated while `ReadBool() == true`:
 
@@ -135,7 +135,7 @@ If `QuestType == 88`:
 
 | # | Name | Type | Size | Description |
 |---|------|------|------|-------------|
-| 29 | `unkByte03` | `u8` | 1 | Collection book section flag |
+| 29 | `CollectionBookEnabled` | `u8` | 1 | Feature flag: `1` if collection books are available, `0` otherwise |
 | 30 | `BookCount` | `u32` | 4 | Number of collection books |
 
 For each book:
@@ -171,7 +171,7 @@ If NOT `HasMovement`:
 | # | Name | Type | Size | Description |
 |---|------|------|------|-------------|
 | 39 | `LifeState` | `u8` | 1 | LIFESTATE_* enum |
-| 40 | `unkByte04` | `u8` | 1 | BodyMode (BODYMODE_*) |
+| 40 | `BodyMode` | `u8` | 1 | `BODYMODE_*` enum (e.g. 0=Normal, 1=Berserk) — from `BUF_CHARACTER_STATUS` RTTI |
 | 41 | `MotionState` | `u8` | 1 | MOTIONSTATE_* enum |
 | 42 | `GameState` | `u8` | 1 | BattleState (BATTLESTATE_*) |
 | 43 | `SpeedWalking` | `f32` | 4 | Walking speed |
@@ -250,13 +250,13 @@ Game Settings config data follows (structure varies).
   for each: Slot u8, ItemData
 
   // Masteries
-  unkByte01                            u8
+  MasterySectionFlag                   u8        // constant 0x01
   while ReadBool():
     MasteryID                          u32
     MasteryLevel                       u8
 
   // Skills
-  unkByte02                            u8
+  SkillSectionFlag                     u8        // constant 0x01
   while ReadBool():
     SkillID                            u32
     Enabled                            bool
@@ -270,7 +270,7 @@ Game Settings config data follows (structure varies).
   for each: QuestID, Achievements, AutoShareRequired, QuestType, ...
 
   // Collection Books
-  unkByte03                            u8
+  CollectionBookEnabled                u8        // 1=feature active, 0=disabled
   BookCount                            u32
   for each: BookID u32, StartedDatetime u32, Pages u32
 
@@ -285,7 +285,7 @@ Game Settings config data follows (structure varies).
 
   // States
   LifeState                            u8
-  unkByte04 (BodyMode)                 u8
+  BodyMode                             u8        // BODYMODE_*
   MotionState                          u8
   GameState (BattleState)              u8
   SpeedWalking/Running/Berserk         f32

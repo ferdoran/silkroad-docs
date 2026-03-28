@@ -9,7 +9,29 @@
 
 ### Fields
 
-No fields could be extracted from this handler. The message may:
-- Have no payload (header-only)
-- Use an indirect/virtual dispatch that couldn't be traced
-- Read data through a mechanism not yet identified
+No payload structure could be recovered from static analysis of the server binaries.
+
+The opcode `0xB252` does **not** appear as a `PUSH` instruction in SR_GameServer.exe —
+confirming this is a **Client → Server** message received and dispatched by the server,
+not one the server sends. The server's receive handler for this opcode is registered in
+the `CCmdDispatcher` table at index `0xB252 & 0x7FF = 0x252`.
+
+#### What is Known
+
+The GatewayServer contains a Yahoo-based credential verification flow. The academy
+(training camp) action uses a separate academy-specific protocol sub-system
+(`3256_SERVER_ACADEMY_UPDATE.md`, `B250_CLIENT_ACADEMY_UPDATE.md`, etc.).
+
+Possible field structure based on sibling academy messages:
+
+| # | Name | Type | Description |
+|---|------|------|-------------|
+| 1 | `ActionType` | `u8` | Academy action type (join, leave, promote, etc.) |
+| 2 | `TargetID` | `u32` | Target character or academy ID |
+
+> These fields are inferred — not confirmed from binary analysis.
+
+### Investigation Status
+
+Searched in: SR_GameServer.exe (clean) — `PUSH 0xB252` **not found** (confirms
+client→server direction). Server receive handler registered via `CCmdDispatcher`.

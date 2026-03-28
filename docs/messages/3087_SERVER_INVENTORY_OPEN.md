@@ -1,4 +1,8 @@
-# SERVER_INVENTORY_OPEN
+# SERVER_EXCHANGE_COMPLETED
+
+> **Corrected name** (server RE): Was `SERVER_INVENTORY_OPEN` (client-derived). The server
+> function name and log strings confirm this is sent when a peer-to-peer trade is **completed**.
+> See [server_binary_analysis.md](../server_binary_analysis.md).
 
 | Property | Value |
 |----------|-------|
@@ -6,10 +10,36 @@
 | Direction | Server → Client |
 | Group | Game (Server→Client) |
 | Handler(s) | `0x0087FCB0` |
+| Send site | `0x004807AA` (SR_GameServer.exe clean) |
 
 ### Fields
 
-No fields could be extracted from this handler. The message may:
-- Have no payload (header-only)
-- Use an indirect/virtual dispatch that couldn't be traced
-- Read data through a mechanism not yet identified
+**No payload.** This packet is sent to both trading parties when the exchange session
+completes successfully. The packet carries no fields — the completion status is implicit
+from the opcode.
+
+Compare with `0x3088 SERVER_EXCHANGE_CANCELED` which carries a reason code.
+
+### Protocol Context
+
+| Packet | Trigger | Payload |
+|--------|---------|---------|
+| `0x3087` `SERVER_EXCHANGE_COMPLETED` | Trade confirmed by both sides | **none** |
+| `0x3088` `SERVER_EXCHANGE_CANCELED` | Trade cancelled/timed-out | 1× WORD (reason) |
+
+### Binary Evidence
+
+Decompiled (`r2ghidra`, `fcn.004806d0`, trading session close handler):
+
+```c
+if (arg_10h == 1) {                               // condition: exchange completed
+    uVar4 = (**(*piVar3 + 0x278))(0x3087);        // CreatePacket(0x3087)
+    // no field writes
+} else {
+    uVar4 = (**(*piVar3 + 0x278))(0x3088);        // CreatePacket(0x3088)
+    fcn.00404090(&arg_10h);                        // Write WORD reason code
+}
+(**(*piVar3 + 0x27c))(uVar4);                     // SendPacket
+```
+
+The packet is sent to both players in the trading session (`iVar7 < 2` loop).

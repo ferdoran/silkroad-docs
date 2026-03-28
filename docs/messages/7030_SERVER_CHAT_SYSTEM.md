@@ -3,7 +3,7 @@
 | Property | Value |
 |----------|-------|
 | Opcode | `0x7030` |
-| Direction | Server → Client |
+| Direction | Client → Server |
 | Group | Chat/Social |
 | Handler(s) | `0x0088DA80` |
 

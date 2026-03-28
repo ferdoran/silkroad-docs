@@ -3,7 +3,7 @@
 | Property | Value |
 |----------|-------|
 | Opcode | `0x751A` |
-| Direction | Server → Client |
+| Direction | Client → Server |
 | Group | Guild Extended |
 | Handler(s) | `0x0089A590` |
 

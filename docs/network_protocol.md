@@ -311,6 +311,10 @@ The signature exchange function at VA `0x004B2400` sets session state (`+0x0154`
 
 ## Opcode Reference
 
+> **Note**: The opcode names and descriptions in this section were derived from **client binary** (`sro_client.exe`) analysis. Many are inaccurate — the client uses internal dispatch IDs that don't match the actual packet semantics. For authoritative opcode names, packet structures, and field definitions, see:
+> - [Server Binary Analysis](../../docs/server_binary_analysis.md) — 145+ opcodes with corrected names from `SR_GameServer_Andreas.exe` + xBot cross-reference
+> - [Protocol Reference — Correction Table](protocol_reference.md#server-corrected-opcode-names) — 50+ opcode name corrections
+
 ### Opcode Groups
 
 The dispatcher masks opcodes with `0xF800` (top 5 bits) to determine the message group, then uses group-specific jump tables or handler functions:
@@ -362,6 +366,8 @@ Found via `mov word ptr [buffer], opcode` instructions that write opcodes into o
 | `0xA004` | Agent action | Written at VA `0x004D0C98` |
 
 ### Known Opcodes — Server→Client (Receive)
+
+> **Caution**: The descriptions below are client-internal handler labels, NOT the actual packet names. For example, what the client calls "Entity info" at `0x3011` is actually `SERVER_CHARACTER_DIED`; `0x3013` labeled "Entity data" is `SERVER_CHARACTER_DATA`. See [Server Binary Analysis §4-5](../../docs/server_binary_analysis.md#4-corrected-opcode-map-xbot--server-cross-reference) for the corrected map.
 
 Found via paired `push opcode` patterns in handler functions (used for debug logging):
 

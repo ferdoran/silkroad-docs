@@ -1,8 +1,86 @@
 # Protocol Reference
 
-Complete reference for Silkroad Online's network protocol. 
+Complete reference for Silkroad Online's network protocol.
 **288** documented opcodes across 7 categories.
 
+> **WARNING — Client-Derived Names**: The opcode names in this file were generated from `sro_client.exe` binary analysis. Many are **incorrect**. The table below lists confirmed corrections from server binary RE (`SR_GameServer_Andreas.exe`) cross-referenced with xBot source. See [server_binary_analysis.md](../../docs/server_binary_analysis.md) for authoritative packet structures and field names.
+
+## Server-Corrected Opcode Names
+
+| Opcode | Client Name (wrong) | Server Name (correct) | Notes |
+|--------|---------------------|----------------------|-------|
+| `0x3013` | SERVER_CHARACTER_CREATE_RESPONSE | **SERVER_CHARACTER_DATA** | Full character data (via 0x34A5 begin / 0x34A6 end) |
+| `0x3015` | SERVER_CHARACTER_DELETE_RESPONSE | **SERVER_ENTITY_SPAWN** | Entity spawn with type-branching (player/NPC/mob/COS/drop/teleport) |
+| `0x3016` | SERVER_CHARACTER_RESTORE | **SERVER_ENTITY_DESPAWN** | Entity removed from world |
+| `0x3017` | SERVER_CHARACTER_NAME_CHECK | **SERVER_ENTITY_GROUPSPAWN_BEGIN** | Marks start of group spawn batch |
+| `0x3018` | SERVER_CHARACTER_SELECT_RESPONSE | **SERVER_ENTITY_GROUPSPAWN_END** | Marks end of group spawn batch |
+| `0x3019` | SERVER_CHARACTER_LOBBY_INFO | **SERVER_ENTITY_GROUPSPAWN_DATA** | Entity data within group spawn |
+| `0x3020` | SERVER_CHARACTER_DATA | **SERVER_ENVIROMENT_CELESTIAL_POSITION** | Sun/moon position |
+| `0x3026` | SERVER_WEATHER | **SERVER_CHAT_UPDATE** | Chat message broadcast (10 code refs) |
+| `0x303D` | SERVER_ENTITY_SPAWN | **SERVER_CHARACTER_STATS_UPDATE** | PhyAtk/MagAtk/Def/Hit/Parry/HP/MP/STR/INT |
+| `0x3040` | SERVER_ENTITY_GROUPSPAWN_START | **SERVER_INVENTORY_ITEM_UPDATE** | Item slot changed |
+| `0x3042` | SERVER_ENTITY_DESPAWN | **SERVER_STORAGE_DATA_BEGIN** | Storage transfer start |
+| `0x3047` | SERVER_ENTITY_UPDATE_POSITION | **SERVER_STORAGE_DATA_BEGIN** | Storage header |
+| `0x304E` | SERVER_ENTITY_UPDATE_STATE | **SERVER_CHARACTER_INFO_UPDATE** | Gold/SP/BerserkPoints update |
+| `0x3052` | SERVER_ENTITY_MOVEMENT | **SERVER_INVENTORY_ITEM_DURABILITY_UPDATE** | Durability change |
+| `0x3054` | SERVER_CHAT_MESSAGE | **SERVER_ENTITY_LEVEL_UP** | Level up notification |
+| `0x3056` | SERVER_ENTITY_UPDATE_MOVEMENT | **SERVER_CHARACTER_EXPERIENCE_UPDATE** | Exp received (can be negative) |
+| `0x3057` | SERVER_ENTITY_ACTION | **SERVER_ENTITY_STATUS_UPDATE** | HP/MP/BadStatus update with type switch |
+| `0x3065` | — | **SERVER_PARTY_DATA** | Party info + member list |
+| `0x3091` | SERVER_PARTY_INVITE | **SERVER_ENTITY_EMOTE_USE** | Emote animation |
+| `0x3092` | SERVER_PARTY_INFO | **SERVER_INVENTORY_CAPACITY_UPDATE** | Inventory size changed |
+| `0x3101` | SERVER_NOTICE_CLEAR | **SERVER_GUILD_DATA** | Guild info (via 0x34B3 begin / 0x34B4 end) |
+| `0x30BF` | SERVER_NPC_RESPONSE | **SERVER_ENTITY_STATE_UPDATE** | LifeState/MotionState/BattleState/PVPState |
+| `0x30C8` | SERVER_EXCHANGE_START | **SERVER_PET_DATA** | COS data (horse/transport/attack/pick pet) |
+| `0x30C9` | SERVER_EXCHANGE_CONFIRM | **SERVER_PET_UPDATE** | COS update (unsummon/exp/hungry/model) |
+| `0x30D0` | SERVER_PET_RESPONSE | **SERVER_ENTITY_SPEED_UPDATE** | Walk/Run speed floats |
+| `0x34A5` | SERVER_EVENT_RESPONSE | **SERVER_CHARACTER_DATA_BEGIN** | Multi-part character data start |
+| `0x34A6` | SERVER_EVENT_ITEM | **SERVER_CHARACTER_DATA_END** | Multi-part character data end |
+| `0x34B3` | SERVER_EVENT_UPDATE | **SERVER_GUILD_DATA_BEGIN** | Multi-part guild data start |
+| `0x34B4` | SERVER_EVENT_DATA | **SERVER_GUILD_DATA_END** | Multi-part guild data end |
+| `0x34B5` | SERVER_EVENT_REWARD | **SERVER_TELEPORT_READY_REQUEST** | Server asks client to prepare teleport |
+| `0x3809` | SERVER_TIME_UPDATE | **SERVER_ENVIROMENT_WEATHER_UPDATE** | Weather change |
+| `0x3864` | SERVER_WORLD_UPDATE | **SERVER_PARTY_UPDATE** | Party member join/leave/update (31 code refs) |
+| `0x38F5` | — | **SERVER_GUILD_UPDATE** | Guild changes (most complex: 31 code refs) |
+| `0xB021` | CLIENT_CHARACTER_CREATE | **SERVER_ENTITY_MOVEMENT** | Entity movement broadcast |
+| `0xB024` | CLIENT_CHARACTER_LIST_REQUEST | **SERVER_ENTITY_MOVEMENT_ANGLE** | Facing angle update |
+| `0xB025` | CLIENT_CHARACTER_DELETE | **SERVER_CHAT_RESPONSE** | Chat message response |
+| `0xB034` | CLIENT_ENTITY_SELECT | **SERVER_INVENTORY_ITEM_MOVEMENT** | Item moved in inventory |
+| `0xB045` | CLIENT_NPC_INTERACT | **SERVER_ENTITY_SELECTION** | Target selection response |
+| `0xB046` | CLIENT_NPC_RESPONSE | **SERVER_ENTITY_TALK_RESPONSE** | NPC dialog response |
+| `0xB04C` | CLIENT_GAME_READY | **SERVER_INVENTORY_ITEM_USE** | Item use result |
+| `0xB050` | CLIENT_CHAT_REQUEST | **SERVER_CHARACTER_ADD_STR_RESPONSE** | STR point allocation |
+| `0xB051` | CLIENT_CHAT_CLEAR | **SERVER_CHARACTER_ADD_INT_RESPONSE** | INT point allocation |
+| `0xB059` | CLIENT_EMOTE | **SERVER_TELEPORT_RECALL_RESPONSE** | Recall teleport result |
+| `0xB05A` | CLIENT_SIT_STAND | **SERVER_TELEPORT_USE_RESPONSE** | Teleport use result |
+| `0xB060` | CLIENT_SIEGE_ACTION | **SERVER_PARTY_INVITATION_RESPONSE** | Party invite result |
+| `0xB070` | CLIENT_ENTITY_POSITION_REQUEST | **SERVER_ENTITY_SKILL_START** | Skill cast begin + damage data |
+| `0xB071` | CLIENT_ENTITY_DETAIL_REQUEST | **SERVER_ENTITY_SKILL_END** | Skill cast end + damage data |
+| `0xB072` | CLIENT_ENTITY_STATUS_REQUEST | **SERVER_ENTITY_SKILL_BUFF_REMOVED** | Buff removed |
+| `0xB0A1` | CLIENT_SKILL_REQUEST | **SERVER_MASTERY_SKILL_LEVELUP_RESPONSE** | Skill level up result |
+| `0xB0A2` | CLIENT_SKILL_USE | **SERVER_MASTERY_LEVELUP_RESPONSE** | Mastery level up result |
+| `0xB0B1` | — | **SERVER_STALL_CREATE_RESPONSE** | Player shop creation |
+| `0xB0BD` | CLIENT_STORAGE_REQUEST | **SERVER_ENTITY_SKILL_BUFF_ADDED** | New buff applied |
+| `0xB0CB` | CLIENT_QUEST_REQUEST | **SERVER_PET_PLAYER_MOUNTED** | Mount/dismount |
+
+## Server-Identified "unk" Field Names
+
+Fields marked as "unk" in xBot source have been identified from server debug strings:
+
+| Packet | xBot Field | Server Name | Values |
+|--------|-----------|-------------|--------|
+| 0x3013/0x3015 States | `unkByte04` | **BodyMode** | NORMAL=0, HWAN=1, BERSERKER=2, INVINCIBLE=3, INVISIBLE=4 |
+| 0x3013/0x3015 States | `GameState` | **BattleState** | IN_PEACE=0, IN_BATTLE=1 |
+| 0x3015 Player | `unkByte03` | **HwanLevel** | From `UpdateHwanLevel()` |
+| 0x3057 Status | `unkByte01/02` | **StatusTargetType, StatusSourceType** | Damage source/target flags |
+| 0xB070 Skill | `unkByte01` | **SkillExecutionMode** | Skill execution flag |
+| 0x3065 Party | `unkByte02-05` | **BodyMode, LifeState, MotionState, BattleState** | Same state fields as entity spawn |
+| 0x3065 Party | `unkByte06` | **GuildMemberAuthority** | Permission level |
+| 0x3101 Guild | `unkUInt00` | **UnionID/AllianceID** | Alliance reference |
+| 0x3101 Guild | `unkByte00` | **GuildStorageSlots** | Storage capacity |
+| 0x3101 GuildMember | `unkUInt01` | **LastLoginTime** | Timestamp |
+| 0x3101 GuildMember | `unkUInt02` | **DonateGP** | Guild point donations |
+| 0x3101 GuildMember | `unkUInt03` | **CharDBID** | Character database ID |
 
 ## Message Categories
 

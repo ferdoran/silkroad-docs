@@ -93,34 +93,39 @@ Both systems reference the same grid. Convert between them: minimap decimal `100
 
 ### Navigation Mesh (NVM)
 
-Each region tile has a corresponding NVM file (`navmesh/nv_XXYY.nvm`) containing both the navigation mesh for pathfinding and the terrain geometry data. There are **5,040** NVM files ranging from ~74 KB to ~232 KB.
+Each region tile has a corresponding NVM file (`navmesh/nv_XXYY.nvm`) containing the navigation mesh for pathfinding, collision detection, terrain height data, and surface properties. There are **5,040** NVM files ranging from ~74 KB to ~232 KB.
 
 ### NVM File Structure
 
+The NVM contains **8 sequential sections** read in order:
+
 ```
-Offset  Size    Description
-0x00    12      JMXV header: "JMXVNVM 1000"
-0x0C    2       Padding (0x0000)
-0x0E    2       u16: vertex/cell count 1
-0x10    2       Padding (0x0000)
-0x12    2       u16: triangle/cell count 2
-0x14    var     Mesh data: vertex positions (float x, y, z), triangle indices,
-                cell adjacency, walkability flags
-var     fixed   Cell grid lookup table (fixed-size grid for spatial queries)
+Section                     Size        Description
+1. Object List              variable    Placed world objects with collision links
+2. Navigation Cells         variable    96×96 walkable grid (AABB quads)
+3. Global Edges             variable    Cross-region cell connections
+4. Internal Edges           variable    Intra-region cell connections
+5. Tile Map                 73,728 B    96×96 texture/flag grid (8 bytes/tile)
+6. Height Map               37,636 B    97×97 terrain height samples (f32 each)
+7. Surface Type Map         36 B        6×6 surface types (0=Solid, 1=Water, 2=Ice)
+8. Surface Height Map       144 B       6×6 water/ice surface heights (f32 each)
 ```
 
-**Observed count values:**
+**Object List** (Section 1): Each object entry is 32 bytes fixed + variable-length edge links. Contains the object's ID (index into `object.ifo`), position, yaw rotation, type (static/skinned), flags (`IsLarge`, `IsStructure`), and links to adjacent object edges for cross-object pathfinding.
 
-| File | Size | Count1 | Count2 | Description |
-|------|------|--------|--------|-------------|
-| Minimal (1,1) | ~74 KB | 1 | 1 | Empty/ocean region (mostly zeros) |
-| Sparse (4,4) | ~75 KB | 4 | 4 | Simple terrain (e.g. flat desert) |
-| Moderate (17,5) | ~75 KB | 17 | 5 | Slightly varied terrain |
-| Dense (1801,907) | ~232 KB | 1801 | 907 | Complex terrain with many triangles |
+**Navigation Cells** (Section 2): Axis-aligned quad cells. Each cell stores its AABB (4 × f32), an object count (u8), and a list of overlapping object indices. `CellCount` vs `OpenCellCount` determines walkability.
 
-The mesh data contains IEEE 754 single-precision floats encoding vertex positions in world space. Coordinate values observed in dense NVM files range from ~200 to ~1920, consistent with region-local coordinates.
+**Edges** (Sections 3-4): Line segments between cells with `EdgeFlag` bitmask controlling traversal. Internal edges (23 bytes each) link cells within the region. Global edges (27 bytes each) add region ID pairs for cross-region connections.
 
-Every NVM file includes a **fixed-size cell grid** (occupying the majority of the file in sparse regions) used for fast spatial lookups during pathfinding. Each grid cell is ~384 bytes with data followed by zero padding.
+```
+EdgeFlag: None=0x00, BlockDst2Src=0x01, BlockSrc2Dst=0x02, Blocked=0x03,
+          Internal=0x04, Global=0x08, Bridge=0x10, Siege=0x80
+EdgeDirection: North=0, East=1, South=2, West=3
+```
+
+**Height Map** (Section 6): 97×97 grid (one extra sample per axis for bilinear interpolation at cell boundaries). Indexed as `Heights[z * 97 + x]`.
+
+See [Asset File Formats - JMXVNVM](asset_formats.md#4-jmxvnvm---navigation-mesh) for complete binary field definitions.
 
 ### Terrain Grid Construction
 

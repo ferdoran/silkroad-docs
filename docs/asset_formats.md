@@ -12,10 +12,12 @@ Complete reference for all binary and text file formats found within Silkroad On
   - [3. JMXVRES - Binary Scene Resource](#3-jmxvres---binary-scene-resource)
     - [Equipment Attachment Pipeline](#equipment-attachment-pipeline)
   - [4. JMXVNVM - Navigation Mesh](#4-jmxvnvm---navigation-mesh)
+    - [Object Navmesh Loading](#object-navmesh-loading)
+    - [Collision Detection](#collision-detection)
   - [5. JMXVBAN - Binary Animation](#5-jmxvban---binary-animation)
   - [6. JMXVBMT - Binary Material](#6-jmxvbmt---binary-material)
   - [7. JMXVBSK - Binary Skeleton](#7-jmxvbsk---binary-skeleton)
-  - [8. JMXVCPD - Character Parameter Data](#8-jmxvcpd---character-parameter-data)
+  - [8. JMXVCPD - Compound Parameter Data](#8-jmxvcpd---compound-parameter-data)
   - [9. JMXVDOF - Dungeon Object File](#9-jmxvdof---dungeon-object-file)
   - [10. JMXVMFO - Map Info](#10-jmxvmfo---map-info)
   - [11. JMXVOBJI - Object Index](#11-jmxvobji---object-index-text-based)
@@ -102,12 +104,12 @@ Offset  Size  Type    Description
 0x0C    4     u32     Offset: vertex data (Section 0)
 0x10    4     u32     Offset: bone/skin data (Section 1)
 0x14    4     u32     Offset: index data (Section 2)
-0x18    4     u32     Offset: Section 3 (unknown, always 0?)
-0x1C    4     u32     Offset: Section 4 (unknown, always 0?)
+0x18    4     u32     Offset: cloth vertex data (Section 3)
+0x1C    4     u32     Offset: cloth edge data (Section 4)
 0x20    4     u32     Offset: bounding box (Section 5)
-0x24    4     u32     Offset: Section 6 (unknown)
-0x28    4     u32     Offset: Section 7 (0109 only; collision/extra data)
-0x2C    4     u32     Offset: Section 8 (always 0 in 0110)
+0x24    4     u32     Offset: occlusion portal (Section 6)
+0x28    4     u32     Offset: navmesh object data (Section 7, 0109 only)
+0x2C    4     u32     Offset: skinned navmesh (Section 8, always 0 in 0110)
 0x30    4     u32     Offset: tail section
 0x34    4     u32     Reserved (0)
 0x38    4     u32     Reserved (0)
@@ -193,7 +195,14 @@ After bones: per-vertex weight/index data
 ```
 Offset  Size  Type    Description
 0x00    12    char[]  Header: "JMXVRES 0109"
-0x0C    32    u32[8]  Section offset table (absolute file offsets)
+0x0C    4     u32     Offset: Section [0] Materials
+0x10    4     u32     Offset: Section [1] Meshes
+0x14    4     u32     Offset: Section [2] Skeleton
+0x18    4     u32     Offset: Section [3] Animations
+0x1C    4     u32     Offset: Section [4] Mesh Parts (PrimMeshGroup)
+0x20    4     u32     Offset: Section [5] Animation Config (PrimAnimationGroup)
+0x24    4     u32     Offset: Section [6] Effects/Sounds (ModPalette)
+0x28    4     u32     Offset: Section [7] NavMesh Object / Bounding Box
 0x2C    20    u8[]    Reserved (zeros)
 0x40    2     u16     Type1 (see table below)
 0x42    2     u16     Type2 (always 2)
@@ -201,7 +210,7 @@ Offset  Size  Type    Description
 0x48    N     char[]  resource_name (null-terminated, padded to section start)
 ```
 
-The 8 section offsets point to sections that appear in arbitrary file order. Sections are NOT stored in index order.
+The 8 section offsets are absolute file offsets pointing to sections that appear in arbitrary file order. Sections are NOT stored in index order.
 
 **Type1 values:**
 
@@ -371,19 +380,23 @@ struct Section6_Effects {
 
 > **Note**: Section [6] has a complex recursive structure. The above describes the overall layout; exact per-field parsing of effect config data and animation-sound blocks requires further reverse-engineering.
 
-#### Section [7] - Bounding Box
+#### Section [7] - NavMesh Object Path / Bounding Box
+
+Starts with a length-prefixed string pointing to the collision mesh (BMS) used for this object's navmesh. When the object has no separate collision mesh, the path length is 0. The bounding box follows.
 
 ```c
-struct Section7_BBox {
-    u32  unk;                       // always 0
+struct Section7_NavMeshBBox {
+    u32  navmesh_path_len;          // 0 if no collision mesh; >0 for collision BMS path
+    char navmesh_path[navmesh_path_len]; // e.g. "prim\mesh\bldg\china\cj_wall01_nvm.bms"
     f32  bbox_min[3];               // min corner (x, y, z)
     f32  bbox_max[3];               // max corner (x, y, z)
     f32  bbox_min_copy[3];          // duplicate of bbox_min
     f32  bbox_max_copy[3];          // duplicate of bbox_max
-    u32  unk2;                      // always 0
+    u32  unk;                       // always 0
 };
-// Total: 56 bytes
 ```
+
+The `navmesh_path` references a dedicated collision BMS file (often suffixed `_nvm.bms`) that is distinct from the visual mesh in Section [1]. This collision mesh is loaded by the server and NVM system for object-level pathfinding and collision detection (see [JMXVNVM - Object Navmesh Loading](#object-navmesh-loading)).
 
 #### Section File Order
 
@@ -437,26 +450,272 @@ Equipment attaches to characters through two distinct mechanisms:
 **Extension**: `.nvm`
 **Version**: `1000`
 **Count**: 5,040 (Data.pk2)
-**Purpose**: Grid-based pathfinding mesh for AI and player movement. Named `nv_XXXX.nvm` where XXXX is a hex region ID.
+**Purpose**: Per-region navigation mesh for pathfinding, collision detection, terrain height, and surface properties. Named `nv_XXYY.nvm` where XXYY is a hex region ID (X = column, Y = row). Each region covers 1920 × 1920 world units, subdivided into a 96 × 96 cell grid (20 × 20 units per cell).
+
+File sizes range from 74,643 bytes (sparse/ocean regions) to 232,418 bytes (dense regions with many placed objects).
+
+#### Overall Layout
+
+The NVM file contains **8 sequential sections** read in order after the header:
 
 ```
-Offset  Size  Type    Description
-0x00    12    char[]  Header: "JMXVNVM 1000"
-0x0C    4     u32     Grid/tile parameter A (varies: 0x00010000, 0x00040000, etc.)
-0x10    4     u32     Grid/tile parameter B (same format as A)
-0x14    ...           Variable-length navmesh data
+Offset  Size    Description
+0x00    12      Header: "JMXVNVM 1000"
+0x0C    var     Section 1: Object List (placed world objects)
+var     var     Section 2: Navigation Cells (walkable grid)
+var     var     Section 3: Global Edges (cross-region connections)
+var     var     Section 4: Internal Edges (intra-region connections)
+var     73728   Section 5: Tile Map (96×96 texture/flag grid)
+var     37636   Section 6: Height Map (97×97 terrain heights)
+var     36      Section 7: Surface Type Map (6×6 terrain types)
+var     144     Section 8: Surface Height Map (6×6 surface heights)
 ```
 
-The internal structure is complex and varies significantly between files (74 KB to 232 KB). The data contains:
+#### Section 1: Object List
 
-- **Cell grid data**: Walkability flags, terrain type per cell
-- **Navigation vertices**: Float coordinates defining walkable polygon edges
-- **Connectivity data**: u16 indices linking adjacent cells for pathfinding
-- **Region references**: Neighboring region IDs for cross-region navigation
+References to world objects (buildings, walls, structures) placed in this region. Each object's collision mesh is loaded separately from its BMS file (see [Object Navmesh Loading](#object-navmesh-loading)).
 
-File sizes observed: 74,643 bytes (sparse regions) to 232,418 bytes (dense regions). The format uses a mix of integer cell flags and floating-point vertex coordinates, packed without consistent alignment.
+```c
+u16     ObjectCount;
 
-> **Note**: The NVM binary layout requires further reverse-engineering. Fields at 0x0C+ vary across files and do not follow a simple fixed-header pattern.
+struct Object {                      // 32 bytes fixed + variable
+    u32     ID;                      // index into object.ifo → BSR/CPD/BMS path
+    f32     PositionX;               // world-space position
+    f32     PositionY;
+    f32     PositionZ;
+    u16     Type;                    // 0xFFFF = Static, 0x0000 = Skinned
+    f32     Yaw;                     // rotation around Y axis (radians)
+    u16     LocalUID;                // unique ID within this region
+    u16     Short0;                  // unknown
+    u8      IsLarge;                 // bool — affects collision processing
+    u8      IsStructure;             // bool — marks as structure (building/wall)
+    u16     RegionID;                // which region this object belongs to
+    u16     GlobalEdgeLinkCount;     // number of edge links following
+
+    struct GlobalEdgeLink {          // 6 bytes each
+        u16     LinkObjID;           // linked object index
+        u16     LinkObjEdgeID;       // edge index on the linked object
+        u16     EdgeID;              // this object's edge index
+    } Links[GlobalEdgeLinkCount];
+};
+```
+
+#### Section 2: Navigation Cells
+
+The walkable grid — 96 × 96 axis-aligned quad cells covering the region.
+
+```c
+u32     CellCount;                   // total cells (typically up to 96×96)
+u32     OpenCellCount;               // number of traversable (walkable) cells
+
+struct NavigationCell {              // 17 bytes fixed + variable
+    f32     MinX;                    // cell AABB min (XZ plane)
+    f32     MinZ;
+    f32     MaxX;                    // cell AABB max
+    f32     MaxZ;
+    u8      ObjCount;               // number of objects overlapping this cell
+
+    u16     ObjectIndices[ObjCount]; // indices into the Object List
+};
+```
+
+#### Section 3: Global Edges
+
+Edges that connect cells across region boundaries. Enable cross-region pathfinding.
+
+```c
+u32     GlobalEdgeCount;
+
+struct GlobalEdge {                  // 27 bytes each
+    f32     MinX, MinZ;              // edge line segment start
+    f32     MaxX, MaxZ;              // edge line segment end
+    u8      EdgeFlag;                // see EdgeFlag enum
+    u8      AssocDirection0;         // source direction (see EdgeDirection)
+    u8      AssocDirection1;         // destination direction
+    u16     AssocCell0;              // source cell index
+    u16     AssocCell1;              // destination cell index
+    u16     AssocRegion0;            // source region ID
+    u16     AssocRegion1;            // destination region ID
+};
+```
+
+#### Section 4: Internal Edges
+
+Edges connecting cells within the same region. Control movement between adjacent cells.
+
+```c
+u32     InternalEdgeCount;
+
+struct InternalEdge {                // 23 bytes each
+    f32     MinX, MinZ;              // edge segment start
+    f32     MaxX, MaxZ;              // edge segment end
+    u8      EdgeFlag;                // see EdgeFlag enum
+    u8      AssocDirection0;         // source side direction
+    u8      AssocDirection1;         // destination side direction
+    u16     AssocCell0;              // source cell index
+    u16     AssocCell1;              // destination cell index
+};
+```
+
+#### EdgeFlag Enum
+
+```c
+enum EdgeFlag {
+    None          = 0x00,
+    BlockDst2Src  = 0x01,            // blocks movement from dest → src
+    BlockSrc2Dst  = 0x02,            // blocks movement from src → dest
+    Blocked       = 0x03,            // fully blocked (both directions)
+    Internal      = 0x04,            // intra-region edge marker
+    Global        = 0x08,            // cross-region edge marker
+    Bridge        = 0x10,            // bridge/ramp connection
+    Bit5          = 0x20,            // unknown
+    Bit6          = 0x40,            // unknown
+    Siege         = 0x80,            // fortress war — toggled to open/close gates
+};
+```
+
+#### EdgeDirection Enum
+
+```c
+enum EdgeDirection {
+    Invalid = -1,
+    North   = 0,
+    East    = 1,
+    South   = 2,
+    West    = 3,
+};
+```
+
+#### Section 5: Tile Map (96 × 96)
+
+Fixed-size grid mapping each cell to its texture and surface flags.
+
+```c
+struct Tile {                        // 8 bytes each, 9,216 tiles = 73,728 bytes
+    u32     CellID;                  // which navigation cell this tile belongs to
+    u16     Flag;                    // surface behavior flags (see tile2d.ifo)
+    u16     TextureIndex;            // index into tile2d.ifo (603 textures)
+};
+```
+
+#### Section 6: Height Map (97 × 97)
+
+Terrain height samples — one extra sample per axis for bilinear interpolation at cell boundaries.
+
+```c
+f32     Heights[97 * 97];           // 9,409 values = 37,636 bytes
+                                    // indexed as Heights[z * 97 + x]
+```
+
+#### Section 7: Surface Type Map (6 × 6)
+
+Coarse surface classification grid (each block covers ~320 × 320 world units).
+
+```c
+u8      SurfaceTypes[36];           // 36 bytes
+                                    // 0 = Solid, 1 = Water, 2 = Ice
+```
+
+#### Section 8: Surface Height Map (6 × 6)
+
+Water/ice surface height per block, used for swim/slide height calculation.
+
+```c
+f32     SurfaceHeights[36];         // 144 bytes
+```
+
+#### Object Navmesh Loading
+
+Each placed object in the Object List has its collision mesh loaded through a chain of file lookups:
+
+```
+NVM Object.ID → object.ifo[ID].FilePath → .bsr / .cpd / .bms
+```
+
+The resolution depends on the file extension:
+
+| Extension | Loading Chain |
+|-----------|---------------|
+| `.bsr` | BSR Section [7] offset → `NavMeshObjPath` → load BMS |
+| `.cpd` | CPD offset 0x0C → `NavMeshObjPath` → load BSR → load BMS |
+| `.bms` | Load BMS directly |
+
+From the BSR header, the 8th section offset (index [7], at file offset 0x28) points to a length-prefixed string: the path to the collision BMS mesh. This is **separate from the visual mesh** referenced by Section [1].
+
+From the BMS, the following collision-specific data is parsed per object:
+
+```c
+// Vertices
+u32     VertexCount;
+struct Vertex {                      // per vertex
+    f32     X, Y, Z;                 // position in object-local space
+    u8      Extra[13];               // includes sin/cos rotation cache
+};
+
+// Cells (triangles forming the collision surface)
+u32     CellCount;
+struct ObjectCell {                  // 8 bytes each
+    u16     VertexIndex0;
+    u16     VertexIndex1;
+    u16     VertexIndex2;
+    u16     Flag;                    // collision flag
+    // u8   EventZoneFlag;          // conditional: present if StructOption bit 2 set
+};
+
+// Global Edges (connections to other object meshes)
+u32     GlobalEdgeCount;
+struct ObjectGlobalEdge {            // 9+ bytes each
+    u16     VertexA, VertexB;        // edge endpoint vertex indices
+    u16     SourceCellIndex;
+    u16     DestCellIndex;
+    u8      Flag;
+    // u8   EventZoneFlag;          // conditional
+};
+
+// Internal Edges (connections within this object mesh)
+u32     InternalEdgeCount;
+struct ObjectInternalEdge {          // 9+ bytes each
+    u16     VertexA, VertexB;
+    u16     SourceCellIndex;
+    u16     DestCellIndex;
+    u8      Flag;
+    // u8   EventZoneFlag;          // conditional
+};
+
+// Events (optional, if StructOption bit 2 set)
+u32     EventCount;
+struct Event {
+    u32     NameLength;
+    char    Name[NameLength];
+};
+
+// Object Grid (spatial acceleration structure)
+f32     OriginX, OriginZ;           // grid origin in local space
+u32     Width, Height;              // grid dimensions
+u32     TileCount;                  // ObjectTiles (100×100 units each)
+```
+
+Object vertices are transformed from local to world space using the Position + Yaw from the NVM Object List entry. The ObjectGrid enables fast spatial lookups by partitioning the object's cells and edges into 100×100 unit tiles.
+
+#### Collision Detection
+
+**Terrain collision:**
+1. Compute region ID from world position, then cell index from the 96×96 grid
+2. Check `OpenCellCount` vs `CellCount` to determine if the cell is walkable
+3. Sample the 97×97 height map with bilinear interpolation for ground Y
+4. Check the 6×6 surface type map for solid/water/ice
+
+**Edge-based movement:**
+1. Internal edges connect adjacent cells — `EdgeFlag` determines if passage is allowed
+2. Global edges connect cells across region boundaries with region ID pairs
+3. `BlockSrc2Dst` / `BlockDst2Src` create one-way passages (jump-down ledges)
+4. `Siege` flag is toggled dynamically during fortress wars to open/close gates
+
+**Object collision:**
+1. Transform object triangle mesh from local to world space (Position + Yaw)
+2. Test movement line against object grid tiles for fast rejection
+3. Check object cells (triangles) for intersection with entity's movement path
+4. Object edges define passable/blocked boundaries around structures
 
 **Hex sample (sparse region)**:
 ```
@@ -652,20 +911,23 @@ Bone names follow the 3ds Max Biped convention (e.g., `Bip01`, `Bip01 Spine`, `B
 
 ---
 
-### 8. JMXVCPD - Character Parameter Data
+### 8. JMXVCPD - Compound Parameter Data
 
 **Extension**: `.cpd`
 **Version**: `0101`
 **Count**: 70 (Data.pk2)
-**Purpose**: Character model composition - references body part `.bsr` files for avatar assembly.
+**Purpose**: Compound object definitions — references `.bsr` files for character avatar assembly or structure composition. Also stores the navmesh collision path for compound structures.
 
 ```
 Offset  Size  Type    Description
 0x00    12    char[]  Header: "JMXVCPD 0101"
-0x0C    4     u32     Part reference offset / count
-0x10    4     u32     Data section offset / count
-0x14    ...           Part references (file path strings to .bsr files)
+0x0C    4     u32     Offset: NavMesh object path (length-prefixed string)
+0x10    4     u32     Offset: Resource object list (BSR path array)
+0x14    20    u8[5]   Reserved / unknown u32 fields
+0x28    ...           Data sections (navmesh path string, BSR path list)
 ```
+
+The `OffsetNavMeshObj` at 0x0C points to a length-prefixed string containing the path to a BSR file used as the compound object's collision mesh. This BSR is then resolved to a BMS via its own Section [7] NavMeshObjPath. The `OffsetResObjList` at 0x10 points to the visual BSR path list (character base + armor pieces).
 
 **Hex sample**:
 ```

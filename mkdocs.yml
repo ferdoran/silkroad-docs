@@ -58,6 +58,14 @@ nav:
   - File Formats:
       - PK2 Archive: pk2_format.md
       - Asset Formats: asset_formats.md
+  - Data Tables:
+      - Table Reference: data_tables.md
+  - Game Systems:
+      - "Job & Trade": systems/job_trade.md
+      - Guild: systems/guild.md
+      - Fortress Siege: systems/fortress_siege.md
+      - "COS (Pets & Transport)": systems/cos_pet.md
+      - "Alchemy & Enchantment": systems/alchemy.md
   - Rendering:
       - Character Rendering: character_rendering.md
       - Terrain Rendering: terrain_rendering.md

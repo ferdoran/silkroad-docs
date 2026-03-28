@@ -3,7 +3,7 @@
 | Property | Value |
 |----------|-------|
 | Opcode | `0x747E` |
-| Direction | Server → Client |
+| Direction | Client → Server |
 | Group | Guild/Union |
 | Handler(s) | `0x00890AB0`, `0x00890FA0` |
 

@@ -96,7 +96,6 @@ All `.pk2` files use the "JoyMax File Manager!" format with Blowfish encryption.
 
 - [Main Game Client](sro_client.md)
 - [PK2 Archive Format](pk2_format.md)
-- [Launcher & Patcher](launcher_and_patcher.md)
+- [Startup, Launcher & Configuration](client_startup.md)
 - [Anti-Cheat System](anticheat.md)
-- [Configuration Files](config_files.md)
 - [Network Protocol](network_protocol.md)

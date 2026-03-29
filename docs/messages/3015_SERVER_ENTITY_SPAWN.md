@@ -23,7 +23,7 @@ Top-level branching based on `RefObjID` type lookup:
 
 | # | Name | Type | Size | Description |
 |---|------|------|------|-------------|
-| 2 | `unkUShort01` | `u16` | 2 | |
+| 2 | `EntityTypeCode` | `u16` | 2 | Constant `0x0054` — hardcoded zone-entity type identifier written by `CGSkillObject` spawn serializer at VA `0x48CE79` (`push 0x54; call 0x48bee0`) |
 | 3 | `SkillID` | `u32` | 4 | Skill creating the zone |
 | 4 | `UniqueID` | `u32` | 4 | Zone unique ID |
 | 5 | `RegionID` | `u16` | 2 | Map region |
@@ -86,7 +86,7 @@ If NOT moving: `u8 MovementActionType, u16 Angle`
 | # | Name | Type | Size | Description |
 |---|------|------|------|-------------|
 | - | `LifeState` | `u8` | 1 | GetLifeState() |
-| - | `unkByte01` | `u8` | 1 | BodyMode / GetBodyMode() |
+| - | `BodyMode` | `u8` | 1 | `BODYMODE_*` enum — `GetBodyMode()` (confirmed from `BUF_CHARACTER_STATUS` RTTI) |
 | - | `MotionState` | `u8` | 1 | GetMotionState() |
 | - | `GameState` | `u8` | 1 | BattleState |
 | - | `SpeedWalking` | `f32` | 4 | Walking speed |
@@ -114,7 +114,7 @@ For each buff: `u32 SkillID, u32 BuffUniqueID`, if hasAutoTransferEffect: `bool 
 | - | `RidingUniqueID` | `u32` | 4 | Only if IsRiding |
 | - | `ScrollingType` | `u8` | 1 | Reverse return etc. |
 | - | `InteractionType` | `u8` | 1 | 0=None, 1=OnStall, etc. |
-| - | `unkByte03` | `u8` | 1 | Possibly HwanLevel |
+| - | `HwanLevel` | `u8` | 1 | Hwan transformation level — `UpdateHwanLevel()` method (confirmed from server log analysis) |
 | - | `GuildName` | `ascii` | var | GetGuildName() |
 
 If NOT hasJobMode:
@@ -161,7 +161,7 @@ If `isCOS` and NOT `isHorse`:
 If `isFortressCos`: `u32 GuildID, ascii GuildName`
 
 **Spawn trailer (only for 0x3015, not groupspawn):**
-`u8 unkByte02`
+`u8 SpawnCategory` — sourced from 3rd argument of sender function `0x533f70` (`[ebp+0x10]`); values 5 and 6 trigger additional player-specific data in the send path
 
 ---
 
@@ -195,14 +195,15 @@ Spawn trailer: `u8 DropSourceType, u32 DropUniqueID`
 | 3 | `RegionID` | `u16` | 2 | Map region |
 | 4 | `PosX, PosY, PosZ` | `f32` | 12 | Position |
 | 5 | `Angle` | `u16` | 2 | Facing angle |
-| 6 | `unkByte01` | `u8` | 1 | |
-| 7 | `unkByte02` | `u8` | 1 | |
-| 8 | `unkByte03` | `u8` | 1 | |
-| 9 | `PortalType` | `u8` | 1 | 0=Regular, 1=Dimensional |
+| 6 | `PortalState` | `u8` | 1 | Byte 0 of sub-object at `[entity+0x30]`; active/inactive state of the portal |
+| 7 | `QuestFlags` | `u8` | 1 | Byte 1 of sub-object at `[entity+0x30]`; quest-related visibility flags |
+| 8 | `LevelRestriction` | `u8` | 1 | From `[entity+0x15e]`; minimum level required to use portal |
+| 9 | `PortalType` | `u8` | 1 | From `[entity+0x15f]`; `6`=Dimensional, any other value=Regular |
 
-If Regular: `u32 unkUInt01, u32 unkUInt02`
-If Dimensional: `ascii OwnerName, u32 OwnerUniqueID`
-If `unkByte02 == 1`: `u32 unkUInt03 (STORE_OnONE_DEFAULT), u8 unkByte04`
+If Regular (`PortalType != 6`): `u32 DestRegionID` (from `[entity+0x160]`), `u32 DestPortalID` (from `[entity+0x164]`)
+If Dimensional (`PortalType == 6`): `ascii DestinationName` (from `[entity+0x168]`), `u32 DestinationID` (from `[entity+0x164]`)
+
+> **xBot discrepancy**: xBot source shows a conditional `if unkByte02 == 1` block with `STORE_OnONE_DEFAULT` string and extra fields. This conditional **does not exist** in the server binary (`CGObjStruct` serializer `0x52F000`). The server writes exactly 4 bytes (PortalState, QuestFlags, LevelRestriction, PortalType) then the type-specific block.
 
 ### Structure Summary
 
@@ -210,7 +211,7 @@ If `unkByte02 == 1`: `u32 unkUInt03 (STORE_OnONE_DEFAULT), u8 unkByte04`
   RefObjID                             u32
 
   IF isSkillZone:
-    unkUShort01                        u16
+    EntityTypeCode                     u16  // constant 0x0054 (hardcoded by CGSkillObject)
     SkillID                            u32
     UniqueID                           u32
     RegionID, PosX/Y/Z, Angle         u16, f32x3, u16
@@ -227,7 +228,7 @@ If `unkByte02 == 1`: `u32 unkUInt03 (STORE_OnONE_DEFAULT), u8 unkByte04`
     // All models:
     UniqueID, RegionID, Pos, Angle     u32, u16, f32x3, u16
     Movement data                      (variable)
-    LifeState, BodyMode, MotionState, GameState   u8x4
+    LifeState, BodyMode, MotionState, GameState   u8x4    // BodyMode = BODYMODE_*
     SpeedWalking/Running/Berserk       f32x3
     Buffs                              (variable)
 
@@ -237,7 +238,7 @@ If `unkByte02 == 1`: `u32 unkUInt03 (STORE_OnONE_DEFAULT), u8 unkByte04`
     ELIF isNPC:
       TalkOptions, Mob/COS data        (variable)
 
-    unkByte02 (spawn trailer)          u8
+    SpawnCategory (spawn trailer)      u8   // 5 or 6 = player-specific handling
 
   ELIF isDrop:
     Item type data (Plus/Gold/Owner)   (variable)
@@ -247,7 +248,13 @@ If `unkByte02 == 1`: `u32 unkUInt03 (STORE_OnONE_DEFAULT), u8 unkByte04`
 
   ELIF isTeleport:
     UniqueID, Region, Pos, Angle       u32, u16, f32x3, u16
-    unkByte01-03                       u8x3
-    PortalType                         u8
-    Portal type data                   (variable)
+    PortalState, QuestFlags            u8x2  // bytes 0-1 of *[entity+0x30]
+    LevelRestriction                   u8    // [entity+0x15e]
+    PortalType                         u8    // [entity+0x15f]; 6=Dimensional, else=Regular
+    IF PortalType == 6 (Dimensional):
+      DestinationName                  ascii // [entity+0x168]
+      DestinationID                    u32   // [entity+0x164]
+    ELSE (Regular):
+      DestRegionID                     u32   // [entity+0x160]
+      DestPortalID                     u32   // [entity+0x164]
 ```

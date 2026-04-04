@@ -1,9 +1,10 @@
 # CLIENT_ENTITY_DETAIL_DATA
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
 | Opcode | `0xB0F1` |
-| Direction | Client → Server |
+| Direction | Server → Client |
 | Group | Game (Client→Server) |
 | Handler(s) | `0x00887330` |
 
@@ -42,7 +43,6 @@
 | 29 | `dwField_29` | `u32` | 4 | `0x00887AA9` |
 
 **Minimum size**: 71 bytes + variable fields
-
 
 ### String References
 | String | Type |
@@ -86,3 +86,188 @@
   [  59] byField_28                     u8
   [  60] dwField_29                     u32
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct EntityDetailData {
+        uint8_t byType;
+        uint32_t dwGuildID;
+        uint16_t byRace;
+        std::vector<uint8_t> byLevel;
+        uint8_t dwGP1;
+        uint8_t dwGP2;
+        uint32_t dwGP3;
+        uint32_t dwGP4;
+        uint32_t dwGoldStored;
+        uint32_t dwGoldLimit;
+        uint32_t byMemberCount;
+        uint32_t byMemberFlags;
+        uint8_t dwMemberData;
+        uint8_t byMemberRole;
+        uint32_t dwMemberParam;
+        uint8_t byMemberLevel;
+        uint32_t byMemberExtra1;
+        uint8_t dwMemberUID;
+        uint8_t dwMemberAssoc;
+        uint8_t byFlagByte1;
+        uint8_t byFlagByte2;
+        uint32_t dwExtraUID;
+        uint32_t dwExtraParam1;
+        uint8_t byExtraFlags;
+        uint32_t dwExtraParam2;
+        uint32_t byExtraRole;
+        uint8_t byField_27;
+        uint8_t byField_28;
+        uint32_t dwField_29;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record EntityDetailData(
+        byte byType,
+        uint dwGuildID,
+        ushort byRace,
+        byte[] byLevel,
+        byte dwGP1,
+        byte dwGP2,
+        uint dwGP3,
+        uint dwGP4,
+        uint dwGoldStored,
+        uint dwGoldLimit,
+        uint byMemberCount,
+        uint byMemberFlags,
+        byte dwMemberData,
+        byte byMemberRole,
+        uint dwMemberParam,
+        byte byMemberLevel,
+        uint byMemberExtra1,
+        byte dwMemberUID,
+        byte dwMemberAssoc,
+        byte byFlagByte1,
+        byte byFlagByte2,
+        uint dwExtraUID,
+        uint dwExtraParam1,
+        byte byExtraFlags,
+        uint dwExtraParam2,
+        uint byExtraRole,
+        byte byField_27,
+        byte byField_28,
+        uint dwField_29
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct EntityDetailData {
+        pub by_type: u8,
+        pub dw_guild_id: u32,
+        pub by_race: u16,
+        pub by_level: Vec<u8>,
+        pub dw_gp1: u8,
+        pub dw_gp2: u8,
+        pub dw_gp3: u32,
+        pub dw_gp4: u32,
+        pub dw_gold_stored: u32,
+        pub dw_gold_limit: u32,
+        pub by_member_count: u32,
+        pub by_member_flags: u32,
+        pub dw_member_data: u8,
+        pub by_member_role: u8,
+        pub dw_member_param: u32,
+        pub by_member_level: u8,
+        pub by_member_extra1: u32,
+        pub dw_member_uid: u8,
+        pub dw_member_assoc: u8,
+        pub by_flag_byte1: u8,
+        pub by_flag_byte2: u8,
+        pub dw_extra_uid: u32,
+        pub dw_extra_param1: u32,
+        pub by_extra_flags: u8,
+        pub dw_extra_param2: u32,
+        pub by_extra_role: u32,
+        pub by_field_27: u8,
+        pub by_field_28: u8,
+        pub dw_field_29: u32,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type EntityDetailData struct {
+        byType uint8
+        dwGuildID uint32
+        byRace uint16
+        byLevel []byte
+        dwGP1 uint8
+        dwGP2 uint8
+        dwGP3 uint32
+        dwGP4 uint32
+        dwGoldStored uint32
+        dwGoldLimit uint32
+        byMemberCount uint32
+        byMemberFlags uint32
+        dwMemberData uint8
+        byMemberRole uint8
+        dwMemberParam uint32
+        byMemberLevel uint8
+        byMemberExtra1 uint32
+        dwMemberUID uint8
+        dwMemberAssoc uint8
+        byFlagByte1 uint8
+        byFlagByte2 uint8
+        dwExtraUID uint32
+        dwExtraParam1 uint32
+        byExtraFlags uint8
+        dwExtraParam2 uint32
+        byExtraRole uint32
+        byField_27 uint8
+        byField_28 uint8
+        dwField_29 uint32
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface EntityDetailData {
+        byType: number;
+        dwGuildID: number;
+        byRace: number;
+        byLevel: Uint8Array;
+        dwGP1: number;
+        dwGP2: number;
+        dwGP3: number;
+        dwGP4: number;
+        dwGoldStored: number;
+        dwGoldLimit: number;
+        byMemberCount: number;
+        byMemberFlags: number;
+        dwMemberData: number;
+        byMemberRole: number;
+        dwMemberParam: number;
+        byMemberLevel: number;
+        byMemberExtra1: number;
+        dwMemberUID: number;
+        dwMemberAssoc: number;
+        byFlagByte1: number;
+        byFlagByte2: number;
+        dwExtraUID: number;
+        dwExtraParam1: number;
+        byExtraFlags: number;
+        dwExtraParam2: number;
+        byExtraRole: number;
+        byField_27: number;
+        byField_28: number;
+        dwField_29: number;
+    }
+    ```
+

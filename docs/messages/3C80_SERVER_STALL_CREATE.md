@@ -1,4 +1,5 @@
 # SERVER_STALL_CREATE
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
@@ -25,7 +26,6 @@
 | 10 | `wField_10` | `u16` | 2 | `0x0089C8E8` |
 
 **Minimum size**: 17 bytes + variable fields
-
 
 ### String References
 | String | Type |
@@ -81,7 +81,6 @@
 
 **Minimum size**: 41 bytes + variable fields
 
-
 ### String References
 | String | Type |
 |--------|------|
@@ -116,3 +115,163 @@
   [  19] dwField_19                     u32
   [  23] byField_20                     u8
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct StallCreate {
+        uint8_t byResult;
+        uint8_t byField_02;
+        uint32_t dwField_03;
+        uint8_t byField_04;
+        uint16_t wField_05;
+        std::vector<uint8_t> bytesData_5;
+        uint8_t byField_07;
+        uint8_t byField_08;
+        uint32_t dwField_09;
+        uint16_t wField_10;
+        uint32_t dwField_02;
+        uint32_t dwField_04;
+        std::vector<uint8_t> bytesData_8;
+        uint8_t byField_10;
+        uint8_t byField_11;
+        uint32_t dwField_12;
+        uint8_t byField_13;
+        uint32_t dwField_14;
+        uint16_t wField_15;
+        uint16_t wField_16;
+        uint16_t wField_17;
+        uint16_t wField_18;
+        uint32_t dwField_19;
+        uint8_t byField_20;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record StallCreate(
+        byte byResult,
+        byte byField_02,
+        uint dwField_03,
+        byte byField_04,
+        ushort wField_05,
+        byte[] bytesData_5,
+        byte byField_07,
+        byte byField_08,
+        uint dwField_09,
+        ushort wField_10,
+        uint dwField_02,
+        uint dwField_04,
+        byte[] bytesData_8,
+        byte byField_10,
+        byte byField_11,
+        uint dwField_12,
+        byte byField_13,
+        uint dwField_14,
+        ushort wField_15,
+        ushort wField_16,
+        ushort wField_17,
+        ushort wField_18,
+        uint dwField_19,
+        byte byField_20
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct StallCreate {
+        pub by_result: u8,
+        pub by_field_02: u8,
+        pub dw_field_03: u32,
+        pub by_field_04: u8,
+        pub w_field_05: u16,
+        pub bytes_data_5: Vec<u8>,
+        pub by_field_07: u8,
+        pub by_field_08: u8,
+        pub dw_field_09: u32,
+        pub w_field_10: u16,
+        pub dw_field_02: u32,
+        pub dw_field_04: u32,
+        pub bytes_data_8: Vec<u8>,
+        pub by_field_10: u8,
+        pub by_field_11: u8,
+        pub dw_field_12: u32,
+        pub by_field_13: u8,
+        pub dw_field_14: u32,
+        pub w_field_15: u16,
+        pub w_field_16: u16,
+        pub w_field_17: u16,
+        pub w_field_18: u16,
+        pub dw_field_19: u32,
+        pub by_field_20: u8,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type StallCreate struct {
+        byResult uint8
+        byField_02 uint8
+        dwField_03 uint32
+        byField_04 uint8
+        wField_05 uint16
+        bytesData_5 []byte
+        byField_07 uint8
+        byField_08 uint8
+        dwField_09 uint32
+        wField_10 uint16
+        dwField_02 uint32
+        dwField_04 uint32
+        bytesData_8 []byte
+        byField_10 uint8
+        byField_11 uint8
+        dwField_12 uint32
+        byField_13 uint8
+        dwField_14 uint32
+        wField_15 uint16
+        wField_16 uint16
+        wField_17 uint16
+        wField_18 uint16
+        dwField_19 uint32
+        byField_20 uint8
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface StallCreate {
+        byResult: number;
+        byField_02: number;
+        dwField_03: number;
+        byField_04: number;
+        wField_05: number;
+        bytesData_5: Uint8Array;
+        byField_07: number;
+        byField_08: number;
+        dwField_09: number;
+        wField_10: number;
+        dwField_02: number;
+        dwField_04: number;
+        bytesData_8: Uint8Array;
+        byField_10: number;
+        byField_11: number;
+        dwField_12: number;
+        byField_13: number;
+        dwField_14: number;
+        wField_15: number;
+        wField_16: number;
+        wField_17: number;
+        wField_18: number;
+        dwField_19: number;
+        byField_20: number;
+    }
+    ```
+

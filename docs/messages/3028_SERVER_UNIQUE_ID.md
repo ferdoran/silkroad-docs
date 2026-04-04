@@ -1,4 +1,5 @@
 # SERVER_UNIQUE_ID
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
@@ -24,3 +25,58 @@
   [   4] wRegionID                      u16
   [   6] bytesData                      bytes[14]
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct UniqueId {
+        uint32_t dwUniqueID;
+        uint16_t wRegionID;
+        uint8_t bytesData;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record UniqueId(
+        uint dwUniqueID,
+        ushort wRegionID,
+        byte bytesData
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct UniqueId {
+        pub dw_unique_id: u32,
+        pub w_region_id: u16,
+        pub bytes_data: u8,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type UniqueId struct {
+        dwUniqueID uint32
+        wRegionID uint16
+        bytesData uint8
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface UniqueId {
+        dwUniqueID: number;
+        wRegionID: number;
+        bytesData: number;
+    }
+    ```
+

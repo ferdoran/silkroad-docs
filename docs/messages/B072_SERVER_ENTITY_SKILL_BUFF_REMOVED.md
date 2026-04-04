@@ -41,3 +41,83 @@
 > Note: Client handler data is from a different opcode's handler (misattributed during client binary analysis). The server RE fields above are authoritative.
 
 </details>
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct EntitySkillBuffRemoved {
+        bool Success;
+        uint32_t BuffUniqueID;  // conditional
+        uint8_t byType;
+        uint32_t dwParam1;
+        uint8_t bySubType;
+        uint32_t dwUniqueID;
+        uint8_t byFlags;
+        uint8_t bytesPosition;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record EntitySkillBuffRemoved(
+        bool Success,
+        uint BuffUniqueID /* conditional */,
+        byte byType,
+        uint dwParam1,
+        byte bySubType,
+        uint dwUniqueID,
+        byte byFlags,
+        byte bytesPosition
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct EntitySkillBuffRemoved {
+        pub success: bool,
+        pub buff_unique_id: u32,  // conditional
+        pub by_type: u8,
+        pub dw_param1: u32,
+        pub by_sub_type: u8,
+        pub dw_unique_id: u32,
+        pub by_flags: u8,
+        pub bytes_position: u8,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type EntitySkillBuffRemoved struct {
+        Success bool
+        BuffUniqueID uint32  // conditional
+        byType uint8
+        dwParam1 uint32
+        bySubType uint8
+        dwUniqueID uint32
+        byFlags uint8
+        bytesPosition uint8
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface EntitySkillBuffRemoved {
+        success: boolean;
+        buffUniqueID: number;  // conditional
+        byType: number;
+        dwParam1: number;
+        bySubType: number;
+        dwUniqueID: number;
+        byFlags: number;
+        bytesPosition: number;
+    }
+    ```
+

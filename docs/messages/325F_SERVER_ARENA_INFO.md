@@ -1,4 +1,5 @@
 # SERVER_ARENA_INFO
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
@@ -16,7 +17,6 @@
 
 **Total size**: 3 bytes
 
-
 ### String References
 | String | Type |
 |--------|------|
@@ -28,3 +28,53 @@
   [   0] byResult                       u8
   [   1] wField_02                      u16
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct ArenaInfo {
+        uint8_t byResult;
+        uint16_t wField_02;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record ArenaInfo(
+        byte byResult,
+        ushort wField_02
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct ArenaInfo {
+        pub by_result: u8,
+        pub w_field_02: u16,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type ArenaInfo struct {
+        byResult uint8
+        wField_02 uint16
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface ArenaInfo {
+        byResult: number;
+        wField_02: number;
+    }
+    ```
+

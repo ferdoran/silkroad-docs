@@ -26,3 +26,58 @@
   [   4] ExpReceived                    i64
   [  12] SPExpReceived                  i64
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct CharacterExperienceUpdate {
+        uint32_t SourceUniqueID;
+        uint8_t ExpReceived;
+        uint8_t SPExpReceived;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record CharacterExperienceUpdate(
+        uint SourceUniqueID,
+        byte ExpReceived,
+        byte SPExpReceived
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct CharacterExperienceUpdate {
+        pub source_unique_id: u32,
+        pub exp_received: u8,
+        pub spexp_received: u8,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type CharacterExperienceUpdate struct {
+        SourceUniqueID uint32
+        ExpReceived uint8
+        SPExpReceived uint8
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface CharacterExperienceUpdate {
+        sourceUniqueID: number;
+        expReceived: number;
+        sPExpReceived: number;
+    }
+    ```
+

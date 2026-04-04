@@ -306,3 +306,453 @@ Game Settings config data follows (structure varies).
   JoinID                               u32
   IsGameMaster                         bool
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct CharacterData {
+        uint32_t ServerTimestamp;
+        uint32_t RefObjID;
+        uint8_t Scale;
+        uint8_t Level;
+        uint8_t LevelMax;
+        uint64_t Exp;
+        uint32_t SPExp;
+        uint64_t Gold;
+        uint32_t SP;
+        uint16_t StatPoints;
+        uint8_t BerserkPoints;
+        uint32_t GatheredExpPoint;
+        uint32_t HPMax;
+        uint32_t MPMax;
+        uint8_t ExpIconType;
+        uint8_t PKDaily;
+        uint16_t PKTotal;
+        uint32_t PKPenalty;
+        uint8_t BerserkLevel;
+        uint8_t PVPCapeType;
+        uint8_t InventoryCapacity;
+        uint8_t ItemCount;
+        uint8_t AvatarCapacity;
+        uint8_t AvatarItemCount;
+        uint8_t MasterySectionFlag;
+        uint32_t MasteryID;
+        uint8_t MasteryLevel;
+        uint8_t SkillSectionFlag;
+        uint32_t SkillID;
+        bool Enabled;
+        uint16_t CompletedQuestCount;
+        uint8_t ActiveQuestCount;
+        uint32_t QuestID;
+        uint8_t Achievements;
+        bool AutoShareRequired;
+        uint8_t QuestType;
+        uint32_t TimeRemain;  // conditional
+        uint8_t State;
+        uint8_t ObjectiveCount;
+        uint8_t ObjectiveID;
+        std::string Name;
+        uint8_t TaskCount;
+        uint8_t TasksID;
+        uint8_t NpcCount;
+        uint8_t NpcsID;
+        uint8_t CollectionBookEnabled;  // conditional
+        uint32_t BookCount;
+        uint32_t BookID;
+        uint32_t StartedDatetime;
+        uint32_t Pages;
+        uint32_t UniqueID;
+        uint16_t RegionID;
+        float PosX;
+        float PosY;
+        float PosZ;
+        uint16_t Angle;
+        bool HasMovement;
+        uint8_t MovementSpeedType;
+        uint8_t LifeState;
+        uint8_t BodyMode;
+        uint8_t MotionState;
+        uint8_t GameState;
+        float SpeedWalking;
+        float SpeedRunning;
+        float SpeedBerserk;
+        uint8_t BuffCount;
+        uint32_t BuffUniqueID;
+        bool IsCaster;  // conditional
+        std::string JobName;
+        uint8_t JobType;
+        uint8_t JobLevel;
+        uint32_t JobExp;
+        uint32_t JobContribution;
+        uint32_t JobReward;
+        uint8_t PVPState;
+        bool IsRiding;
+        bool InCombat;
+        uint32_t RidingUniqueID;  // conditional
+        uint8_t CaptureTheFlagType;
+        uint64_t GuideFlag;
+        uint32_t JoinID;
+        bool IsGameMaster;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record CharacterData(
+        uint ServerTimestamp,
+        uint RefObjID,
+        byte Scale,
+        byte Level,
+        byte LevelMax,
+        ulong Exp,
+        uint SPExp,
+        ulong Gold,
+        uint SP,
+        ushort StatPoints,
+        byte BerserkPoints,
+        uint GatheredExpPoint,
+        uint HPMax,
+        uint MPMax,
+        byte ExpIconType,
+        byte PKDaily,
+        ushort PKTotal,
+        uint PKPenalty,
+        byte BerserkLevel,
+        byte PVPCapeType,
+        byte InventoryCapacity,
+        byte ItemCount,
+        byte AvatarCapacity,
+        byte AvatarItemCount,
+        byte MasterySectionFlag,
+        uint MasteryID,
+        byte MasteryLevel,
+        byte SkillSectionFlag,
+        uint SkillID,
+        bool Enabled,
+        ushort CompletedQuestCount,
+        byte ActiveQuestCount,
+        uint QuestID,
+        byte Achievements,
+        bool AutoShareRequired,
+        byte QuestType,
+        uint TimeRemain /* conditional */,
+        byte State,
+        byte ObjectiveCount,
+        byte ObjectiveID,
+        string Name,
+        byte TaskCount,
+        byte TasksID,
+        byte NpcCount,
+        byte NpcsID,
+        byte CollectionBookEnabled /* conditional */,
+        uint BookCount,
+        uint BookID,
+        uint StartedDatetime,
+        uint Pages,
+        uint UniqueID,
+        ushort RegionID,
+        float PosX,
+        float PosY,
+        float PosZ,
+        ushort Angle,
+        bool HasMovement,
+        byte MovementSpeedType,
+        byte LifeState,
+        byte BodyMode,
+        byte MotionState,
+        byte GameState,
+        float SpeedWalking,
+        float SpeedRunning,
+        float SpeedBerserk,
+        byte BuffCount,
+        uint BuffUniqueID,
+        bool IsCaster /* conditional */,
+        string JobName,
+        byte JobType,
+        byte JobLevel,
+        uint JobExp,
+        uint JobContribution,
+        uint JobReward,
+        byte PVPState,
+        bool IsRiding,
+        bool InCombat,
+        uint RidingUniqueID /* conditional */,
+        byte CaptureTheFlagType,
+        ulong GuideFlag,
+        uint JoinID,
+        bool IsGameMaster
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct CharacterData {
+        pub server_timestamp: u32,
+        pub ref_obj_id: u32,
+        pub scale: u8,
+        pub level: u8,
+        pub level_max: u8,
+        pub exp: u64,
+        pub spexp: u32,
+        pub gold: u64,
+        pub sp: u32,
+        pub stat_points: u16,
+        pub berserk_points: u8,
+        pub gathered_exp_point: u32,
+        pub hpmax: u32,
+        pub mpmax: u32,
+        pub exp_icon_type: u8,
+        pub pkdaily: u8,
+        pub pktotal: u16,
+        pub pkpenalty: u32,
+        pub berserk_level: u8,
+        pub pvpcape_type: u8,
+        pub inventory_capacity: u8,
+        pub item_count: u8,
+        pub avatar_capacity: u8,
+        pub avatar_item_count: u8,
+        pub mastery_section_flag: u8,
+        pub mastery_id: u32,
+        pub mastery_level: u8,
+        pub skill_section_flag: u8,
+        pub skill_id: u32,
+        pub enabled: bool,
+        pub completed_quest_count: u16,
+        pub active_quest_count: u8,
+        pub quest_id: u32,
+        pub achievements: u8,
+        pub auto_share_required: bool,
+        pub quest_type: u8,
+        pub time_remain: u32,  // conditional
+        pub state: u8,
+        pub objective_count: u8,
+        pub objective_id: u8,
+        pub name: String,
+        pub task_count: u8,
+        pub tasks_id: u8,
+        pub npc_count: u8,
+        pub npcs_id: u8,
+        pub collection_book_enabled: u8,  // conditional
+        pub book_count: u32,
+        pub book_id: u32,
+        pub started_datetime: u32,
+        pub pages: u32,
+        pub unique_id: u32,
+        pub region_id: u16,
+        pub pos_x: f32,
+        pub pos_y: f32,
+        pub pos_z: f32,
+        pub angle: u16,
+        pub has_movement: bool,
+        pub movement_speed_type: u8,
+        pub life_state: u8,
+        pub body_mode: u8,
+        pub motion_state: u8,
+        pub game_state: u8,
+        pub speed_walking: f32,
+        pub speed_running: f32,
+        pub speed_berserk: f32,
+        pub buff_count: u8,
+        pub buff_unique_id: u32,
+        pub is_caster: bool,  // conditional
+        pub job_name: String,
+        pub job_type: u8,
+        pub job_level: u8,
+        pub job_exp: u32,
+        pub job_contribution: u32,
+        pub job_reward: u32,
+        pub pvpstate: u8,
+        pub is_riding: bool,
+        pub in_combat: bool,
+        pub riding_unique_id: u32,  // conditional
+        pub capture_the_flag_type: u8,
+        pub guide_flag: u64,
+        pub join_id: u32,
+        pub is_game_master: bool,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type CharacterData struct {
+        ServerTimestamp uint32
+        RefObjID uint32
+        Scale uint8
+        Level uint8
+        LevelMax uint8
+        Exp uint64
+        SPExp uint32
+        Gold uint64
+        SP uint32
+        StatPoints uint16
+        BerserkPoints uint8
+        GatheredExpPoint uint32
+        HPMax uint32
+        MPMax uint32
+        ExpIconType uint8
+        PKDaily uint8
+        PKTotal uint16
+        PKPenalty uint32
+        BerserkLevel uint8
+        PVPCapeType uint8
+        InventoryCapacity uint8
+        ItemCount uint8
+        AvatarCapacity uint8
+        AvatarItemCount uint8
+        MasterySectionFlag uint8
+        MasteryID uint32
+        MasteryLevel uint8
+        SkillSectionFlag uint8
+        SkillID uint32
+        Enabled bool
+        CompletedQuestCount uint16
+        ActiveQuestCount uint8
+        QuestID uint32
+        Achievements uint8
+        AutoShareRequired bool
+        QuestType uint8
+        TimeRemain uint32  // conditional
+        State uint8
+        ObjectiveCount uint8
+        ObjectiveID uint8
+        Name string
+        TaskCount uint8
+        TasksID uint8
+        NpcCount uint8
+        NpcsID uint8
+        CollectionBookEnabled uint8  // conditional
+        BookCount uint32
+        BookID uint32
+        StartedDatetime uint32
+        Pages uint32
+        UniqueID uint32
+        RegionID uint16
+        PosX float32
+        PosY float32
+        PosZ float32
+        Angle uint16
+        HasMovement bool
+        MovementSpeedType uint8
+        LifeState uint8
+        BodyMode uint8
+        MotionState uint8
+        GameState uint8
+        SpeedWalking float32
+        SpeedRunning float32
+        SpeedBerserk float32
+        BuffCount uint8
+        BuffUniqueID uint32
+        IsCaster bool  // conditional
+        JobName string
+        JobType uint8
+        JobLevel uint8
+        JobExp uint32
+        JobContribution uint32
+        JobReward uint32
+        PVPState uint8
+        IsRiding bool
+        InCombat bool
+        RidingUniqueID uint32  // conditional
+        CaptureTheFlagType uint8
+        GuideFlag uint64
+        JoinID uint32
+        IsGameMaster bool
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface CharacterData {
+        serverTimestamp: number;
+        refObjID: number;
+        scale: number;
+        level: number;
+        levelMax: number;
+        exp: bigint;
+        sPExp: number;
+        gold: bigint;
+        sP: number;
+        statPoints: number;
+        berserkPoints: number;
+        gatheredExpPoint: number;
+        hPMax: number;
+        mPMax: number;
+        expIconType: number;
+        pKDaily: number;
+        pKTotal: number;
+        pKPenalty: number;
+        berserkLevel: number;
+        pVPCapeType: number;
+        inventoryCapacity: number;
+        itemCount: number;
+        avatarCapacity: number;
+        avatarItemCount: number;
+        masterySectionFlag: number;
+        masteryID: number;
+        masteryLevel: number;
+        skillSectionFlag: number;
+        skillID: number;
+        enabled: boolean;
+        completedQuestCount: number;
+        activeQuestCount: number;
+        questID: number;
+        achievements: number;
+        autoShareRequired: boolean;
+        questType: number;
+        timeRemain: number;  // conditional
+        state: number;
+        objectiveCount: number;
+        objectiveID: number;
+        name: string;
+        taskCount: number;
+        tasksID: number;
+        npcCount: number;
+        npcsID: number;
+        collectionBookEnabled: number;  // conditional
+        bookCount: number;
+        bookID: number;
+        startedDatetime: number;
+        pages: number;
+        uniqueID: number;
+        regionID: number;
+        posX: number;
+        posY: number;
+        posZ: number;
+        angle: number;
+        hasMovement: boolean;
+        movementSpeedType: number;
+        lifeState: number;
+        bodyMode: number;
+        motionState: number;
+        gameState: number;
+        speedWalking: number;
+        speedRunning: number;
+        speedBerserk: number;
+        buffCount: number;
+        buffUniqueID: number;
+        isCaster: boolean;  // conditional
+        jobName: string;
+        jobType: number;
+        jobLevel: number;
+        jobExp: number;
+        jobContribution: number;
+        jobReward: number;
+        pVPState: number;
+        isRiding: boolean;
+        inCombat: boolean;
+        ridingUniqueID: number;  // conditional
+        captureTheFlagType: number;
+        guideFlag: bigint;
+        joinID: number;
+        isGameMaster: boolean;
+    }
+    ```
+

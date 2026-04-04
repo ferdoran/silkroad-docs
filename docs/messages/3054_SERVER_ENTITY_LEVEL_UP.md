@@ -11,6 +11,15 @@
 
 ### Fields
 
+| # | Name | Type | Size | Description |
+|---|------|------|------|-------------|
+| 1 | `uniqueID` | `u32` | 4 |  |
+
+<details>
+<summary>Original client-derived fields (may be inaccurate)</summary>
+
+### Fields
+
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
 | 1 | `byChatType` | `u8` | 1 | `0x00889DFD` |
@@ -21,6 +30,7 @@
 
 **Minimum size**: 8 bytes + variable fields
 
+</details>
 ### Structure Summary
 
 ```
@@ -30,3 +40,68 @@
   [   0] byFlag                         u8
   [   1] dwParam                        u32
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct EntityLevelUp {
+        uint8_t byChatType;
+        uint16_t wSenderLen;
+        std::vector<uint8_t> bytesSender;
+        uint8_t byFlag;
+        uint32_t dwParam;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record EntityLevelUp(
+        byte byChatType,
+        ushort wSenderLen,
+        byte[] bytesSender,
+        byte byFlag,
+        uint dwParam
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct EntityLevelUp {
+        pub by_chat_type: u8,
+        pub w_sender_len: u16,
+        pub bytes_sender: Vec<u8>,
+        pub by_flag: u8,
+        pub dw_param: u32,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type EntityLevelUp struct {
+        byChatType uint8
+        wSenderLen uint16
+        bytesSender []byte
+        byFlag uint8
+        dwParam uint32
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface EntityLevelUp {
+        byChatType: number;
+        wSenderLen: number;
+        bytesSender: Uint8Array;
+        byFlag: number;
+        dwParam: number;
+    }
+    ```
+

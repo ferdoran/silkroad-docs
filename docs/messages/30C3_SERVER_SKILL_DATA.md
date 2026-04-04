@@ -1,4 +1,5 @@
 # SERVER_SKILL_DATA
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
@@ -31,3 +32,38 @@ or any of the analyzed plugin DLLs. Possible explanations:
 
 Searched in: SR_GameServer.exe (clean), GatewayServer.exe, AgentServer.exe,
 SR_ShardManager.exe, all SMPlugin DLLs — **no PUSH pattern found**.
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct SkillData {};  // no payload
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record SkillData();  // no payload
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct SkillData;  // no payload
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type SkillData struct{}  // no payload
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface SkillData {}  // no payload
+    ```
+

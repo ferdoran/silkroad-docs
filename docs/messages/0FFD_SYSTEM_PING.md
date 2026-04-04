@@ -1,4 +1,5 @@
 # SYSTEM_PING
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
@@ -33,3 +34,38 @@ Exhaustive search across all server binaries:
 | String | Type |
 |--------|------|
 | `SMSG[0x%04X] %02d:%02d:%02d` | Debug logging on receipt |
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct Ping {};  // no payload
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record Ping();  // no payload
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct Ping;  // no payload
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type Ping struct{}  // no payload
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface Ping {}  // no payload
+    ```
+

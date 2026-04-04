@@ -1,9 +1,10 @@
 # CLIENT_COS_INFO
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
 | Opcode | `0xB116` |
-| Direction | Client → Server |
+| Direction | Server → Client |
 | Group | Client Extended |
 | Handler(s) | `0x008A7690`, `0x008A7B80` |
 
@@ -46,3 +47,63 @@
   [   0] dwUniqueID                     u8
   [   1] byFlag1                        u16
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct CosInfo {
+        uint32_t dwUniqueID;
+        uint8_t byFlag1;
+        uint8_t byFlag2;
+        uint8_t byExtra;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record CosInfo(
+        uint dwUniqueID,
+        byte byFlag1,
+        byte byFlag2,
+        byte byExtra
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct CosInfo {
+        pub dw_unique_id: u32,
+        pub by_flag1: u8,
+        pub by_flag2: u8,
+        pub by_extra: u8,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type CosInfo struct {
+        dwUniqueID uint32
+        byFlag1 uint8
+        byFlag2 uint8
+        byExtra uint8
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface CosInfo {
+        dwUniqueID: number;
+        byFlag1: number;
+        byFlag2: number;
+        byExtra: number;
+    }
+    ```
+

@@ -42,7 +42,7 @@ Top-level branching based on `RefObjID` type lookup:
 | 3 | `BerserkLevel` | `u8` | 1 | Berserk mode level |
 | 4 | `PVPCapeType` | `u8` | 1 | PVP cape visual |
 | 5 | `ExpIconType` | `u8` | 1 | Experience icon |
-| 6 | `EquipMaxCapacity` | `u8` | 1 | (seems unused per xBot) |
+| 6 | `EquipMaxCapacity` | `u8` | 1 | (seems unused) |
 | 7 | `EquipCount` | `u8` | 1 | Equipped items |
 
 For each equip: `u32 RefItemID`, if isEquipable: `u8 Plus`
@@ -203,7 +203,7 @@ Spawn trailer: `u8 DropSourceType, u32 DropUniqueID`
 If Regular (`PortalType != 6`): `u32 DestRegionID` (from `[entity+0x160]`), `u32 DestPortalID` (from `[entity+0x164]`)
 If Dimensional (`PortalType == 6`): `ascii DestinationName` (from `[entity+0x168]`), `u32 DestinationID` (from `[entity+0x164]`)
 
-> **xBot discrepancy**: xBot source shows a conditional `if unkByte02 == 1` block with `STORE_OnONE_DEFAULT` string and extra fields. This conditional **does not exist** in the server binary (`CGObjStruct` serializer `0x52F000`). The server writes exactly 4 bytes (PortalState, QuestFlags, LevelRestriction, PortalType) then the type-specific block.
+> **Note**: Some third-party tools show a conditional `if unkByte02 == 1` block with extra fields here. This conditional **does not exist** in the server binary (`CGObjStruct` serializer `0x52F000`). The server writes exactly 4 bytes (PortalState, QuestFlags, LevelRestriction, PortalType) then the type-specific block.
 
 ### Structure Summary
 
@@ -258,3 +258,290 @@ If Dimensional (`PortalType == 6`): `ascii DestinationName` (from `[entity+0x168
       DestRegionID                     u32   // [entity+0x160]
       DestPortalID                     u32   // [entity+0x164]
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct EntitySpawnSkillzone {
+        uint16_t EntityTypeCode;
+        uint32_t SkillID;
+        uint32_t UniqueID;
+        uint16_t RegionID;
+        float PosX;
+        float PosY;
+        float PosZ;
+        uint16_t Angle;
+    };
+    struct EntitySpawnModel {
+        uint8_t Scale;
+        uint8_t BerserkLevel;
+        uint8_t PVPCapeType;
+        uint8_t ExpIconType;
+        uint8_t EquipMaxCapacity;
+        uint8_t EquipCount;
+        uint32_t HP;
+        uint32_t RefEventStructID;
+        uint16_t State;
+        uint32_t UniqueID;
+        uint16_t RegionID;
+        float PosX;
+        float PosY;
+        float PosZ;
+        uint16_t Angle;
+        bool HasMovement;
+        uint8_t MovementSpeedType;
+        uint8_t LifeState;
+        uint8_t BodyMode;
+        uint8_t MotionState;
+        uint8_t GameState;
+        float SpeedWalking;
+        float SpeedRunning;
+        float SpeedBerserk;
+        uint8_t BuffCount;
+        std::string Name;
+        uint8_t JobType;
+        uint8_t JobLevel;
+        uint8_t PVPState;
+        bool IsRiding;
+        bool InCombat;
+        uint32_t RidingUniqueID;  // conditional
+        uint8_t ScrollingType;
+        uint8_t InteractionType;
+        uint8_t HwanLevel;
+        std::string GuildName;
+        uint32_t GuildID;
+        std::string GuildMemberName;
+        uint32_t GuildLastCrestRev;
+        uint32_t UnionID;
+        uint32_t UnionLastCrestRev;
+        bool IsFriendly;
+        uint8_t GuildMemberAuthority;
+        std::string StallTitle;
+        uint32_t StallDecorationID;
+        uint8_t HasTalkOptions;
+    };
+    struct EntitySpawnDrop {
+        uint8_t varies;  // conditional
+    };
+    struct EntitySpawnTeleport {
+        uint32_t UniqueID;
+        uint16_t RegionID;
+        float PosX;
+        float PosY;
+        float PosZ;
+        uint16_t Angle;
+        uint8_t PortalState;
+        uint8_t QuestFlags;
+        uint8_t LevelRestriction;
+        uint8_t PortalType;
+    };
+    struct EntitySpawn {
+        uint32_t RefObjID;
+        std::variant<EntitySpawnSkillzone, EntitySpawnModel, EntitySpawnDrop, EntitySpawnTeleport> body;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public abstract record EntitySpawnBody;
+    public record EntitySpawnSkillzone(ushort EntityTypeCode, uint SkillID, uint UniqueID, ushort RegionID, float PosX, float PosY, float PosZ, ushort Angle) : EntitySpawnBody;
+    public record EntitySpawnModel(byte Scale, byte BerserkLevel, byte PVPCapeType, byte ExpIconType, byte EquipMaxCapacity, byte EquipCount, uint HP, uint RefEventStructID, ushort State, uint UniqueID, ushort RegionID, float PosX, float PosY, float PosZ, ushort Angle, bool HasMovement, byte MovementSpeedType, byte LifeState, byte BodyMode, byte MotionState, byte GameState, float SpeedWalking, float SpeedRunning, float SpeedBerserk, byte BuffCount, string Name, byte JobType, byte JobLevel, byte PVPState, bool IsRiding, bool InCombat, uint RidingUniqueID, byte ScrollingType, byte InteractionType, byte HwanLevel, string GuildName, uint GuildID, string GuildMemberName, uint GuildLastCrestRev, uint UnionID, uint UnionLastCrestRev, bool IsFriendly, byte GuildMemberAuthority, string StallTitle, uint StallDecorationID, byte HasTalkOptions) : EntitySpawnBody;
+    public record EntitySpawnDrop(byte varies) : EntitySpawnBody;
+    public record EntitySpawnTeleport(uint UniqueID, ushort RegionID, float PosX, float PosY, float PosZ, ushort Angle, byte PortalState, byte QuestFlags, byte LevelRestriction, byte PortalType) : EntitySpawnBody;
+    public record EntitySpawn(uint RefObjID, EntitySpawnBody Body);
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct EntitySpawnSkillzone {
+        pub entity_type_code: u16,
+        pub skill_id: u32,
+        pub unique_id: u32,
+        pub region_id: u16,
+        pub pos_x: f32,
+        pub pos_y: f32,
+        pub pos_z: f32,
+        pub angle: u16,
+    }
+    pub struct EntitySpawnModel {
+        pub scale: u8,
+        pub berserk_level: u8,
+        pub pvpcape_type: u8,
+        pub exp_icon_type: u8,
+        pub equip_max_capacity: u8,
+        pub equip_count: u8,
+        pub hp: u32,
+        pub ref_event_struct_id: u32,
+        pub state: u16,
+        pub unique_id: u32,
+        pub region_id: u16,
+        pub pos_x: f32,
+        pub pos_y: f32,
+        pub pos_z: f32,
+        pub angle: u16,
+        pub has_movement: bool,
+        pub movement_speed_type: u8,
+        pub life_state: u8,
+        pub body_mode: u8,
+        pub motion_state: u8,
+        pub game_state: u8,
+        pub speed_walking: f32,
+        pub speed_running: f32,
+        pub speed_berserk: f32,
+        pub buff_count: u8,
+        pub name: String,
+        pub job_type: u8,
+        pub job_level: u8,
+        pub pvpstate: u8,
+        pub is_riding: bool,
+        pub in_combat: bool,
+        pub riding_unique_id: u32,  // conditional
+        pub scrolling_type: u8,
+        pub interaction_type: u8,
+        pub hwan_level: u8,
+        pub guild_name: String,
+        pub guild_id: u32,
+        pub guild_member_name: String,
+        pub guild_last_crest_rev: u32,
+        pub union_id: u32,
+        pub union_last_crest_rev: u32,
+        pub is_friendly: bool,
+        pub guild_member_authority: u8,
+        pub stall_title: String,
+        pub stall_decoration_id: u32,
+        pub has_talk_options: u8,
+    }
+    pub struct EntitySpawnDrop {
+        pub varies: u8,  // conditional
+    }
+    pub struct EntitySpawnTeleport {
+        pub unique_id: u32,
+        pub region_id: u16,
+        pub pos_x: f32,
+        pub pos_y: f32,
+        pub pos_z: f32,
+        pub angle: u16,
+        pub portal_state: u8,
+        pub quest_flags: u8,
+        pub level_restriction: u8,
+        pub portal_type: u8,
+    }
+    pub enum EntitySpawnBody {
+        Skillzone(EntitySpawnSkillzone),
+        Model(EntitySpawnModel),
+        Drop(EntitySpawnDrop),
+        Teleport(EntitySpawnTeleport),
+    }
+    pub struct EntitySpawn {
+        pub ref_obj_id: u32,
+        pub body: EntitySpawnBody,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type EntitySpawnBody interface { entitySpawnBody() }
+    type EntitySpawnSkillzone struct {
+        EntityTypeCode uint16
+        SkillID uint32
+        UniqueID uint32
+        RegionID uint16
+        PosX float32
+        PosY float32
+        PosZ float32
+        Angle uint16
+    }
+    func (*EntitySpawnSkillzone) entitySpawnBody() {}
+    type EntitySpawnModel struct {
+        Scale uint8
+        BerserkLevel uint8
+        PVPCapeType uint8
+        ExpIconType uint8
+        EquipMaxCapacity uint8
+        EquipCount uint8
+        HP uint32
+        RefEventStructID uint32
+        State uint16
+        UniqueID uint32
+        RegionID uint16
+        PosX float32
+        PosY float32
+        PosZ float32
+        Angle uint16
+        HasMovement bool
+        MovementSpeedType uint8
+        LifeState uint8
+        BodyMode uint8
+        MotionState uint8
+        GameState uint8
+        SpeedWalking float32
+        SpeedRunning float32
+        SpeedBerserk float32
+        BuffCount uint8
+        Name string
+        JobType uint8
+        JobLevel uint8
+        PVPState uint8
+        IsRiding bool
+        InCombat bool
+        RidingUniqueID uint32  // conditional
+        ScrollingType uint8
+        InteractionType uint8
+        HwanLevel uint8
+        GuildName string
+        GuildID uint32
+        GuildMemberName string
+        GuildLastCrestRev uint32
+        UnionID uint32
+        UnionLastCrestRev uint32
+        IsFriendly bool
+        GuildMemberAuthority uint8
+        StallTitle string
+        StallDecorationID uint32
+        HasTalkOptions uint8
+    }
+    func (*EntitySpawnModel) entitySpawnBody() {}
+    type EntitySpawnDrop struct {
+        varies uint8  // conditional
+    }
+    func (*EntitySpawnDrop) entitySpawnBody() {}
+    type EntitySpawnTeleport struct {
+        UniqueID uint32
+        RegionID uint16
+        PosX float32
+        PosY float32
+        PosZ float32
+        Angle uint16
+        PortalState uint8
+        QuestFlags uint8
+        LevelRestriction uint8
+        PortalType uint8
+    }
+    func (*EntitySpawnTeleport) entitySpawnBody() {}
+    type EntitySpawn struct {
+        RefObjID uint32
+        Body EntitySpawnBody
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    type EntitySpawnBody =
+        | { kind: 'Skillzone'; entityTypeCode: number; skillID: number; uniqueID: number; regionID: number; posX: number; posY: number; posZ: number; angle: number }
+        | { kind: 'Model'; scale: number; berserkLevel: number; pVPCapeType: number; expIconType: number; equipMaxCapacity: number; equipCount: number; hP: number; refEventStructID: number; state: number; uniqueID: number; regionID: number; posX: number; posY: number; posZ: number; angle: number; hasMovement: boolean; movementSpeedType: number; lifeState: number; bodyMode: number; motionState: number; gameState: number; speedWalking: number; speedRunning: number; speedBerserk: number; buffCount: number; name: string; jobType: number; jobLevel: number; pVPState: number; isRiding: boolean; inCombat: boolean; ridingUniqueID: number; scrollingType: number; interactionType: number; hwanLevel: number; guildName: string; guildID: number; guildMemberName: string; guildLastCrestRev: number; unionID: number; unionLastCrestRev: number; isFriendly: boolean; guildMemberAuthority: number; stallTitle: string; stallDecorationID: number; hasTalkOptions: number }
+        | { kind: 'Drop'; varies: number }
+        | { kind: 'Teleport'; uniqueID: number; regionID: number; posX: number; posY: number; posZ: number; angle: number; portalState: number; questFlags: number; levelRestriction: number; portalType: number };
+    export interface EntitySpawn {
+        refObjID: number;
+        body: EntitySpawnBody;
+    }
+    ```
+

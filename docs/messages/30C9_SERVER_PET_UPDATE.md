@@ -54,3 +54,63 @@ Switched structure based on `UpdateType`:
 > Note: Client handler data is from a different opcode's handler (misattributed during client binary analysis). The server RE fields above are authoritative.
 
 </details>
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct PetUpdate {
+        uint32_t UniqueID;
+        uint8_t UpdateType;
+        uint8_t byResult;
+        uint16_t wValue;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record PetUpdate(
+        uint UniqueID,
+        byte UpdateType,
+        byte byResult,
+        ushort wValue
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct PetUpdate {
+        pub unique_id: u32,
+        pub update_type: u8,
+        pub by_result: u8,
+        pub w_value: u16,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type PetUpdate struct {
+        UniqueID uint32
+        UpdateType uint8
+        byResult uint8
+        wValue uint16
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface PetUpdate {
+        uniqueID: number;
+        updateType: number;
+        byResult: number;
+        wValue: number;
+    }
+    ```
+

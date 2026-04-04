@@ -1,4 +1,5 @@
 # LOGIN_AUTH
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
@@ -47,3 +48,53 @@ iVar2 = fcn.0040c950(
 
 > Note: The value `0x2000` (8192) also appears as buffer sizes in the gateway's
 > HTTP response buffers — those occurrences are **not** the protocol opcode.
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct LoginAuth {
+        std::string Username;
+        std::string Password;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record LoginAuth(
+        string Username,
+        string Password
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct LoginAuth {
+        pub username: String,
+        pub password: String,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type LoginAuth struct {
+        Username string
+        Password string
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface LoginAuth {
+        username: string;
+        password: string;
+    }
+    ```
+

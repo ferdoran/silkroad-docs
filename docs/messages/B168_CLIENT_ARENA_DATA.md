@@ -1,9 +1,10 @@
 # CLIENT_ARENA_DATA
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
 | Opcode | `0xB168` |
-| Direction | Client → Server |
+| Direction | Server → Client |
 | Group | Client Extended |
 | Handler(s) | `0x0089C3A0` |
 
@@ -17,7 +18,6 @@
 | 4 | `bytesData_3` | `bytes` | variable | `0x004F7AB9` |
 
 **Minimum size**: 4 bytes + variable fields
-
 
 ### String References
 | String | Type |
@@ -36,3 +36,63 @@
   [   2] wField_03                      u16
   [   4] bytesData_3                    bytes  (variable length)
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct ArenaData {
+        uint8_t bySlotType;
+        uint8_t byItemType;
+        uint16_t wField_03;
+        std::vector<uint8_t> bytesData_3;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record ArenaData(
+        byte bySlotType,
+        byte byItemType,
+        ushort wField_03,
+        byte[] bytesData_3
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct ArenaData {
+        pub by_slot_type: u8,
+        pub by_item_type: u8,
+        pub w_field_03: u16,
+        pub bytes_data_3: Vec<u8>,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type ArenaData struct {
+        bySlotType uint8
+        byItemType uint8
+        wField_03 uint16
+        bytesData_3 []byte
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface ArenaData {
+        bySlotType: number;
+        byItemType: number;
+        wField_03: number;
+        bytesData_3: Uint8Array;
+    }
+    ```
+

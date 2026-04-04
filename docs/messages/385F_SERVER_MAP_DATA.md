@@ -1,4 +1,5 @@
 # SERVER_MAP_DATA
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
@@ -18,7 +19,6 @@
 
 **Minimum size**: 7 bytes + variable fields
 
-
 ### String References
 | String | Type |
 |--------|------|
@@ -37,3 +37,63 @@
   [   6] bytesData_2                    bytes  (variable length)
   [   0] byField_04                     u8
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct MapData {
+        uint32_t dwRefObjID;
+        uint16_t wField_02;
+        std::vector<uint8_t> bytesData_2;
+        uint8_t byField_04;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record MapData(
+        uint dwRefObjID,
+        ushort wField_02,
+        byte[] bytesData_2,
+        byte byField_04
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct MapData {
+        pub dw_ref_obj_id: u32,
+        pub w_field_02: u16,
+        pub bytes_data_2: Vec<u8>,
+        pub by_field_04: u8,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type MapData struct {
+        dwRefObjID uint32
+        wField_02 uint16
+        bytesData_2 []byte
+        byField_04 uint8
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface MapData {
+        dwRefObjID: number;
+        wField_02: number;
+        bytesData_2: Uint8Array;
+        byField_04: number;
+    }
+    ```
+

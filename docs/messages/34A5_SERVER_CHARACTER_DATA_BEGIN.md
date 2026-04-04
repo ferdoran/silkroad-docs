@@ -38,3 +38,38 @@ fcn.00430a20(0xc66a00);                  // Send character data buffer as 0x3013
 uVar2 = (**(iVar1 + 0x278))(0x34a6);    // CreatePacket(0x34A6)
 (**(iVar1 + 0x27c))(uVar2);              // SendPacket — no field writes
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct CharacterDataBegin {};  // no payload
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record CharacterDataBegin();  // no payload
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct CharacterDataBegin;  // no payload
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type CharacterDataBegin struct{}  // no payload
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface CharacterDataBegin {}  // no payload
+    ```
+

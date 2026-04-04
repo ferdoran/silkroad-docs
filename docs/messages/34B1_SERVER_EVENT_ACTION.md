@@ -1,4 +1,5 @@
 # SERVER_EVENT_ACTION
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
@@ -15,7 +16,6 @@
 
 **Total size**: 1 bytes
 
-
 ### String References
 | String | Type |
 |--------|------|
@@ -26,3 +26,48 @@
 ```
   [   0] byResult                       u8
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct EventAction {
+        uint8_t byResult;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record EventAction(
+        byte byResult
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct EventAction {
+        pub by_result: u8,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type EventAction struct {
+        byResult uint8
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface EventAction {
+        byResult: number;
+    }
+    ```
+

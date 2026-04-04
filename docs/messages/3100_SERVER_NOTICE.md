@@ -1,4 +1,5 @@
 # SERVER_NOTICE
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
@@ -36,3 +37,88 @@
   [  12] byPriority                     u8
   [  13] byChannel                      u8
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct Notice {
+        uint32_t dwNoticeType;
+        std::vector<uint8_t> bytesTitle;
+        uint16_t wBodyLen;
+        std::vector<uint8_t> bytesBody;
+        uint32_t dwDuration;
+        uint32_t dwTimestamp;
+        uint32_t dwParam;
+        uint8_t byPriority;
+        uint8_t byChannel;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record Notice(
+        uint dwNoticeType,
+        byte[] bytesTitle,
+        ushort wBodyLen,
+        byte[] bytesBody,
+        uint dwDuration,
+        uint dwTimestamp,
+        uint dwParam,
+        byte byPriority,
+        byte byChannel
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct Notice {
+        pub dw_notice_type: u32,
+        pub bytes_title: Vec<u8>,
+        pub w_body_len: u16,
+        pub bytes_body: Vec<u8>,
+        pub dw_duration: u32,
+        pub dw_timestamp: u32,
+        pub dw_param: u32,
+        pub by_priority: u8,
+        pub by_channel: u8,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type Notice struct {
+        dwNoticeType uint32
+        bytesTitle []byte
+        wBodyLen uint16
+        bytesBody []byte
+        dwDuration uint32
+        dwTimestamp uint32
+        dwParam uint32
+        byPriority uint8
+        byChannel uint8
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface Notice {
+        dwNoticeType: number;
+        bytesTitle: Uint8Array;
+        wBodyLen: number;
+        bytesBody: Uint8Array;
+        dwDuration: number;
+        dwTimestamp: number;
+        dwParam: number;
+        byPriority: number;
+        byChannel: number;
+    }
+    ```
+

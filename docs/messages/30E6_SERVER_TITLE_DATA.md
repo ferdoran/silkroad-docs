@@ -1,4 +1,5 @@
 # SERVER_TITLE_DATA
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
@@ -24,3 +25,58 @@
   [   2] bytesTitleName                 bytes  (variable length)
   [   0] dwTitleID                      u32
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct TitleData {
+        uint16_t wTitleLen;
+        std::vector<uint8_t> bytesTitleName;
+        uint32_t dwTitleID;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record TitleData(
+        ushort wTitleLen,
+        byte[] bytesTitleName,
+        uint dwTitleID
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct TitleData {
+        pub w_title_len: u16,
+        pub bytes_title_name: Vec<u8>,
+        pub dw_title_id: u32,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type TitleData struct {
+        wTitleLen uint16
+        bytesTitleName []byte
+        dwTitleID uint32
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface TitleData {
+        wTitleLen: number;
+        bytesTitleName: Uint8Array;
+        dwTitleID: number;
+    }
+    ```
+

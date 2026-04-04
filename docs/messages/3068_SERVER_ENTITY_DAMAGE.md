@@ -1,4 +1,5 @@
 # SERVER_ENTITY_DAMAGE
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
@@ -17,7 +18,6 @@
 | 4 | `wAbsorbed` | `u16` | 2 | `0x0087A84F` |
 
 **Total size**: 6 bytes
-
 
 ### String References
 | String | Type |
@@ -40,3 +40,63 @@
   [   2] wDamage                        u16
   [   4] wAbsorbed                      u16
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct EntityDamage {
+        uint8_t byDamageType;
+        uint8_t byAttackType;
+        uint16_t wDamage;
+        uint16_t wAbsorbed;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record EntityDamage(
+        byte byDamageType,
+        byte byAttackType,
+        ushort wDamage,
+        ushort wAbsorbed
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct EntityDamage {
+        pub by_damage_type: u8,
+        pub by_attack_type: u8,
+        pub w_damage: u16,
+        pub w_absorbed: u16,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type EntityDamage struct {
+        byDamageType uint8
+        byAttackType uint8
+        wDamage uint16
+        wAbsorbed uint16
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface EntityDamage {
+        byDamageType: number;
+        byAttackType: number;
+        wDamage: number;
+        wAbsorbed: number;
+    }
+    ```
+

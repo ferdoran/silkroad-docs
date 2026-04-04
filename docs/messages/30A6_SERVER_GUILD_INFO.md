@@ -1,4 +1,5 @@
 # SERVER_GUILD_INFO
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
@@ -22,3 +23,53 @@
   [   0] byResult                       u8
   [   1] dwGuildID                      u32
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct GuildInfo {
+        uint8_t byResult;
+        uint32_t dwGuildID;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record GuildInfo(
+        byte byResult,
+        uint dwGuildID
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct GuildInfo {
+        pub by_result: u8,
+        pub dw_guild_id: u32,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type GuildInfo struct {
+        byResult uint8
+        dwGuildID uint32
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface GuildInfo {
+        byResult: number;
+        dwGuildID: number;
+    }
+    ```
+

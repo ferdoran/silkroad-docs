@@ -5,11 +5,21 @@
 | Property | Value |
 |----------|-------|
 | Opcode | `0xB024` |
-| Direction | Client → Server |
+| Direction | Server → Client |
 | Group | Game (Client→Server) |
 | Handler(s) | `0x008A5750`, `0x008A4F80` |
 
 ## Handler 1: `0x008A5750`
+
+### Fields
+
+| # | Name | Type | Size | Description |
+|---|------|------|------|-------------|
+| 1 | `dwUniqueID` | `u32` | 4 |  |
+| 2 | `Angle` | `u16` | 2 |  |
+
+<details>
+<summary>Original client-derived fields (may be inaccurate)</summary>
 
 ### Fields
 
@@ -24,6 +34,7 @@
 
 **Total size**: 10 bytes
 
+</details>
 ### Structure Summary
 
 ```
@@ -54,3 +65,78 @@
   [   4] byAction                       u16
   [   6] bytesData_2                    bytes[14]
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct EntityMovementAngle {
+        uint32_t dwUniqueID;
+        uint8_t byAction;
+        uint8_t byField_03;
+        uint8_t byField_04;
+        uint16_t wField_05;
+        uint8_t byField_06;
+        uint8_t bytesData_2;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record EntityMovementAngle(
+        uint dwUniqueID,
+        byte byAction,
+        byte byField_03,
+        byte byField_04,
+        ushort wField_05,
+        byte byField_06,
+        byte bytesData_2
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct EntityMovementAngle {
+        pub dw_unique_id: u32,
+        pub by_action: u8,
+        pub by_field_03: u8,
+        pub by_field_04: u8,
+        pub w_field_05: u16,
+        pub by_field_06: u8,
+        pub bytes_data_2: u8,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type EntityMovementAngle struct {
+        dwUniqueID uint32
+        byAction uint8
+        byField_03 uint8
+        byField_04 uint8
+        wField_05 uint16
+        byField_06 uint8
+        bytesData_2 uint8
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface EntityMovementAngle {
+        dwUniqueID: number;
+        byAction: number;
+        byField_03: number;
+        byField_04: number;
+        wField_05: number;
+        byField_06: number;
+        bytesData_2: number;
+    }
+    ```
+

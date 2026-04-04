@@ -11,6 +11,15 @@
 
 ### Fields
 
+| # | Name | Type | Size | Description |
+|---|------|------|------|-------------|
+| 1 | `StorageGold` | `u64` | 8 |  |
+
+<details>
+<summary>Original client-derived fields (may be inaccurate)</summary>
+
+### Fields
+
 | # | Name | Type | Size | Read Address |
 |---|------|------|------|-------------|
 | 1 | `byResult` | `u8` | 1 | `0x008A6D32` |
@@ -22,6 +31,7 @@
 
 **Total size**: 15 bytes
 
+</details>
 ### Structure Summary
 
 ```
@@ -32,3 +42,73 @@
   [   9] dwPosZ                         u32
   [  13] wDestRegion                    u16
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct StorageDataBegin {
+        uint8_t byResult;
+        uint16_t wRegionID;
+        uint32_t dwPosX;
+        uint16_t wAngle;
+        uint32_t dwPosZ;
+        uint16_t wDestRegion;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record StorageDataBegin(
+        byte byResult,
+        ushort wRegionID,
+        uint dwPosX,
+        ushort wAngle,
+        uint dwPosZ,
+        ushort wDestRegion
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct StorageDataBegin {
+        pub by_result: u8,
+        pub w_region_id: u16,
+        pub dw_pos_x: u32,
+        pub w_angle: u16,
+        pub dw_pos_z: u32,
+        pub w_dest_region: u16,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type StorageDataBegin struct {
+        byResult uint8
+        wRegionID uint16
+        dwPosX uint32
+        wAngle uint16
+        dwPosZ uint32
+        wDestRegion uint16
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface StorageDataBegin {
+        byResult: number;
+        wRegionID: number;
+        dwPosX: number;
+        wAngle: number;
+        dwPosZ: number;
+        wDestRegion: number;
+    }
+    ```
+

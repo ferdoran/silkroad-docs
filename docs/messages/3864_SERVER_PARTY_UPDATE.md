@@ -85,3 +85,68 @@ Position coords: if `inDungeon(RegionID)`: `i32 PosX/Y/Z`, else `u16 PosX/Y/Z`
 > Note: Client handler data is from a different opcode's handler (misattributed during client binary analysis). The server RE fields above are authoritative.
 
 </details>
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct PartyUpdate {
+        uint8_t UpdateType;
+        uint32_t MemberID;
+        uint8_t MemberUpdateType;
+        uint8_t byResult;
+        uint32_t dwField_02;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record PartyUpdate(
+        byte UpdateType,
+        uint MemberID,
+        byte MemberUpdateType,
+        byte byResult,
+        uint dwField_02
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct PartyUpdate {
+        pub update_type: u8,
+        pub member_id: u32,
+        pub member_update_type: u8,
+        pub by_result: u8,
+        pub dw_field_02: u32,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type PartyUpdate struct {
+        UpdateType uint8
+        MemberID uint32
+        MemberUpdateType uint8
+        byResult uint8
+        dwField_02 uint32
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface PartyUpdate {
+        updateType: number;
+        memberID: number;
+        memberUpdateType: number;
+        byResult: number;
+        dwField_02: number;
+    }
+    ```
+

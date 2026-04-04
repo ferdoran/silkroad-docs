@@ -1,4 +1,5 @@
 # SERVER_GLOBAL_EVENT
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
@@ -45,3 +46,53 @@ fcn.00404090(uVar4);                          // Write EventData (4 bytes, eax=4
 ```
 
 Disassembly write sizes confirmed: VA `0x4F0A82` `eax=1` (BYTE), VA `0x4F0A9C` `eax=4` (DWORD).
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct GlobalEvent {
+        uint8_t EventType;
+        uint32_t EventData;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record GlobalEvent(
+        byte EventType,
+        uint EventData
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct GlobalEvent {
+        pub event_type: u8,
+        pub event_data: u32,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type GlobalEvent struct {
+        EventType uint8
+        EventData uint32
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface GlobalEvent {
+        eventType: number;
+        eventData: number;
+    }
+    ```
+

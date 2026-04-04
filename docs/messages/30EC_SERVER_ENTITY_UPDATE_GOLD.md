@@ -1,4 +1,5 @@
 # SERVER_ENTITY_UPDATE_GOLD
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
@@ -16,7 +17,6 @@
 
 **Total size**: 5 bytes
 
-
 ### Domain
 quest
 
@@ -32,3 +32,53 @@ quest
   [   0] byAction                       u8
   [   1] dwGold                         u32
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct EntityUpdateGold {
+        uint8_t byAction;
+        uint32_t dwGold;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record EntityUpdateGold(
+        byte byAction,
+        uint dwGold
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct EntityUpdateGold {
+        pub by_action: u8,
+        pub dw_gold: u32,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type EntityUpdateGold struct {
+        byAction uint8
+        dwGold uint32
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface EntityUpdateGold {
+        byAction: number;
+        dwGold: number;
+    }
+    ```
+

@@ -1,4 +1,5 @@
 # SERVER_RANKING_INFO
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
@@ -22,3 +23,53 @@
   [   0] byResult                       u8
   [   1] byField_02                     u8
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct RankingInfo {
+        uint8_t byResult;
+        uint8_t byField_02;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record RankingInfo(
+        byte byResult,
+        byte byField_02
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct RankingInfo {
+        pub by_result: u8,
+        pub by_field_02: u8,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type RankingInfo struct {
+        byResult uint8
+        byField_02 uint8
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface RankingInfo {
+        byResult: number;
+        byField_02: number;
+    }
+    ```
+

@@ -1,4 +1,5 @@
 # SERVER_UNION_DATA
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
@@ -30,3 +31,73 @@
   [   7] byField_05                     u8
   [   8] wField_06                      u16
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct UnionData {
+        uint8_t byResult;
+        uint8_t byField_02;
+        uint32_t dwField_03;
+        uint8_t byField_04;
+        uint8_t byField_05;
+        uint16_t wField_06;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record UnionData(
+        byte byResult,
+        byte byField_02,
+        uint dwField_03,
+        byte byField_04,
+        byte byField_05,
+        ushort wField_06
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct UnionData {
+        pub by_result: u8,
+        pub by_field_02: u8,
+        pub dw_field_03: u32,
+        pub by_field_04: u8,
+        pub by_field_05: u8,
+        pub w_field_06: u16,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type UnionData struct {
+        byResult uint8
+        byField_02 uint8
+        dwField_03 uint32
+        byField_04 uint8
+        byField_05 uint8
+        wField_06 uint16
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface UnionData {
+        byResult: number;
+        byField_02: number;
+        dwField_03: number;
+        byField_04: number;
+        byField_05: number;
+        wField_06: number;
+    }
+    ```
+

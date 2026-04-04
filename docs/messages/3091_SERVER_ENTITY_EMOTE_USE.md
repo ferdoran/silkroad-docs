@@ -28,3 +28,63 @@
   [   3] bytesSender                    bytes  (variable length)
   [   0] dwPartyID                      u32
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct EntityEmoteUse {
+        uint8_t byResult;
+        uint16_t wSenderLen;
+        std::vector<uint8_t> bytesSender;
+        uint32_t dwPartyID;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record EntityEmoteUse(
+        byte byResult,
+        ushort wSenderLen,
+        byte[] bytesSender,
+        uint dwPartyID
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct EntityEmoteUse {
+        pub by_result: u8,
+        pub w_sender_len: u16,
+        pub bytes_sender: Vec<u8>,
+        pub dw_party_id: u32,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type EntityEmoteUse struct {
+        byResult uint8
+        wSenderLen uint16
+        bytesSender []byte
+        dwPartyID uint32
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface EntityEmoteUse {
+        byResult: number;
+        wSenderLen: number;
+        bytesSender: Uint8Array;
+        dwPartyID: number;
+    }
+    ```
+

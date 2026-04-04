@@ -1,4 +1,5 @@
 # SERVER_PET_STATUS
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
@@ -17,12 +18,10 @@
 
 **Total size**: 1 bytes
 
-
 ### String References
 | String | Type |
 |--------|------|
 | `(Test_GM)PKCnt D:%d` | Debug |
-
 
 ### String References
 | String | Type |
@@ -45,12 +44,10 @@
 
 **Total size**: 2 bytes
 
-
 ### String References
 | String | Type |
 |--------|------|
 | `(Test_GM)PKCnt D:%d` | Debug |
-
 
 ### String References
 | String | Type |
@@ -62,3 +59,48 @@
 ```
   [   0] byStatus                       u16
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct PetStatus {
+        uint8_t byStatus;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record PetStatus(
+        byte byStatus
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct PetStatus {
+        pub by_status: u8,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type PetStatus struct {
+        byStatus uint8
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface PetStatus {
+        byStatus: number;
+    }
+    ```
+

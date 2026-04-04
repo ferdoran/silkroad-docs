@@ -1,9 +1,10 @@
 # CLIENT_ENTITY_SPAWN_UPDATE
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
 | Opcode | `0xB16A` |
-| Direction | Client → Server |
+| Direction | Server → Client |
 | Group | Client Extended |
 | Handler(s) | `0x00872CD0` |
 
@@ -53,7 +54,6 @@
 | 40 | `wField_40` | `u16` | 2 | `0x00872EF5` |
 
 **Minimum size**: 114 bytes + variable fields
-
 
 ### String References
 | String | Type |
@@ -105,3 +105,243 @@
   [  31] dwField_39                     u32
   [  35] wField_40                      u16
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct EntitySpawnUpdate {
+        uint8_t byResult;
+        uint8_t byAction;
+        uint8_t byParam;
+        uint8_t byItemSlot;
+        uint32_t wRefItemID;
+        uint16_t wField_06;
+        uint32_t dwField_07;
+        uint32_t dwField_08;
+        uint16_t wField_09;
+        uint32_t dwField_10;
+        uint32_t dwField_11;
+        uint8_t byField_12;
+        uint64_t ullField_13;
+        uint32_t dwField_14;
+        std::vector<uint8_t> bytesData_14;
+        uint64_t ullField_16;
+        uint32_t dwField_17;
+        uint8_t byField_18;
+        uint64_t ullField_19;
+        uint8_t byField_20;
+        uint8_t byField_21;
+        uint8_t byField_22;
+        uint64_t ullField_23;
+        uint16_t wField_24;
+        uint16_t wField_25;
+        std::vector<uint8_t> bytesData_25;
+        uint32_t dwField_27;
+        uint16_t wField_28;
+        uint8_t byField_29;
+        uint8_t byField_30;
+        uint32_t dwField_31;
+        uint32_t dwField_32;
+        uint8_t byField_33;
+        uint8_t byField_34;
+        uint32_t dwField_35;
+        uint32_t dwField_36;
+        uint32_t dwField_37;
+        uint8_t byField_38;
+        uint32_t dwField_39;
+        uint16_t wField_40;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record EntitySpawnUpdate(
+        byte byResult,
+        byte byAction,
+        byte byParam,
+        byte byItemSlot,
+        uint wRefItemID,
+        ushort wField_06,
+        uint dwField_07,
+        uint dwField_08,
+        ushort wField_09,
+        uint dwField_10,
+        uint dwField_11,
+        byte byField_12,
+        ulong ullField_13,
+        uint dwField_14,
+        byte[] bytesData_14,
+        ulong ullField_16,
+        uint dwField_17,
+        byte byField_18,
+        ulong ullField_19,
+        byte byField_20,
+        byte byField_21,
+        byte byField_22,
+        ulong ullField_23,
+        ushort wField_24,
+        ushort wField_25,
+        byte[] bytesData_25,
+        uint dwField_27,
+        ushort wField_28,
+        byte byField_29,
+        byte byField_30,
+        uint dwField_31,
+        uint dwField_32,
+        byte byField_33,
+        byte byField_34,
+        uint dwField_35,
+        uint dwField_36,
+        uint dwField_37,
+        byte byField_38,
+        uint dwField_39,
+        ushort wField_40
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct EntitySpawnUpdate {
+        pub by_result: u8,
+        pub by_action: u8,
+        pub by_param: u8,
+        pub by_item_slot: u8,
+        pub w_ref_item_id: u32,
+        pub w_field_06: u16,
+        pub dw_field_07: u32,
+        pub dw_field_08: u32,
+        pub w_field_09: u16,
+        pub dw_field_10: u32,
+        pub dw_field_11: u32,
+        pub by_field_12: u8,
+        pub ull_field_13: u64,
+        pub dw_field_14: u32,
+        pub bytes_data_14: Vec<u8>,
+        pub ull_field_16: u64,
+        pub dw_field_17: u32,
+        pub by_field_18: u8,
+        pub ull_field_19: u64,
+        pub by_field_20: u8,
+        pub by_field_21: u8,
+        pub by_field_22: u8,
+        pub ull_field_23: u64,
+        pub w_field_24: u16,
+        pub w_field_25: u16,
+        pub bytes_data_25: Vec<u8>,
+        pub dw_field_27: u32,
+        pub w_field_28: u16,
+        pub by_field_29: u8,
+        pub by_field_30: u8,
+        pub dw_field_31: u32,
+        pub dw_field_32: u32,
+        pub by_field_33: u8,
+        pub by_field_34: u8,
+        pub dw_field_35: u32,
+        pub dw_field_36: u32,
+        pub dw_field_37: u32,
+        pub by_field_38: u8,
+        pub dw_field_39: u32,
+        pub w_field_40: u16,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type EntitySpawnUpdate struct {
+        byResult uint8
+        byAction uint8
+        byParam uint8
+        byItemSlot uint8
+        wRefItemID uint32
+        wField_06 uint16
+        dwField_07 uint32
+        dwField_08 uint32
+        wField_09 uint16
+        dwField_10 uint32
+        dwField_11 uint32
+        byField_12 uint8
+        ullField_13 uint64
+        dwField_14 uint32
+        bytesData_14 []byte
+        ullField_16 uint64
+        dwField_17 uint32
+        byField_18 uint8
+        ullField_19 uint64
+        byField_20 uint8
+        byField_21 uint8
+        byField_22 uint8
+        ullField_23 uint64
+        wField_24 uint16
+        wField_25 uint16
+        bytesData_25 []byte
+        dwField_27 uint32
+        wField_28 uint16
+        byField_29 uint8
+        byField_30 uint8
+        dwField_31 uint32
+        dwField_32 uint32
+        byField_33 uint8
+        byField_34 uint8
+        dwField_35 uint32
+        dwField_36 uint32
+        dwField_37 uint32
+        byField_38 uint8
+        dwField_39 uint32
+        wField_40 uint16
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface EntitySpawnUpdate {
+        byResult: number;
+        byAction: number;
+        byParam: number;
+        byItemSlot: number;
+        wRefItemID: number;
+        wField_06: number;
+        dwField_07: number;
+        dwField_08: number;
+        wField_09: number;
+        dwField_10: number;
+        dwField_11: number;
+        byField_12: number;
+        ullField_13: bigint;
+        dwField_14: number;
+        bytesData_14: Uint8Array;
+        ullField_16: bigint;
+        dwField_17: number;
+        byField_18: number;
+        ullField_19: bigint;
+        byField_20: number;
+        byField_21: number;
+        byField_22: number;
+        ullField_23: bigint;
+        wField_24: number;
+        wField_25: number;
+        bytesData_25: Uint8Array;
+        dwField_27: number;
+        wField_28: number;
+        byField_29: number;
+        byField_30: number;
+        dwField_31: number;
+        dwField_32: number;
+        byField_33: number;
+        byField_34: number;
+        dwField_35: number;
+        dwField_36: number;
+        dwField_37: number;
+        byField_38: number;
+        dwField_39: number;
+        wField_40: number;
+    }
+    ```
+

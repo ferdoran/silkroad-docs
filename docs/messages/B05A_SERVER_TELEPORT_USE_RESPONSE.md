@@ -5,7 +5,7 @@
 | Property | Value |
 |----------|-------|
 | Opcode | `0xB05A` |
-| Direction | Client → Server |
+| Direction | Server → Client |
 | Group | Game (Client→Server) |
 | Handler(s) | `0x00883520` |
 
@@ -24,3 +24,53 @@
   [   0] byResult                       u8
   [   1] wNotifyID                      u16
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct TeleportUseResponse {
+        uint8_t byResult;
+        uint16_t wNotifyID;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record TeleportUseResponse(
+        byte byResult,
+        ushort wNotifyID
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct TeleportUseResponse {
+        pub by_result: u8,
+        pub w_notify_id: u16,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type TeleportUseResponse struct {
+        byResult uint8
+        wNotifyID uint16
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface TeleportUseResponse {
+        byResult: number;
+        wNotifyID: number;
+    }
+    ```
+

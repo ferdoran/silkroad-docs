@@ -14,9 +14,19 @@
 
 ### Fields
 
+| # | Name | Type | Size | Description |
+|---|------|------|------|-------------|
+| 1 | `updateType` | `u8` | 1 |  |
+
+<details>
+<summary>Original client-derived fields (may be inaccurate)</summary>
+
+### Fields
+
 **No payload.** This is the closing marker for the guild data multi-part stream.
 The server sends it immediately after all `0x3101 SERVER_GUILD_DATA` packets.
 
+</details>
 ### Protocol Context
 
 | Packet | Role |
@@ -40,3 +50,38 @@ Disassembly at VA `0x4DFB7F` (SR_GameServer.exe clean):
 004DFB89: mov  eax, [esi + 0x27c]  ; vtable SendPacket slot
 004DFB91: call eax                 ; SendPacket — no field writes between
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct GuildDataEnd {};  // no payload
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record GuildDataEnd();  // no payload
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct GuildDataEnd;  // no payload
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type GuildDataEnd struct{}  // no payload
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface GuildDataEnd {}  // no payload
+    ```
+

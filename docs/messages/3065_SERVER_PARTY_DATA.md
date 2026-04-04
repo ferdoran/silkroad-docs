@@ -72,3 +72,158 @@ Used by both SERVER_PARTY_DATA and [SERVER_PARTY_UPDATE](3864_SERVER_PARTY_UPDAT
     MasteryPrimaryID                    u32
     MasterySecondaryID                  u32
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct PartyData {
+        uint32_t PartyID;
+        uint32_t LeaderJoinID;
+        uint8_t PurposeType;
+        uint8_t SetupFlags;
+        uint8_t PlayerCount;
+        uint8_t MemberType;
+        uint32_t MemberID;
+        std::string Name;
+        uint32_t ModelID;
+        uint8_t Level;
+        uint8_t HPMP;
+        uint16_t RegionID;
+        uint16_t PosX;  // conditional
+        uint16_t PosY;
+        uint16_t PosZ;
+        uint8_t BodyMode;
+        uint8_t LifeState;
+        uint8_t MotionState;
+        uint8_t BattleState;
+        std::string GuildName;
+        uint8_t GuildAuthority;
+        uint32_t MasteryPrimaryID;
+        uint32_t MasterySecondaryID;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record PartyData(
+        uint PartyID,
+        uint LeaderJoinID,
+        byte PurposeType,
+        byte SetupFlags,
+        byte PlayerCount,
+        byte MemberType,
+        uint MemberID,
+        string Name,
+        uint ModelID,
+        byte Level,
+        byte HPMP,
+        ushort RegionID,
+        ushort PosX /* conditional */,
+        ushort PosY,
+        ushort PosZ,
+        byte BodyMode,
+        byte LifeState,
+        byte MotionState,
+        byte BattleState,
+        string GuildName,
+        byte GuildAuthority,
+        uint MasteryPrimaryID,
+        uint MasterySecondaryID
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct PartyData {
+        pub party_id: u32,
+        pub leader_join_id: u32,
+        pub purpose_type: u8,
+        pub setup_flags: u8,
+        pub player_count: u8,
+        pub member_type: u8,
+        pub member_id: u32,
+        pub name: String,
+        pub model_id: u32,
+        pub level: u8,
+        pub hpmp: u8,
+        pub region_id: u16,
+        pub pos_x: u16,  // conditional
+        pub pos_y: u16,
+        pub pos_z: u16,
+        pub body_mode: u8,
+        pub life_state: u8,
+        pub motion_state: u8,
+        pub battle_state: u8,
+        pub guild_name: String,
+        pub guild_authority: u8,
+        pub mastery_primary_id: u32,
+        pub mastery_secondary_id: u32,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type PartyData struct {
+        PartyID uint32
+        LeaderJoinID uint32
+        PurposeType uint8
+        SetupFlags uint8
+        PlayerCount uint8
+        MemberType uint8
+        MemberID uint32
+        Name string
+        ModelID uint32
+        Level uint8
+        HPMP uint8
+        RegionID uint16
+        PosX uint16  // conditional
+        PosY uint16
+        PosZ uint16
+        BodyMode uint8
+        LifeState uint8
+        MotionState uint8
+        BattleState uint8
+        GuildName string
+        GuildAuthority uint8
+        MasteryPrimaryID uint32
+        MasterySecondaryID uint32
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface PartyData {
+        partyID: number;
+        leaderJoinID: number;
+        purposeType: number;
+        setupFlags: number;
+        playerCount: number;
+        memberType: number;
+        memberID: number;
+        name: string;
+        modelID: number;
+        level: number;
+        hPMP: number;
+        regionID: number;
+        posX: number;  // conditional
+        posY: number;
+        posZ: number;
+        bodyMode: number;
+        lifeState: number;
+        motionState: number;
+        battleState: number;
+        guildName: string;
+        guildAuthority: number;
+        masteryPrimaryID: number;
+        masterySecondaryID: number;
+    }
+    ```
+

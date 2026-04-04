@@ -1,7 +1,7 @@
 # vSRO Server Binary Reverse Engineering
 
 Analysis of `SR_GameServer_Andreas.exe` (8.5MB, PE32 x86) and `AgentServer.exe` (912KB, PE32 x86).
-Cross-referenced with xBot source (`xBot-WinForms/xBot/`) and existing client-side documentation.
+Cross-referenced with existing client-side documentation.
 
 ## Key Findings Summary
 
@@ -149,7 +149,7 @@ MSG_PROCSTATE_OVERLAPPED  = 2
 
 ### Static Handler Registrations (from init at `0x4B0B70`)
 
-| Index | Opcode(s) | Handler | Name (from xBot) |
+| Index | Opcode(s) | Handler | Name |
 |-------|-----------|---------|-------------------|
 | 0x021 | 0x7021 | 0x4B23E0 | CLIENT_CHARACTER_MOVEMENT |
 | 0x022 | 0x7022 | 0x4B2410 | (unknown — likely movement sub-type) |
@@ -164,11 +164,11 @@ MSG_PROCSTATE_OVERLAPPED  = 2
 
 ---
 
-## 4. Corrected Opcode Map (xBot + Server Cross-Reference)
+## 4. Corrected Opcode Map (Server Cross-Reference)
 
 ### Client → Server (0x7xxx, 0x3xxx, 0x6xxx)
 
-| Opcode | xBot Name | Table Index |
+| Opcode | Name | Table Index |
 |--------|-----------|-------------|
 | 0x6103 | CLIENT_AUTH_REQUEST | 0x103 |
 | 0x7001 | CLIENT_CHARACTER_SELECTION_JOIN_REQUEST | 0x001 |
@@ -234,7 +234,7 @@ MSG_PROCSTATE_OVERLAPPED  = 2
 
 ### Server → Client (0x3xxx, 0xBxxx, 0xAxxx)
 
-| Opcode | xBot Name | Code Refs |
+| Opcode | Name | Code Refs |
 |--------|-----------|-----------|
 | 0xA103 | SERVER_AUTH_RESPONSE | — |
 | 0xB001 | SERVER_CHARACTER_SELECTION_JOIN_RESPONSE | 1 |
@@ -356,7 +356,7 @@ MSG_PROCSTATE_OVERLAPPED  = 2
 
 ### 0x3013 — SERVER_CHARACTER_DATA (via 0x34A5 begin / 0x34A6 end)
 
-The full character data is sent as a multi-part message. Combined structure from xBot:
+The full character data is sent as a multi-part message. Combined structure:
 
 ```
 u32     ServerTimestamp
@@ -521,7 +521,7 @@ ELIF isModel(RefObjID):
         u8      PVPCapeType
         u8      ExpIconType
         // Equipment Inventory
-        u8      EquipMaxCapacity    // "seems useless" per xBot
+        u8      EquipMaxCapacity    // appears unused
         u8      EquipCount
         for each:
             u32     RefItemID
@@ -819,7 +819,7 @@ IF isHorse || isTransport:
             u32     RefItemID
             u16     Quantity
             ascii   OwnerName
-        // u32 OwnerUniqueID (commented in xBot)
+        // u32 OwnerUniqueID (unused)
 
 ELIF isAttackPet:
     u32     HP
@@ -843,7 +843,7 @@ ELIF isPickPet:
     for each:
         u8      Slot
         ItemData
-    // u32 OwnerUniqueID (commented in xBot)
+    // u32 OwnerUniqueID (unused)
 ```
 
 ### 0x30C9 — SERVER_PET_UPDATE
@@ -1252,7 +1252,7 @@ D:\WORK2005\Source\JMX_ServerFramework\ServerFramework\ServerMoniterView.cpp
 
 The existing `docs/messages/` files were generated from **client binary** (sro_client.exe) analysis. Many opcode-to-name mappings are incorrect:
 
-| Opcode | Current (wrong) Name | Correct Name (xBot) |
+| Opcode | Current (wrong) Name | Correct Name |
 |--------|---------------------|---------------------|
 | 0x3015 | SERVER_CHARACTER_DELETE_RESPONSE | SERVER_ENTITY_SPAWN |
 | 0x3013 | SERVER_CHARACTER_CREATE_RESPONSE | SERVER_CHARACTER_DATA |
@@ -1275,9 +1275,9 @@ These should be regenerated using the corrected opcode map from this analysis.
 
 ## 11. Server Log Field Name Cross-Reference
 
-Server log format strings reveal authoritative field names for packet fields that xBot marks as "unk":
+Server log format strings reveal authoritative field names for packet fields previously marked as "unk":
 
-| xBot "unk" Field | Server Field Name | Context |
+| Original "unk" Field | Server Field Name | Context |
 |-------------------|-------------------|---------|
 | `unkByte04` (CharData states) | `BodyMode` | `GetBodyMode()` — BODYMODE_NORMAL/HWAN/BERSERKER/INVINCIBLE/INVISIBLE |
 | `GameState` | `BattleState` | BATTLESTATE_IN_PEACE / BATTLESTATE_IN_BATTLE |

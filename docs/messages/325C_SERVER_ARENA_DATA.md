@@ -1,4 +1,5 @@
 # SERVER_ARENA_DATA
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
@@ -24,3 +25,58 @@
   [   1] dwField_02                     u32
   [   5] dwField_03                     u32
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct ArenaData {
+        uint8_t byResult;
+        uint32_t dwField_02;
+        uint32_t dwField_03;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record ArenaData(
+        byte byResult,
+        uint dwField_02,
+        uint dwField_03
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct ArenaData {
+        pub by_result: u8,
+        pub dw_field_02: u32,
+        pub dw_field_03: u32,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type ArenaData struct {
+        byResult uint8
+        dwField_02 uint32
+        dwField_03 uint32
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface ArenaData {
+        byResult: number;
+        dwField_02: number;
+        dwField_03: number;
+    }
+    ```
+

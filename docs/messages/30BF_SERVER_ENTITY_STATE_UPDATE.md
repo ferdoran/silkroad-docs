@@ -60,3 +60,123 @@
 > Note: Client handler data is from a different opcode's handler (NPC response — misattributed during client binary analysis). The server RE fields above are authoritative.
 
 </details>
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct EntityStateUpdate {
+        uint32_t UniqueID;
+        uint8_t UpdateType;
+        uint8_t UpdateState;
+        uint32_t dwRefObjID;
+        uint32_t dwUniqueID;
+        uint32_t dwResponseType;
+        uint32_t dwParam;
+        uint64_t ullData;
+        uint8_t byNPCType;
+        uint16_t wDialogID;
+        uint32_t dwPriceRate;
+        uint8_t byCanTrade;
+        uint8_t byCanStore;
+        uint8_t byCanRepair;
+        uint32_t dwGold;
+        uint8_t bySpecialFlag;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record EntityStateUpdate(
+        uint UniqueID,
+        byte UpdateType,
+        byte UpdateState,
+        uint dwRefObjID,
+        uint dwUniqueID,
+        uint dwResponseType,
+        uint dwParam,
+        ulong ullData,
+        byte byNPCType,
+        ushort wDialogID,
+        uint dwPriceRate,
+        byte byCanTrade,
+        byte byCanStore,
+        byte byCanRepair,
+        uint dwGold,
+        byte bySpecialFlag
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct EntityStateUpdate {
+        pub unique_id: u32,
+        pub update_type: u8,
+        pub update_state: u8,
+        pub dw_ref_obj_id: u32,
+        pub dw_unique_id: u32,
+        pub dw_response_type: u32,
+        pub dw_param: u32,
+        pub ull_data: u64,
+        pub by_npctype: u8,
+        pub w_dialog_id: u16,
+        pub dw_price_rate: u32,
+        pub by_can_trade: u8,
+        pub by_can_store: u8,
+        pub by_can_repair: u8,
+        pub dw_gold: u32,
+        pub by_special_flag: u8,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type EntityStateUpdate struct {
+        UniqueID uint32
+        UpdateType uint8
+        UpdateState uint8
+        dwRefObjID uint32
+        dwUniqueID uint32
+        dwResponseType uint32
+        dwParam uint32
+        ullData uint64
+        byNPCType uint8
+        wDialogID uint16
+        dwPriceRate uint32
+        byCanTrade uint8
+        byCanStore uint8
+        byCanRepair uint8
+        dwGold uint32
+        bySpecialFlag uint8
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface EntityStateUpdate {
+        uniqueID: number;
+        updateType: number;
+        updateState: number;
+        dwRefObjID: number;
+        dwUniqueID: number;
+        dwResponseType: number;
+        dwParam: number;
+        ullData: bigint;
+        byNPCType: number;
+        wDialogID: number;
+        dwPriceRate: number;
+        byCanTrade: number;
+        byCanStore: number;
+        byCanRepair: number;
+        dwGold: number;
+        bySpecialFlag: number;
+    }
+    ```
+

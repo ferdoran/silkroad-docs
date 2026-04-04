@@ -1,4 +1,5 @@
 # SERVER_PET_EXPERIENCE
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
@@ -20,3 +21,48 @@
 ```
   [   0] dwPetExp                       u32
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct PetExperience {
+        uint32_t dwPetExp;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record PetExperience(
+        uint dwPetExp
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct PetExperience {
+        pub dw_pet_exp: u32,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type PetExperience struct {
+        dwPetExp uint32
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface PetExperience {
+        dwPetExp: number;
+    }
+    ```
+

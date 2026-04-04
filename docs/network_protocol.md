@@ -312,7 +312,7 @@ The signature exchange function at VA `0x004B2400` sets session state (`+0x0154`
 ## Opcode Reference
 
 > **Note**: The opcode names and descriptions in this section were derived from **client binary** (`sro_client.exe`) analysis. Many are inaccurate — the client uses internal dispatch IDs that don't match the actual packet semantics. For authoritative opcode names, packet structures, and field definitions, see:
-> - [Server Binary Analysis](../../docs/server_binary_analysis.md) — 145+ opcodes with corrected names from `SR_GameServer_Andreas.exe` + xBot cross-reference
+> - [Server Binary Analysis](../../docs/server_binary_analysis.md) — 145+ opcodes with corrected names from `SR_GameServer_Andreas.exe`
 > - [Protocol Reference — Correction Table](protocol_reference.md#server-corrected-opcode-names) — 50+ opcode name corrections
 
 ### Opcode Groups
@@ -338,140 +338,9 @@ je    handle_entity_group
 | `0x5800` | `0x5800-0x5FFF` | System (extended) | System messages |
 | `0x9000` | `0x9000-0x97FF` | Handshake response | Client→server handshake |
 
-### Known Opcodes — System & Handshake
+### Known Opcodes
 
-| Opcode | Direction | Description | Evidence |
-|--------|-----------|-------------|----------|
-| `0x5000` | S→C | Handshake setup | `cmp ax, 0x5000` at VA `0x004B20DD`; `mov [ptr], 0x5000` at 3 locations |
-| `0x9000` | C→S | Handshake response | `cmp ax, 0x9000` at VA `0x004B2229`; `mov [ptr], 0x9000` at 2 locations |
-| `0xA106` | — | Agent server message | `cmp ax, 0xA106` |
-
-### Known Opcodes — Client→Server (Send)
-
-Found via `mov word ptr [buffer], opcode` instructions that write opcodes into outgoing packets:
-
-| Opcode | Description | Evidence |
-|--------|-------------|----------|
-| `0x2001` | Login request | Written at VA `0x004CE8F8`; pushed at 4 locations |
-| `0x2002` | Login (secondary) | Written at VA `0x004CF9DA` |
-| `0x2026` | Version/patch check | Written at VA `0x00B9D6B6` |
-| `0x6004` | Chat command | Written at VA `0x004D12E8` |
-| `0x600D` | Chat message | Written at VA `0x004D624E`, `0x004D6355` |
-| `0x6100` | Character action | Written at VA `0x004CEA98` |
-| `0x6101` | Character action 2 | Written at VA `0x004C9439` |
-| `0x6103` | Character action 3 | Written at VA `0x004CEB86` |
-| `0x6104` | Character action 4 | Written at VA `0x004CF128` (3 locations) |
-| `0x6106` | Character action 5 | Written at VA `0x004C94A9` |
-| `0x6323` | Stall action | Written at VA `0x004C96B8` |
-| `0xA004` | Agent action | Written at VA `0x004D0C98` |
-
-### Known Opcodes — Server→Client (Receive)
-
-> **Caution**: The descriptions below are client-internal handler labels, NOT the actual packet names. For example, what the client calls "Entity info" at `0x3011` is actually `SERVER_CHARACTER_DIED`; `0x3013` labeled "Entity data" is `SERVER_CHARACTER_DATA`. See [Server Binary Analysis §4-5](../../docs/server_binary_analysis.md#4-corrected-opcode-map-xbot--server-cross-reference) for the corrected map.
-
-Found via paired `push opcode` patterns in handler functions (used for debug logging):
-
-| Opcode | Description | Refs |
-|--------|-------------|------|
-| `0x3005` | World update | 1 |
-| `0x3006` | World data | 1 |
-| `0x3011` | Entity info | 1 |
-| `0x3012` | Entity spawn | 2 |
-| `0x3013` | Entity data | 1 |
-| `0x3014` | Entity spawn (variant) | 2 |
-| `0x3016` | Entity position update | 3 |
-| `0x3019` | Entity state | 1 |
-| `0x3020` | Entity despawn | 2 |
-| `0x3021` | Entity action | 1 |
-| `0x3022` | Entity action 2 | 1 |
-| `0x3023` | Entity data update | 2 |
-| `0x3053` | Group entity update | 6 |
-| `0x306E` | Entity effect | 2 |
-| `0x3080` | Movement update | 27 |
-| `0x3091` | Movement state | 16 |
-| `0x30C4` | Entity state change | 2 |
-| `0x30D4` | Entity property | 2 |
-| `0x3303` | Entity status | 2 |
-| `0x347F` | Entity visual | 2 |
-| `0x34A9` | Entity attribute | 2 |
-| `0x34B6` | Entity flag | 2 |
-| `0x34BF` | Entity parameter | 2 |
-| `0x7001` | Game response | 4 |
-| `0x7005` | Teleport | 2 |
-| `0x7006` | Teleport response | 2 |
-| `0x7007` | Resurrect/respawn | 17 |
-| `0x7010` | Skill result | 70 |
-| `0x7021` | Stall (player shop) | 2 |
-| `0x7023` | Stall data | 2 |
-| `0x7024` | Stall update | 2 |
-| `0x7025` | Trade/exchange | 12 |
-| `0x7031` | Entity visual update | 2 |
-| `0x7034` | Buff/status effect | 66 |
-| `0x703C` | Item update | 4 |
-| `0x703E` | Equipment update | 4 |
-| `0x703F` | Equipment state | 2 |
-| `0x7045` | Item property | 2 |
-| `0x7046` | Item action result | 19 |
-| `0x704B` | Inventory update | 2 |
-| `0x704C` | Inventory state | 6 |
-| `0x704F` | Storage update | 2 |
-| `0x7050` | Item visual | 2 |
-| `0x7051` | Item data | 2 |
-| `0x7059` | Experience update | 2 |
-| `0x705A` | Level/stat update | 4 |
-| `0x705B` | Character stat | 4 |
-| `0x705D` | Gold/currency | 2 |
-| `0x705E` | Character data | 8 |
-| `0x7060`–`0x7063` | Character info | 2 each |
-| `0x7069`–`0x706A` | Pet info/update | 2 each |
-| `0x706B`–`0x706D` | Quest state/data/update | 2 each |
-| `0x7074` | Party update | 32 |
-| `0x7081`–`0x7084` | Guild base/data/info/update | 2 each |
-| `0x70A1`–`0x70A2` | Union base/data | 2 each |
-| `0x70A7` | Union update | 2 |
-| `0x70B1`–`0x70B5` | Fortress base/data/info/update/state | 2 each |
-| `0x70BA` | Fortress action | 2 |
-| `0x70C0` | Arena state | 2 |
-| `0x70C5` | NPC interaction | 18 |
-| `0x70C6`–`0x70C7` | NPC data/dialog | 2 each |
-| `0x70CB` | NPC response | 2 |
-| `0x70D8`–`0x70D9` | Market data/update | 2 each |
-| `0x70DB` | Market result | 2 |
-| `0x70E1`–`0x70E6` | Alchemy result/data/update/state/info/complete | 2 each |
-| `0x70EA` | Job data | 2 |
-| `0x70F0`–`0x70F4` | Transport start/data/update/state/info | 2 each |
-| `0x70F6` | Transport result | 2 |
-| `0x70F9`–`0x70FD` | Transport end → Honor info | 2 each |
-| `0x70FF` | Title data | 2 |
-| `0x7103` | Academy data | 2 |
-| `0x7105`–`0x7107` | Academy update/state/info | 2 each |
-| `0x7110` | Premium state | 2 |
-| `0x7112`–`0x7114` | Premium data/update/info | 2 each |
-| `0x7116`–`0x7119` | System messages | 2-12 each |
-| `0x711A` | System info | 12 |
-| `0x7121` | Event data | 2 |
-| `0x7150`–`0x7151` | PvP match/data | 6/6 |
-| `0x7155` | PvP result | 8 |
-| `0x7157`–`0x7158` | PvP state/update | 4/7 |
-| `0x715F`–`0x7160` | PvP info/score | 2 each |
-| `0x7168` | Battle result | 2 |
-| `0x716A` | Battle data | 8 |
-| `0x7202`–`0x7203` | Recall data/update | 2 each |
-| `0x7250`–`0x7252` | Silk data/update/state | 2 each |
-| `0x7256` | Cash shop | 2 |
-| `0x7258`–`0x725A` | Cash shop data, item mall result, item visual change | 2 each |
-| `0x7302`–`0x730D` | Ranking system (data, update, list, info, state, result, score, entry) | 2 each |
-| `0x7402` | Calendar data | 2 |
-| `0x7420` | Event state | 2 |
-| `0x7450` | CTF/battle data | 6 |
-| `0x7461`–`0x7478` | Arena system (match, data, update, score, state, info, result, ranking, end, reward, queue, start) | 2 each |
-| `0x747A`–`0x747E` | Arena zone/achievement | 2 each |
-| `0x7483` | Event reward | 2 |
-| `0x74B2` | Collection data | 2 |
-| `0x74D3`–`0x74E0` | Challenge system | 2-4 each |
-| `0x7501` | Expansion data | 2 |
-| `0x7506`–`0x750E` | Costume system | 2-6 each |
-| `0x7515`–`0x751D` | Premium effects/buffs | 2 each |
+The full opcode catalog is maintained in the [Message Index](../messages/INDEX.md). The dispatch table ranges and handler counts below are binary-level data that supplement that index.
 
 ### Dispatch Table Ranges
 

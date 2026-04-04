@@ -1,4 +1,5 @@
 # SERVER_CHAT_UPDATE
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
@@ -30,3 +31,38 @@ or any of the analyzed plugin DLLs. Possible explanations:
 
 Searched in: SR_GameServer.exe (clean), GatewayServer.exe, AgentServer.exe,
 SR_ShardManager.exe, all SMPlugin DLLs — **no PUSH pattern found**.
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct ChatUpdate {};  // no payload
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record ChatUpdate();  // no payload
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct ChatUpdate;  // no payload
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type ChatUpdate struct{}  // no payload
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface ChatUpdate {}  // no payload
+    ```
+

@@ -1,4 +1,5 @@
 # SERVER_ENTITY_STAT_UPDATE
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
@@ -20,7 +21,6 @@
 
 **Total size**: 21 bytes
 
-
 ### String References
 | String | Type |
 |--------|------|
@@ -36,3 +36,73 @@
   [  13] dwField_05                     u32
   [  17] dwField_06                     u32
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct EntityStatUpdate {
+        uint32_t dwRefObjID;
+        uint32_t dwField_02;
+        uint32_t dwField_03;
+        uint8_t byField_04;
+        uint32_t dwField_05;
+        uint32_t dwField_06;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record EntityStatUpdate(
+        uint dwRefObjID,
+        uint dwField_02,
+        uint dwField_03,
+        byte byField_04,
+        uint dwField_05,
+        uint dwField_06
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct EntityStatUpdate {
+        pub dw_ref_obj_id: u32,
+        pub dw_field_02: u32,
+        pub dw_field_03: u32,
+        pub by_field_04: u8,
+        pub dw_field_05: u32,
+        pub dw_field_06: u32,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type EntityStatUpdate struct {
+        dwRefObjID uint32
+        dwField_02 uint32
+        dwField_03 uint32
+        byField_04 uint8
+        dwField_05 uint32
+        dwField_06 uint32
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface EntityStatUpdate {
+        dwRefObjID: number;
+        dwField_02: number;
+        dwField_03: number;
+        byField_04: number;
+        dwField_05: number;
+        dwField_06: number;
+    }
+    ```
+

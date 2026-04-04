@@ -1,4 +1,5 @@
 # SERVER_STALL_CLOSE
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
@@ -19,7 +20,6 @@
 
 **Minimum size**: 16 bytes + variable fields
 
-
 ### String References
 | String | Type |
 |--------|------|
@@ -34,3 +34,68 @@
   [   8] dwField_04                     u32
   [  12] dwField_05                     u32
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct StallClose {
+        std::vector<uint8_t> bytesData;
+        uint32_t dwField_02;
+        uint32_t dwField_03;
+        uint32_t dwField_04;
+        uint32_t dwField_05;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record StallClose(
+        byte[] bytesData,
+        uint dwField_02,
+        uint dwField_03,
+        uint dwField_04,
+        uint dwField_05
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct StallClose {
+        pub bytes_data: Vec<u8>,
+        pub dw_field_02: u32,
+        pub dw_field_03: u32,
+        pub dw_field_04: u32,
+        pub dw_field_05: u32,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type StallClose struct {
+        bytesData []byte
+        dwField_02 uint32
+        dwField_03 uint32
+        dwField_04 uint32
+        dwField_05 uint32
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface StallClose {
+        bytesData: Uint8Array;
+        dwField_02: number;
+        dwField_03: number;
+        dwField_04: number;
+        dwField_05: number;
+    }
+    ```
+

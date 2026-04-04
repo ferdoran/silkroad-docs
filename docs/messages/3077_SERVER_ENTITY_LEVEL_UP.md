@@ -1,4 +1,5 @@
 # SERVER_ENTITY_LEVEL_UP
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
@@ -22,3 +23,53 @@
   [   0] byResult                       u8
   [   1] wNewLevel                      u16
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct EntityLevelUp {
+        uint8_t byResult;
+        uint16_t wNewLevel;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record EntityLevelUp(
+        byte byResult,
+        ushort wNewLevel
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct EntityLevelUp {
+        pub by_result: u8,
+        pub w_new_level: u16,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type EntityLevelUp struct {
+        byResult uint8
+        wNewLevel uint16
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface EntityLevelUp {
+        byResult: number;
+        wNewLevel: number;
+    }
+    ```
+

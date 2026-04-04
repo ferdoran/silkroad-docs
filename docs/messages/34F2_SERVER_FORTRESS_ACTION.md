@@ -1,4 +1,5 @@
 # SERVER_FORTRESS_ACTION
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
@@ -20,3 +21,48 @@
 ```
   [   0] byResult                       u8
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct FortressAction {
+        uint8_t byResult;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record FortressAction(
+        byte byResult
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct FortressAction {
+        pub by_result: u8,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type FortressAction struct {
+        byResult uint8
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface FortressAction {
+        byResult: number;
+    }
+    ```
+

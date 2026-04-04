@@ -1,9 +1,10 @@
 # CLIENT_ACADEMY_ACTION
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
 | Opcode | `0xB252` |
-| Direction | Client → Server |
+| Direction | Server → Client |
 | Group | Client Extended 2 |
 | Handler(s) | `0x0088E690` |
 
@@ -20,7 +21,7 @@ the `CCmdDispatcher` table at index `0xB252 & 0x7FF = 0x252`.
 
 The GatewayServer contains a Yahoo-based credential verification flow. The academy
 (training camp) action uses a separate academy-specific protocol sub-system
-(`3256_SERVER_ACADEMY_UPDATE.md`, `B250_CLIENT_ACADEMY_UPDATE.md`, etc.).
+(`3256_SERVER_ACADEMY_UPDATE.md`, `B250_SERVER_GUILD_STORAGE_RESPONSE.md`, etc.).
 
 Possible field structure based on sibling academy messages:
 
@@ -35,3 +36,38 @@ Possible field structure based on sibling academy messages:
 
 Searched in: SR_GameServer.exe (clean) — `PUSH 0xB252` **not found** (confirms
 client→server direction). Server receive handler registered via `CCmdDispatcher`.
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct AcademyAction {};  // no payload
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record AcademyAction();  // no payload
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct AcademyAction;  // no payload
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type AcademyAction struct{}  // no payload
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface AcademyAction {}  // no payload
+    ```
+

@@ -75,3 +75,88 @@ Write sizes (`eax` before each `call 0x404090`):
 | `0x005BE998` | 4 | InviterModelID |
 
 Send: `mov edx, [eax + 0x27c]; call edx` at VA `0x005BE9A8`.
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct PartyInvitationResponse {
+        uint8_t Result;
+        uint32_t InviterUniqueID;
+        uint8_t InviteeType;
+        uint32_t InviterJoinID;
+        uint32_t PartyID;
+        uint32_t PartySettingsFlag;
+        uint8_t PurposeType;
+        uint8_t MemberFlag;
+        uint32_t InviterModelID;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record PartyInvitationResponse(
+        byte Result,
+        uint InviterUniqueID,
+        byte InviteeType,
+        uint InviterJoinID,
+        uint PartyID,
+        uint PartySettingsFlag,
+        byte PurposeType,
+        byte MemberFlag,
+        uint InviterModelID
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct PartyInvitationResponse {
+        pub result: u8,
+        pub inviter_unique_id: u32,
+        pub invitee_type: u8,
+        pub inviter_join_id: u32,
+        pub party_id: u32,
+        pub party_settings_flag: u32,
+        pub purpose_type: u8,
+        pub member_flag: u8,
+        pub inviter_model_id: u32,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type PartyInvitationResponse struct {
+        Result uint8
+        InviterUniqueID uint32
+        InviteeType uint8
+        InviterJoinID uint32
+        PartyID uint32
+        PartySettingsFlag uint32
+        PurposeType uint8
+        MemberFlag uint8
+        InviterModelID uint32
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface PartyInvitationResponse {
+        result: number;
+        inviterUniqueID: number;
+        inviteeType: number;
+        inviterJoinID: number;
+        partyID: number;
+        partySettingsFlag: number;
+        purposeType: number;
+        memberFlag: number;
+        inviterModelID: number;
+    }
+    ```
+

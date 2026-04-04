@@ -38,3 +38,68 @@
 > Note: Client handler data is from a different opcode's handler (misattributed during client binary analysis). The server RE fields above are authoritative.
 
 </details>
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct EntitySpeedUpdate {
+        uint32_t UniqueID;
+        float SpeedWalking;
+        float SpeedRunning;
+        uint8_t byResult;
+        uint16_t wPetUID;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record EntitySpeedUpdate(
+        uint UniqueID,
+        float SpeedWalking,
+        float SpeedRunning,
+        byte byResult,
+        ushort wPetUID
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct EntitySpeedUpdate {
+        pub unique_id: u32,
+        pub speed_walking: f32,
+        pub speed_running: f32,
+        pub by_result: u8,
+        pub w_pet_uid: u16,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type EntitySpeedUpdate struct {
+        UniqueID uint32
+        SpeedWalking float32
+        SpeedRunning float32
+        byResult uint8
+        wPetUID uint16
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface EntitySpeedUpdate {
+        uniqueID: number;
+        speedWalking: number;
+        speedRunning: number;
+        byResult: number;
+        wPetUID: number;
+    }
+    ```
+

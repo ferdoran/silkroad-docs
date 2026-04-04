@@ -92,3 +92,233 @@
 | 5 | `wRegionID` | `bytes` | variable | `0x004F71C5` |
 
 </details>
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct CharacterStatsUpdate {
+        uint32_t PhyAtkMin;
+        uint32_t PhyAtkMax;
+        uint32_t MagAtkMin;
+        uint32_t MagAtkMax;
+        uint16_t PhyDefense;
+        uint16_t MagDefense;
+        uint16_t HitRate;
+        uint16_t ParryRatio;
+        uint32_t HPMax;
+        uint32_t MPMax;
+        uint16_t STR;
+        uint16_t INT;
+        uint8_t byEntityType;
+        uint32_t dwRefObjID;
+        uint8_t bySpecialType;
+        uint32_t dwUniqueID;
+        uint8_t wRegionID;
+        uint8_t fPosX;
+        uint8_t fPosY;
+        uint8_t fPosZ;
+        uint8_t wAngle;
+        uint16_t byMoving;
+        uint16_t byRunning;
+        uint8_t wDestRegion;
+        uint8_t wDestX;
+        uint8_t wDestZ;
+        uint8_t byLifeState;
+        uint16_t fSpeedWalking;
+        uint8_t fSpeedRunning;
+        uint16_t fSpeedBerserk;
+        uint16_t wBuffCount;
+        uint8_t bytesName;
+        uint8_t bytesGuildName;
+        std::vector<uint8_t> byJobType;
+        uint8_t byJobLevel;
+        uint8_t byPVPState;
+        uint8_t byBerserkLevel;
+        uint8_t byField_26;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record CharacterStatsUpdate(
+        uint PhyAtkMin,
+        uint PhyAtkMax,
+        uint MagAtkMin,
+        uint MagAtkMax,
+        ushort PhyDefense,
+        ushort MagDefense,
+        ushort HitRate,
+        ushort ParryRatio,
+        uint HPMax,
+        uint MPMax,
+        ushort STR,
+        ushort INT,
+        byte byEntityType,
+        uint dwRefObjID,
+        byte bySpecialType,
+        uint dwUniqueID,
+        byte wRegionID,
+        byte fPosX,
+        byte fPosY,
+        byte fPosZ,
+        byte wAngle,
+        ushort byMoving,
+        ushort byRunning,
+        byte wDestRegion,
+        byte wDestX,
+        byte wDestZ,
+        byte byLifeState,
+        ushort fSpeedWalking,
+        byte fSpeedRunning,
+        ushort fSpeedBerserk,
+        ushort wBuffCount,
+        byte bytesName,
+        byte bytesGuildName,
+        byte[] byJobType,
+        byte byJobLevel,
+        byte byPVPState,
+        byte byBerserkLevel,
+        byte byField_26
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct CharacterStatsUpdate {
+        pub phy_atk_min: u32,
+        pub phy_atk_max: u32,
+        pub mag_atk_min: u32,
+        pub mag_atk_max: u32,
+        pub phy_defense: u16,
+        pub mag_defense: u16,
+        pub hit_rate: u16,
+        pub parry_ratio: u16,
+        pub hpmax: u32,
+        pub mpmax: u32,
+        pub str: u16,
+        pub int: u16,
+        pub by_entity_type: u8,
+        pub dw_ref_obj_id: u32,
+        pub by_special_type: u8,
+        pub dw_unique_id: u32,
+        pub w_region_id: u8,
+        pub f_pos_x: u8,
+        pub f_pos_y: u8,
+        pub f_pos_z: u8,
+        pub w_angle: u8,
+        pub by_moving: u16,
+        pub by_running: u16,
+        pub w_dest_region: u8,
+        pub w_dest_x: u8,
+        pub w_dest_z: u8,
+        pub by_life_state: u8,
+        pub f_speed_walking: u16,
+        pub f_speed_running: u8,
+        pub f_speed_berserk: u16,
+        pub w_buff_count: u16,
+        pub bytes_name: u8,
+        pub bytes_guild_name: u8,
+        pub by_job_type: Vec<u8>,
+        pub by_job_level: u8,
+        pub by_pvpstate: u8,
+        pub by_berserk_level: u8,
+        pub by_field_26: u8,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type CharacterStatsUpdate struct {
+        PhyAtkMin uint32
+        PhyAtkMax uint32
+        MagAtkMin uint32
+        MagAtkMax uint32
+        PhyDefense uint16
+        MagDefense uint16
+        HitRate uint16
+        ParryRatio uint16
+        HPMax uint32
+        MPMax uint32
+        STR uint16
+        INT uint16
+        byEntityType uint8
+        dwRefObjID uint32
+        bySpecialType uint8
+        dwUniqueID uint32
+        wRegionID uint8
+        fPosX uint8
+        fPosY uint8
+        fPosZ uint8
+        wAngle uint8
+        byMoving uint16
+        byRunning uint16
+        wDestRegion uint8
+        wDestX uint8
+        wDestZ uint8
+        byLifeState uint8
+        fSpeedWalking uint16
+        fSpeedRunning uint8
+        fSpeedBerserk uint16
+        wBuffCount uint16
+        bytesName uint8
+        bytesGuildName uint8
+        byJobType []byte
+        byJobLevel uint8
+        byPVPState uint8
+        byBerserkLevel uint8
+        byField_26 uint8
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface CharacterStatsUpdate {
+        phyAtkMin: number;
+        phyAtkMax: number;
+        magAtkMin: number;
+        magAtkMax: number;
+        phyDefense: number;
+        magDefense: number;
+        hitRate: number;
+        parryRatio: number;
+        hPMax: number;
+        mPMax: number;
+        sTR: number;
+        iNT: number;
+        byEntityType: number;
+        dwRefObjID: number;
+        bySpecialType: number;
+        dwUniqueID: number;
+        wRegionID: number;
+        fPosX: number;
+        fPosY: number;
+        fPosZ: number;
+        wAngle: number;
+        byMoving: number;
+        byRunning: number;
+        wDestRegion: number;
+        wDestX: number;
+        wDestZ: number;
+        byLifeState: number;
+        fSpeedWalking: number;
+        fSpeedRunning: number;
+        fSpeedBerserk: number;
+        wBuffCount: number;
+        bytesName: number;
+        bytesGuildName: number;
+        byJobType: Uint8Array;
+        byJobLevel: number;
+        byPVPState: number;
+        byBerserkLevel: number;
+        byField_26: number;
+    }
+    ```
+

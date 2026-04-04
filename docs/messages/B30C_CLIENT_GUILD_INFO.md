@@ -1,9 +1,10 @@
 # CLIENT_GUILD_INFO
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
 | Opcode | `0xB30C` |
-| Direction | Client → Server |
+| Direction | Server → Client |
 | Group | Client Extended 3 |
 | Handler(s) | `0x0088D390` |
 
@@ -22,3 +23,53 @@
   [   0] byResult                       u8
   [   1] wParam                         u16
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct GuildInfo {
+        uint8_t byResult;
+        uint16_t wParam;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record GuildInfo(
+        byte byResult,
+        ushort wParam
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct GuildInfo {
+        pub by_result: u8,
+        pub w_param: u16,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type GuildInfo struct {
+        byResult uint8
+        wParam uint16
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface GuildInfo {
+        byResult: number;
+        wParam: number;
+    }
+    ```
+

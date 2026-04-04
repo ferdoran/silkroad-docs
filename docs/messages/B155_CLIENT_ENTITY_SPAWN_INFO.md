@@ -1,4 +1,5 @@
 # SERVER_ENTITY_SPAWN_INFO
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 > **Direction corrected** (server RE): The server **sends** this packet to the client;
 > the "CLIENT_" prefix in the client-derived name reflects the client-side naming convention.
@@ -101,3 +102,89 @@ Send: `mov edx, [eax + 0x27c]; push esi; call edx` at VA `0x0050A0A7`.
 | String | Type |
 |--------|------|
 | `ITEM_QSP_ALL_POTION_1_01` | Debug — confirms compound crafting/inventory context |
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct EntitySpawnInfoCompoundSlotSpawn {
+        uint8_t SpawnType;
+        uint8_t SubType;
+        uint8_t SlotItemType;
+        uint32_t UniqueID;
+    };
+    struct EntitySpawnInfoAcknowledgment {
+        uint8_t AckType;
+        uint8_t AckResult;
+    };
+    struct EntitySpawnInfo {
+        std::variant<EntitySpawnInfoCompoundSlotSpawn, EntitySpawnInfoAcknowledgment> body;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public abstract record EntitySpawnInfoBody;
+    public record EntitySpawnInfoCompoundSlotSpawn(byte SpawnType, byte SubType, byte SlotItemType, uint UniqueID) : EntitySpawnInfoBody;
+    public record EntitySpawnInfoAcknowledgment(byte AckType, byte AckResult) : EntitySpawnInfoBody;
+    public record EntitySpawnInfo(EntitySpawnInfoBody Body);
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct EntitySpawnInfoCompoundSlotSpawn {
+        pub spawn_type: u8,
+        pub sub_type: u8,
+        pub slot_item_type: u8,
+        pub unique_id: u32,
+    }
+    pub struct EntitySpawnInfoAcknowledgment {
+        pub ack_type: u8,
+        pub ack_result: u8,
+    }
+    pub enum EntitySpawnInfoBody {
+        CompoundSlotSpawn(EntitySpawnInfoCompoundSlotSpawn),
+        Acknowledgment(EntitySpawnInfoAcknowledgment),
+    }
+    pub struct EntitySpawnInfo {
+        pub body: EntitySpawnInfoBody,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type EntitySpawnInfoBody interface { entitySpawnInfoBody() }
+    type EntitySpawnInfoCompoundSlotSpawn struct {
+        SpawnType uint8
+        SubType uint8
+        SlotItemType uint8
+        UniqueID uint32
+    }
+    func (*EntitySpawnInfoCompoundSlotSpawn) entitySpawnInfoBody() {}
+    type EntitySpawnInfoAcknowledgment struct {
+        AckType uint8
+        AckResult uint8
+    }
+    func (*EntitySpawnInfoAcknowledgment) entitySpawnInfoBody() {}
+    type EntitySpawnInfo struct {
+        Body EntitySpawnInfoBody
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    type EntitySpawnInfoBody =
+        | { kind: 'CompoundSlotSpawn'; spawnType: number; subType: number; slotItemType: number; uniqueID: number }
+        | { kind: 'Acknowledgment'; ackType: number; ackResult: number };
+    export interface EntitySpawnInfo {
+        body: EntitySpawnInfoBody;
+    }
+    ```
+

@@ -1,4 +1,5 @@
 # SERVER_ENTITY_BUFF
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
@@ -24,3 +25,58 @@
   [   1] dwBuffID                       u32
   [   5] dwDuration                     u32
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct EntityBuff {
+        uint8_t byAction;
+        uint32_t dwBuffID;
+        uint32_t dwDuration;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record EntityBuff(
+        byte byAction,
+        uint dwBuffID,
+        uint dwDuration
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct EntityBuff {
+        pub by_action: u8,
+        pub dw_buff_id: u32,
+        pub dw_duration: u32,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type EntityBuff struct {
+        byAction uint8
+        dwBuffID uint32
+        dwDuration uint32
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface EntityBuff {
+        byAction: number;
+        dwBuffID: number;
+        dwDuration: number;
+    }
+    ```
+

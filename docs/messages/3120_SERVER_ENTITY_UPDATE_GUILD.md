@@ -1,4 +1,5 @@
 # SERVER_ENTITY_UPDATE_GUILD
+> **Note**: Fields below are from client binary analysis and may be inaccurate.
 
 | Property | Value |
 |----------|-------|
@@ -22,3 +23,53 @@
   [   0] byResult                       u8
   [   1] wValue                         u16
 ```
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct EntityUpdateGuild {
+        uint8_t byResult;
+        uint16_t wValue;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record EntityUpdateGuild(
+        byte byResult,
+        ushort wValue
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct EntityUpdateGuild {
+        pub by_result: u8,
+        pub w_value: u16,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type EntityUpdateGuild struct {
+        byResult uint8
+        wValue uint16
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface EntityUpdateGuild {
+        byResult: number;
+        wValue: number;
+    }
+    ```
+

@@ -39,3 +39,73 @@
 > Note: Client handler data is from a different opcode's handler (misattributed during client binary analysis). The server RE fields above are authoritative.
 
 </details>
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct EntitySkillBuffAdded {
+        uint32_t TargetUniqueID;
+        uint32_t SkillID;
+        uint32_t BuffUniqueID;
+        uint8_t byResult;
+        uint16_t wField_02;
+        uint32_t dwField_03;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record EntitySkillBuffAdded(
+        uint TargetUniqueID,
+        uint SkillID,
+        uint BuffUniqueID,
+        byte byResult,
+        ushort wField_02,
+        uint dwField_03
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct EntitySkillBuffAdded {
+        pub target_unique_id: u32,
+        pub skill_id: u32,
+        pub buff_unique_id: u32,
+        pub by_result: u8,
+        pub w_field_02: u16,
+        pub dw_field_03: u32,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type EntitySkillBuffAdded struct {
+        TargetUniqueID uint32
+        SkillID uint32
+        BuffUniqueID uint32
+        byResult uint8
+        wField_02 uint16
+        dwField_03 uint32
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface EntitySkillBuffAdded {
+        targetUniqueID: number;
+        skillID: number;
+        buffUniqueID: number;
+        byResult: number;
+        wField_02: number;
+        dwField_03: number;
+    }
+    ```
+

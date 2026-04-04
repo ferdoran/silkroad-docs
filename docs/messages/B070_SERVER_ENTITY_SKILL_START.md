@@ -73,3 +73,88 @@ if HasDamage:
 > Note: Client handler data is from a different opcode's handler (misattributed during client binary analysis). The server RE fields above are authoritative.
 
 </details>
+
+---
+
+### Struct Definitions
+
+=== "C++"
+    ```cpp
+    // C++  (SRO wire types; use your serialisation layer for endianness)
+    struct EntitySkillStart {
+        bool Success;
+        uint8_t CastType;
+        uint8_t AttackIndex;
+        uint32_t SkillID;
+        uint32_t SourceUniqueID;
+        uint32_t SkillUniqueID;
+        uint32_t TargetUniqueID;
+        uint32_t dwUniqueID;
+        uint32_t dwTargetUID;
+    };
+    ```
+
+=== "C#"
+    ```csharp
+    // C#
+    public record EntitySkillStart(
+        bool Success,
+        byte CastType,
+        byte AttackIndex,
+        uint SkillID,
+        uint SourceUniqueID,
+        uint SkillUniqueID,
+        uint TargetUniqueID,
+        uint dwUniqueID,
+        uint dwTargetUID
+    );
+    ```
+
+=== "Rust"
+    ```rust
+    // Rust
+    pub struct EntitySkillStart {
+        pub success: bool,
+        pub cast_type: u8,
+        pub attack_index: u8,
+        pub skill_id: u32,
+        pub source_unique_id: u32,
+        pub skill_unique_id: u32,
+        pub target_unique_id: u32,
+        pub dw_unique_id: u32,
+        pub dw_target_uid: u32,
+    }
+    ```
+
+=== "Go"
+    ```go
+    // Go
+    type EntitySkillStart struct {
+        Success bool
+        CastType uint8
+        AttackIndex uint8
+        SkillID uint32
+        SourceUniqueID uint32
+        SkillUniqueID uint32
+        TargetUniqueID uint32
+        dwUniqueID uint32
+        dwTargetUID uint32
+    }
+    ```
+
+=== "TypeScript"
+    ```typescript
+    // TypeScript
+    export interface EntitySkillStart {
+        success: boolean;
+        castType: number;
+        attackIndex: number;
+        skillID: number;
+        sourceUniqueID: number;
+        skillUniqueID: number;
+        targetUniqueID: number;
+        dwUniqueID: number;
+        dwTargetUID: number;
+    }
+    ```
+

@@ -3,7 +3,7 @@
 Complete reference for Silkroad Online's network protocol.
 **288** documented opcodes across 7 categories.
 
-> **WARNING — Client-Derived Names**: The opcode names in this file were generated from `sro_client.exe` binary analysis. Many are **incorrect**. The table below lists confirmed corrections from server binary RE (`SR_GameServer_Andreas.exe`) cross-referenced with server RE. See [server_binary_analysis.md](../../docs/server_binary_analysis.md) for authoritative packet structures and field names.
+> **WARNING — Client-Derived Names**: The opcode names in this file were generated from `sro_client.exe` binary analysis. Many are **incorrect**. The table below lists confirmed corrections from server binary RE (`SR_GameServer_Andreas.exe`) cross-referenced with server RE. See [server_binary_analysis.md](server_binary_analysis.md) for authoritative packet structures and field names.
 
 ## Server-Corrected Opcode Names
 

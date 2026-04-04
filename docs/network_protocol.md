@@ -312,7 +312,7 @@ The signature exchange function at VA `0x004B2400` sets session state (`+0x0154`
 ## Opcode Reference
 
 > **Note**: The opcode names and descriptions in this section were derived from **client binary** (`sro_client.exe`) analysis. Many are inaccurate — the client uses internal dispatch IDs that don't match the actual packet semantics. For authoritative opcode names, packet structures, and field definitions, see:
-> - [Server Binary Analysis](../../docs/server_binary_analysis.md) — 145+ opcodes with corrected names from `SR_GameServer_Andreas.exe`
+> - [Server Binary Analysis](server_binary_analysis.md) — 145+ opcodes with corrected names from `SR_GameServer_Andreas.exe`
 > - [Protocol Reference — Correction Table](protocol_reference.md#server-corrected-opcode-names) — 50+ opcode name corrections
 
 ### Opcode Groups
@@ -340,7 +340,7 @@ je    handle_entity_group
 
 ### Known Opcodes
 
-The full opcode catalog is maintained in the [Message Index](../messages/INDEX.md). The dispatch table ranges and handler counts below are binary-level data that supplement that index.
+The full opcode catalog is maintained in the [Message Index](messages/INDEX.md). The dispatch table ranges and handler counts below are binary-level data that supplement that index.
 
 ### Dispatch Table Ranges
 

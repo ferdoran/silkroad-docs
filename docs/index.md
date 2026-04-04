@@ -8,8 +8,7 @@ Reverse-engineered documentation of the **Silkroad Online** game client (`Silkro
 - [Overview](overview.md) - High-level component architecture and data flow
 - [Client Binary](sro_client.md) - Binary analysis: RTTI classes, vtables, key functions
 - [Anti-Cheat](anticheat.md) - Anti-cheat and integrity checking mechanisms
-- [Config Files](config_files.md) - Configuration file formats and registry keys
-- [Launcher & Patcher](launcher_and_patcher.md) - Launcher flow and patching system
+- [Startup & Configuration](client_startup.md) - Configuration, startup flow, and registry keys
 
 ### File Formats
 - [PK2 Archive](pk2_format.md) - PK2 archive format (Blowfish-encrypted package files)
